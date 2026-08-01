@@ -51,17 +51,30 @@ box(5.5,2.9,4.2,1.1,"Deterioro leve-moderado\n(basal leve/leve-mod)\nn = 122 · 
 ax.set_title("Figura 1. Flujo de la cohorte",loc='left',weight='bold',fontsize=9.5)
 fig.savefig(f"{REPO}/Fig1_flujo.png",bbox_inches='tight',dpi=300); plt.close(fig); print("Fig1_flujo.png")
 
-# --- Fig3 subtipos DCL (Petersen): progresión a demencia + declive ---
-order=[('Amnésico\nmultidominio',CLAY),('Disejecutivo/\natencional',AMBER),('Amnésico\ndominio único',MOSS)]
-fig,ax=plt.subplots(figsize=(5.8,3.0)); yy=np.arange(len(order))[::-1]
+# --- Fig3 subtipos OBJETIVOS de DCL (Petersen/Winblad): patrón objetivo de dominios ---
+CORE=['memoria','atencion','funciones_ejecutivas','lenguaje','visuoespacial']
+zwide=de[de.dominio.isin(CORE)].assign(z=lambda x:x.z_peor.clip(-6,4)).pivot_table(index='eval_id',columns='dominio',values='z',aggfunc='min')
+def subobj(eb):
+    if eb not in zwide.index: return np.nan
+    row=zwide.loc[eb]; pres={d:row[d] for d in CORE if pd.notna(row.get(d))}
+    if len(pres)<3: return np.nan
+    af=[d for d,v in pres.items() if v<=-1.5]; n=len(af); mem='memoria' in af
+    if n==0: return 'Sin deterioro objetivo'
+    return ('Amnésico' if mem else 'No amnésico')+(' multidominio' if n>=2 else ' dominio único')
+F['sub_obj']=F.eb.map(subobj)
+risk=F[F.sb.isin([1,2])]
+order=[('Amnésico\nmultidominio',CLAY),('No amnésico\nmultidominio',SLATE),('Amnésico\ndominio único',MOSS),('No amnésico\ndominio único',AMBER)]
+fig,ax=plt.subplots(figsize=(5.9,3.3)); yy=np.arange(len(order))[::-1]
 for i,(g,c) in enumerate(order):
     key=g.replace('\n',' ')
-    s=F[F.grupo==key].dropna(subset=['y_dem']); k=int(s.y_dem.sum()); n=len(s); p,lo,hi=wil(k,n)
+    s=risk[risk.sub_obj==key].dropna(subset=['y_dem']); k=int(s.y_dem.sum()); n=len(s); p,lo,hi=wil(k,n)
+    if n==0: continue
     ax.plot([100*lo,100*hi],[yy[i],yy[i]],color=c,lw=1.8); ax.scatter([100*p],[yy[i]],color=c,s=48,zorder=4)
     ax.text(100*hi+2,yy[i],f"{100*p:.0f}%  ({k}/{n})",va='center',fontsize=7.6,color='#333')
-ax.set_yticks(yy); ax.set_yticklabels([g for g,_ in order],fontsize=8); ax.set_xlim(0,85)
+ax.set_yticks(yy); ax.set_yticklabels([g for g,_ in order],fontsize=8); ax.set_xlim(0,92)
 ax.set_xlabel('Progresión a demencia (%)  ·  IC95% de Wilson')
-ax.set_title("Figura 3. Progresión a demencia por subtipo de DCL\n(Petersen; χ² p = 0,012)",loc='left',weight='bold',fontsize=9.2)
+ax.set_title("Figura 3. Progresión a demencia por subtipo operativo de DCL\n(Petersen/Winblad; patrón objetivo de dominios; χ² p = 0,041)",loc='left',weight='bold',fontsize=9.0)
+ax.text(0,-0.9,"Cohorte en riesgo (n=122). El eje robusto del riesgo es el compromiso de memoria;\nlos subtipos de dominio único no registran eventos (celdas pequeñas).",fontsize=6.3,color='#777',va='top')
 fig.savefig(f"{REPO}/Fig3_subtipos.png",bbox_inches='tight',dpi=300); plt.close(fig); print("Fig3_subtipos.png")
 
 # --- Fig5 rendimiento (dlm cohort sev 1-2, renombrado) ---
