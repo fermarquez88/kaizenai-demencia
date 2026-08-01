@@ -1,10 +1,13 @@
 # Kaizen·AI — Riesgo de progresión a demencia y declive cognitivo
 
+## ▶️ [**ABRIR LA APP**](https://fermarquez88.github.io/kaizenai-demencia/)
+### 🔗 https://fermarquez88.github.io/kaizenai-demencia/
+
 > Calculadora de riesgo individualizada a ~2 años a partir de la evaluación neuropsicológica **basal**,
 > entrenada con datos longitudinales reales del **Instituto de Neurociencias San Juan (Clínica El Castaño)**
 > y normada localmente. **Prototipo de investigación — NO es un dispositivo médico.**
 
-**🔗 App (GitHub Pages):** https://fermarquez88.github.io/kaizenai-demencia/ · **Idiomas:** Español / English
+**Idiomas:** Español / English · **100% client-side** (los datos no salen del navegador)
 
 ---
 
