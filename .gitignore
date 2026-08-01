@@ -1,0 +1,15 @@
+# Datos de pacientes — NUNCA subir (PII)
+data/
+db/
+*.csv
+*.duckdb
+*.duckdb.*
+*.xlsx
+*.pdf
+# Entornos / cache
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints/
+scratchpad/
