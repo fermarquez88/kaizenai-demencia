@@ -12,8 +12,8 @@ Tres modelos logísticos, condicionados por la severidad basal del perfil:
 
 | Modelo | Cohorte | Variables | n / eventos | AUC (optimismo-corr.) | IC95% |
 |---|---|---|---|---|---|
-| Demencia · DCL leve | severidad basal = DCL leve | Memoria de Relatos Diferido (z), edad | 85 / 16 | 0.84 | 0.54–1.0 |
-| Demencia · pre-demencia | basal normal/leve/leve-mod | Memoria de Relatos Diferido (z), edad, severidad | 136 / 32 | 0.81 | 0.66–0.93 |
+| Demencia · DCL | severidad basal = DCL | Memoria de Relatos Diferido (z), edad | 85 / 16 | 0.84 | 0.54–1.0 |
+| Demencia · deterioro leve-moderado | basal leve o leve-mod | Memoria de Relatos Diferido (z), edad, severidad | 122 / 32 | 0.80 | 0.64–0.92 |
 | Declive fiable | todos los reevaluados | edad, Rey Trial-1 (z), intrusiones, WAT (z), Hayling (z) | 182 / 34 | 0.69 | 0.48–0.88 |
 
 - **Desenlace demencia:** severidad del perfil ≥ *moderado* en la reevaluación (criterio clínico del instituto).
@@ -32,7 +32,7 @@ Tres modelos logísticos, condicionados por la severidad basal del perfil:
 - **Selección de variables:** stability selection + comparación de sets fijos; parsimonia favorecida por el n.
 
 ## Factores y limitaciones
-- **Tamaño muestral pequeño** (16–34 eventos) → intervalos de confianza amplios; el modelo de DCL leve es un
+- **Tamaño muestral pequeño** (16–34 eventos) → intervalos de confianza amplios; el modelo de DCL es un
   **prototipo** con IC muy ancho.
 - **Sesgo de selección:** generaliza a la población que **se reevalúa** (más añosa; gradiente de acceso).
 - **Sin validación externa.** Sin biomarcadores. Sin etiología (predice trayectoria, no enfermedad).

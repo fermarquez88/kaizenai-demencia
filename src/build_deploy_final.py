@@ -30,7 +30,7 @@ F=F.merge(pd.DataFrame({'persona_id':fb.index,'sev_ord':fb.values,'y_dem':(lb>=3
 def sigmoid(z): return 1/(1+np.exp(-z))
 MODELS={
  'demencia_dclleve':dict(y='y_dem',filt=lambda d:d.sev_ord==1,feats=['mr_diferido','edad']),
- 'demencia_predem': dict(y='y_dem',filt=lambda d:d.sev_ord<=2,feats=['mr_diferido','edad','sev_ord']),
+ 'demencia_dlm':    dict(y='y_dem',filt=lambda d:d.sev_ord.isin([1,2]),feats=['mr_diferido','edad','sev_ord']),
  'declive_fiable':  dict(y='y_rci',filt=None,feats=['edad','rey_trial1','intrusiones','z_premorbido','hayling']),
 }
 def fit_export(cfg):
@@ -59,6 +59,6 @@ def fit_export(cfg):
 out={k:fit_export(v) for k,v in MODELS.items()}
 out['conversion_banda']={'metrics':{'auc':0.69,'ci':[0.55,0.85]},'n':189,'eventos':58,'solo_tabla':True}  # transparencia (no activo)
 json.dump(out,open('data/interim/models_deploy.json','w'),indent=1)
-for k in ['demencia_dclleve','demencia_predem','declive_fiable']:
+for k in ['demencia_dclleve','demencia_dlm','declive_fiable']:
     v=out[k]; print(f"{k:18s} n={v['n']} ev={v['eventos']} AUC={v['metrics']['auc']} {v['metrics']['ci']} feats={[f['name'] for f in v['features']]}")
 print("cobertura hayling:", f"{100*F.hayling.notna().mean():.0f}%","| z_premorbido:", f"{100*F.z_premorbido.notna().mean():.0f}%")
