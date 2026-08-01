@@ -77,6 +77,23 @@ ax.set_title("Figura 3. Progresión a demencia por subtipo operativo de DCL\n(Pe
 ax.text(0,-0.9,"Cohorte en riesgo (n=122). El eje robusto del riesgo es el compromiso de memoria;\nlos subtipos de dominio único no registran eventos (celdas pequeñas).",fontsize=6.3,color='#777',va='top')
 fig.savefig(f"{REPO}/Fig3_subtipos.png",bbox_inches='tight',dpi=300); plt.close(fig); print("Fig3_subtipos.png")
 
+# --- Fig4 regresión a la media (z global winsorizado [-6,4], cohorte trayectoria n=246) ---
+gzt=de[de.dominio.isin(CORE)].assign(z=lambda x:x.z_peor.clip(-6,4)).merge(ev[['eval_id','persona_id','f']],on='eval_id').dropna(subset=['f','z'])
+gzt=gzt.sort_values(['persona_id','f']).drop_duplicates(['persona_id','f','dominio'])
+gg=gzt.groupby(['persona_id','f','eval_id']).z.mean().rename('gz').reset_index()
+gg['t']=gg.groupby('persona_id').f.rank(method='dense'); gg=gg[gg.groupby('persona_id').t.transform('max')>=2]
+b4=gg.sort_values('t').groupby('persona_id').first().gz; l4=gg.sort_values('t').groupby('persona_id').last().gz
+T=pd.DataFrame({'b':b4,'l':l4}).dropna(); T['dz']=T.l-T.b
+sl_dz,ic=np.polyfit(T.b,T.dz,1); rr=np.corrcoef(T.b,T.l)[0,1]
+fig,ax=plt.subplots(figsize=(5.2,3.6)); ax.axhline(0,color='#bbb',lw=.8,ls='--')
+ax.scatter(T.b,T.dz,s=14,alpha=.45,color=SLATE,edgecolors='none')
+xs=np.linspace(T.b.min(),T.b.max(),50)
+ax.plot(xs,ic+sl_dz*xs,color=CRIT,lw=1.8,label=f'pendiente Δz = {sl_dz:.2f}   (r basal–final = {rr:.2f})')
+ax.set_xlabel('z cognitivo global BASAL (winsorizado)'); ax.set_ylabel('Cambio Δz (final − basal)')
+ax.set_title("Figura 4. Regresión a la media: el cambio crudo\ndepende del basal (peor basal, 'mejora' aparente)",loc='left',weight='bold',fontsize=9)
+ax.legend(fontsize=7,frameon=False,loc='upper right')
+fig.savefig(f"{REPO}/Fig4_regresion.png",bbox_inches='tight',dpi=300); plt.close(fig); print(f"Fig4_regresion.png (slope Δz={sl_dz:.2f}, r={rr:.2f}, n={len(T)})")
+
 # --- Fig5 rendimiento (dlm cohort sev 1-2, renombrado) ---
 def oof(cols,d,y,R=5):
     P=np.zeros(len(y))

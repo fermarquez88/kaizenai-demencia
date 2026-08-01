@@ -31,9 +31,8 @@ bootstrap y calibración de Platt, reportados según TRIPOD.
 
 **Resultados.** De 334 pacientes con múltiples visitas, 250 tuvieron una reevaluación genuina (mediana de seguimiento
 1,8 años). La codificación fue altamente reproducible (severidad κ=1,00; subtipo κ=0,88) y creció de forma monótona
-con el z objetivo. La interpretación del cambio exigió corregir una fuerte **regresión a la media** (correlación
-basal–final 0,26): en la métrica cruda el perfil amnésico —el de peor pronóstico— parecía estable, y su declive solo
-emergió tras el ajuste por el basal. La cohorte en riesgo estuvo **dominada por el subtipo amnésico multidominio**
+con el z objetivo. El cambio seriado se ajustó por una **regresión a la media** moderada (pendiente final–basal 0,82,
+r=0,73) y por un Índice de Cambio Fiable local; tras el ajuste, el perfil amnésico fue el que más declinó. La cohorte en riesgo estuvo **dominada por el subtipo amnésico multidominio**
 (78%), que concentró la progresión a demencia (32%; IC95% 23–42); los subtipos de dominio único y no amnésicos fueron
 infrecuentes y sin eventos, de modo que el gradiente fino entre subtipos resultó **infrapotenciado y dependiente de la
 operacionalización** (el eje robusto del riesgo fue el compromiso de memoria, no la etiqueta categórica). El subtipo
@@ -110,7 +109,7 @@ premórbido). El **perfil** se operacionalizó desde la sección *Conclusiones* 
 señalados por el clínico (ánimo, sueño). La codificación se realizó con un modelo de lenguaje restringido por el
 codebook. La **fiabilidad** se evaluó por una segunda codificación independiente y ciega de una muestra estratificada
 (κ de Cohen, ponderada cuadrática para la severidad ordinal). La **validez de constructo** se contrastó con un patrón z
-objetivo (número de dominios deficitarios de la batería).
+objetivo (número de dominios deficitarios de la batería, umbral z ≤ −2).
 
 ### Operacionalización de los subtipos de DCL
 Para evitar la dependencia de una etiqueta narrativa única, los **subtipos** se derivaron del **patrón objetivo de
@@ -157,20 +156,22 @@ gravedad.
 El perfil codificado fue **altamente reproducible** entre dos codificaciones independientes (severidad κ=1,00, acuerdo
 exacto 100%; almacenamiento κ=0,96; subtipo κ=0,88; estabilidad longitudinal κ=0,85) y mostró fuerte **validez de
 constructo**: el número medio de dominios deficitarios de la batería creció de forma monótona a través de las bandas de
-severidad (normal 0,44 → leve 1,98 → moderado 3,83 → grave 4,50) y la proporción con deterioro objetivo subió de 29%
-(normal) a 100% (≥ leve-a-moderado). Cabe destacar que solo 2 de 121 pacientes con DCL codificado carecían de todo
+severidad (z ≤ −2: normal 0,5 → leve 2,0 → moderado 3,7 → grave 4,2) y la proporción con ≥1 dominio deficitario subió
+del 38% (normal) al 100% (≥ leve-a-moderado). Cabe destacar que solo 2 de 121 pacientes con DCL codificado carecían de todo
 deterioro objetivo en la batería: a diferencia de los criterios convencionales, que producen alrededor de un tercio de
 falsos positivos “dentro de límites normales”,[14] la codificación clínica-narrativa casi no sobre-diagnosticó, lo que
 respalda su validez.
 
 ### La evolución de los perfiles solo se interpreta tras ajustar por el basal (Figuras 2 y 4)
-La **matriz de transición** de severidad (Figura 2) muestra la evolución de cada banda basal: 33% de los pacientes
-empeoró ≥1 banda, 55% permaneció estable y 13% mejoró; la **reversión** de DCL a normal ocurrió en 6% (5/85), en línea
+La **matriz de transición** de severidad (Figura 2) muestra la evolución de cada banda basal: 34% de los pacientes
+empeoró ≥1 banda, 53% permaneció estable y 13% mejoró; la **reversión** de DCL a normal ocurrió en 6% (5/85), en línea
 con la menor reversión que reportan los criterios neuropsicológicos rigurosos.[16] La **tasa de progresión** a demencia
-en la cohorte de deterioro leve-moderado fue de **12,3%/año** (32 eventos / 261 persona-años), dentro del rango de las
-clínicas de memoria (~10–15%/año).[5] El cambio seriado, sin embargo, estuvo dominado por la **regresión a la media**:
-la correlación basal–final del z global fue de apenas 0,26 (Figura 4). En la métrica cruda el perfil amnésico parecía
-estable (Δz≈0,00); su declive emergió **únicamente tras el ajuste por el basal**.
+en la cohorte de deterioro leve-moderado fue de **11,9%/año** (32 eventos / 269 persona-años), dentro del rango de las
+clínicas de memoria (~10–15%/año).[5] El cambio seriado estuvo parcialmente confundido por la **regresión a la media**:
+al regresar el z global final sobre el basal la pendiente fue de 0,82 (r=0,73), de modo que el cambio crudo Δz dependió
+del nivel basal (pendiente Δz ≈ −0,18; Figura 4). Como los fenotipos difieren en severidad basal, el cambio crudo debe
+ajustarse antes de comparar trayectorias; tras el ajuste, el perfil amnésico fue el único que declinó, mientras que los
+perfiles disejecutivo, multidominio y preservado no lo hicieron.
 
 ### El compromiso de memoria es el eje del riesgo; el subtipo fino está infrapotenciado (Figura 3)
 Operacionalizados según criterios de Petersen/Winblad a partir del patrón objetivo de dominios, los subtipos de la
@@ -187,8 +188,9 @@ A nivel del mecanismo de memoria, el subtipo amnésico se **define** por el **co
 consolidación de tipo temporal-medial, à la Sarazin/Dubois[7]), presente en el **93%** de los casos amnésicos. Es la
 firma que caracteriza al subtipo de mayor riesgo, no un predictor independiente: dentro del amnésico, el almacenamiento
 comprometido no separó la progresión (32% vs 26%; diferencia no significativa). Los perfiles con **modulador anímico**
-al basal declinaron menos (20% [10–37] vs 36% [29–43]), consistente con un curso parcialmente reversible, aunque el
-subgrupo es pequeño (n=30). El juicio narrativo del clínico sobre la estabilidad concordó estrechamente con el cambio
+al basal mostraron menos declive en la métrica ajustada por el basal (≈17% vs 34%), consistente con un curso
+parcialmente reversible, aunque el subgrupo es pequeño (n≈29) y el contraste no es concluyente. El juicio narrativo del
+clínico sobre la estabilidad concordó estrechamente con el cambio
 cuantitativo ajustado por el basal (declive declarado: Δz ajustado −0,52; estable: +0,84), triangulando dos mediciones
 independientes.
 
@@ -233,14 +235,14 @@ En una clínica de memoria argentina de mundo real, los perfiles neuropsicológi
 mecanísticamente coherentes**, y la progresión a demencia se predijo desde la evaluación basal con un modelo
 notablemente **parsimonioso y normado localmente**. Tres hallazgos merecen énfasis.
 
-**Primero, la evolución de los perfiles solo es interpretable tras corregir la regresión a la media.** En la métrica
-cruda, el perfil amnésico —el de peor pronóstico— parecía estable; su verdadero declive emergió solo tras el ajuste por
-el basal. No es un tecnicismo: los análisis ingenuos del cambio seriado en clínicas de memoria pueden invertir el orden
-real de los pronósticos. El mismo fenómeno subyace a asociaciones “protectoras” que se disuelven bajo escrutinio causal,
-como se demostró para el alcohol y la demencia, donde el declive cognitivo temprano reduce la exposición (causalidad
-inversa).[26] Nuestro RCI local y las métricas ajustadas por el basal ofrecen un remedio práctico y, junto con los RCIs
-corregidos por efecto de práctica,[27] sostienen que las normas de cambio fiable deberían acompañar toda interpretación
-neuropsicológica seriada.
+**Primero, la interpretación del cambio seriado exige normas de cambio fiable y ajuste por el basal.** La regresión a la
+media fue moderada (pendiente final–basal 0,82; r=0,73) pero suficiente para que el cambio crudo dependa del nivel basal
+(Figura 4); como los fenotipos difieren en severidad basal, comparar trayectorias crudas puede distorsionar el orden de
+los pronósticos. Tras el ajuste, el perfil amnésico siguió siendo el que más declinó, coherente con el resto de los
+hallazgos. El mismo tipo de confusión —el cambio temprano condicionando la exposición o la medición— subyace a
+asociaciones “protectoras” que se disuelven bajo escrutinio causal, como se demostró para el alcohol y la demencia
+(causalidad inversa).[26] Un Índice de Cambio Fiable local y las métricas ajustadas por el basal, junto con los RCIs
+corregidos por efecto de práctica,[27] deberían acompañar toda interpretación neuropsicológica seriada.
 
 **Segundo, el eje del riesgo es el compromiso de memoria, más que una jerarquía categórica de subtipos.** La cohorte en
 riesgo estuvo dominada por perfiles amnésicos multidominio, que concentraron la progresión, mientras que los subtipos de
@@ -310,13 +312,14 @@ pronóstica transparente y de uso inmediato para entornos subrepresentados —a 
 |---|---|---|
 | Edad, años (media ± DE) | 67,0 ± 14,3 | 63,8 ± 19,1 |
 | Educación, años (media ± DE) | 13,3 ± 3,4 | 12,9 ± 3,7 |
-| Sexo femenino, % | 55 | 56 |
+| Sexo femenino, % | 56 | 56 |
 | Seguimiento, años, mediana (IQR) | 1,83 (1,25–2,97) | — |
 | Nº de evaluaciones (2 / 3 / 4) | 213 / 36 / 1 | — |
 
+*Una visita:* pacientes con una sola fecha de evaluación (comparador).
 *Fiabilidad inter-codificador (κ):* severidad 1,00; almacenamiento 0,96; subtipo 0,88; estabilidad 0,85.
-*Validez de constructo* (dominios deficitarios objetivos por banda): normal 0,44 → leve 1,98 → moderado 3,83 → grave 4,50.
-*Falsos positivos:* solo 2/121 DCL codificados sin deterioro objetivo en la batería.
+*Validez de constructo* (dominios deficitarios objetivos, z ≤ −2, por banda): normal 0,5 → leve 2,0 → moderado 3,7 → grave 4,2.
+*Falsos positivos:* solo 2/121 DCL codificados sin deterioro objetivo (z ≤ −1,5) en la batería.
 
 **Tabla 2. Rendimiento de los modelos pronósticos (TRIPOD).**
 
