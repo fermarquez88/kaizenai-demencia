@@ -33,8 +33,8 @@ Platt, reportados según TRIPOD.
 monótona con el z objetivo. Tras el ajuste por el basal —obligatorio dada la fuerte **regresión a la media**
 (r basal–final=0,26)— y clasificando por subtipos de Petersen, el **DCL amnésico multidominio** mostró la mayor
 progresión a demencia (**59%**, IC95% 46–71), muy por encima del **no amnésico (disejecutivo/atencional)** (22%) y del
-**amnésico de dominio único** (8%; χ² p=0,012). El **almacenamiento comprometido** fue numéricamente mayor pero **no
-significativo** (38% vs 26%; OR 1,7; p=0,197) y los perfiles con **modulador anímico** declinaron menos (20% vs 36%). De 14 pacientes normales al basal, **ninguno** progresó a demencia
+**amnésico de dominio único** (8%; χ² p=0,012). El subtipo amnésico se caracterizó por **compromiso del almacenamiento**
+(tipo hipocampal; 93% de los casos amnésicos) y los perfiles con **modulador anímico** declinaron menos (20% vs 36%). De 14 pacientes normales al basal, **ninguno** progresó a demencia
 (0/14) —consistente con, aunque sin poder para probar, un modelo por estadios. Se aportan normas locales de cambio
 (RCI global ≈0,97 z). La progresión a demencia se predijo con **memoria de relatos diferida y edad** (DCL→demencia AUC
 0,84 [IC95% 0,54–1,0], 16 eventos; deterioro leve-moderado→demencia 0,80 [0,64–0,92], n=122); los modelos parsimoniosos igualaron o
@@ -157,10 +157,11 @@ Clasificando los perfiles según el marco de **Petersen**, la **progresión a de
 subtipos de DCL (χ² p=0,012; Figura 3): el **DCL amnésico multidominio** presentó la tasa más alta (**59%**, IC95%
 46–71; 32/54), muy por encima del **DCL no amnésico (disejecutivo/atencional)** (22%, 14–33; 15/69) y del **DCL amnésico
 de dominio único** (8%, 1–35; 1/12; grupo pequeño). El mismo ordenamiento se observó para el declive fiable ajustado por
-el basal (amnésico multidominio 54%, disejecutivo/atencional 32%, amnésico de dominio único 17%). A nivel mecanístico,
-el **almacenamiento comprometido** (firma amnésica hipocampal) mostró
-una tasa **numéricamente mayor pero no significativa** que el conservado (38% [29–47] vs 26% [16–40]; OR 1,7; p=0,197).
-Los perfiles con **modulador anímico** al basal declinaron menos (20% [10–37] vs 36% [29–43]), consistente con un curso
+el basal (amnésico multidominio 54%, disejecutivo/atencional 32%, amnésico de dominio único 17%). A nivel del mecanismo
+de memoria, el subtipo amnésico se **define** por el **compromiso del almacenamiento** (falla de consolidación de tipo
+hipocampal), presente en el **93%** de los casos amnésicos —es decir, la firma que caracteriza a este subtipo de mayor
+riesgo, no un predictor independiente del fenotipo. Los perfiles con **modulador anímico** al basal declinaron menos
+(20% [10–37] vs 36% [29–43]), consistente con un curso
 parcialmente reversible, aunque el subgrupo es pequeño (n=30). El juicio narrativo del clínico sobre la estabilidad
 concordó estrechamente con el cambio cuantitativo ajustado por el basal (declive declarado: Δz ajustado −0,52; estable
 declarado: +0,84), triangulando dos mediciones independientes.
@@ -215,10 +216,12 @@ exposición (causalidad inversa).[19] Nuestro RCI local y las métricas ajustada
 y, junto con los RCIs corregidos por efecto de práctica,[20] sostienen que las normas de cambio fiable deberían acompañar
 toda interpretación neuropsicológica seriada.
 
-Segundo, **los caminos fenotipo-específicos son mecanísticamente sensatos.** Los fenotipos amnésico y multidominio, y en
-particular el **almacenamiento comprometido**, predijeron declive, mientras que los disejecutivos y con modulador anímico
-siguieron cursos benignos. Esto refleja la distinción clásica entre falla de almacenamiento (hipocampal, tipo-Alzheimer)
-y de recuperación (frontal), y concuerda con la evidencia de que el recuerdo diferido es el predictor por excelencia de la
+Segundo, **los caminos subtipo-específicos son mecanísticamente sensatos.** Los subtipos amnésicos —en particular el
+multidominio— predijeron declive, mientras que los disejecutivos/atencionales y los perfiles con modulador anímico
+siguieron cursos benignos. El subtipo amnésico se define, a nivel del mecanismo de memoria, por el **compromiso del
+almacenamiento** (falla de consolidación hipocampal, tipo-Alzheimer, en el 93% de los casos), frente a la falla de
+**recuperación** (frontal) de los perfiles disejecutivos; esta distinción clásica concuerda con la evidencia de que el
+recuerdo diferido es el predictor por excelencia de la
 conversión DCL→EA.[5–10] El curso benigno de los perfiles con carga anímica es consistente con el deterioro cognitivo
 reversible del trastorno afectivo de la vejez y con la noción del compromiso conductual como pródromo diferenciable,[15]
 y advierte contra equiparar el deterioro actual con una trayectoria inexorable. Que **ningún paciente pasara de cognición
@@ -245,8 +248,8 @@ abierta del código y de una calculadora desplegada.
 Las **limitaciones** son relevantes y acotan las conclusiones a un nivel **exploratorio**. (i) La muestra es modesta y los
 eventos escasos; los **eventos por variable** fueron 6,8–10,7 (por debajo del ≥10 recomendado en dos modelos), y el modelo
 DCL→demencia (16 eventos) tiene un IC amplio (0,54–1,0) con un límite inferior poco informativo: es un **prototipo** validado
-sólo internamente. (ii) Los análisis de **subgrupos por fenotipo** se basan en grupos pequeños con IC amplios; sólo la
-posición del fenotipo amnésico es robusta, y el efecto del mecanismo de almacenamiento no alcanzó significación. (iii) La
+sólo internamente. (ii) Los análisis de **subtipos de DCL** se basan en grupos pequeños con IC amplios; sólo la
+posición del subtipo amnésico multidominio como el de mayor riesgo es robusta. (iii) La
 cohorte generaliza a quienes **regresan a reevaluarse** —subgrupo no aleatorio, de mayor edad, con posible gradiente de
 acceso—; el **riesgo competitivo de muerte** no se modeló y la censura puede ser informativa. (iv) El desenlace binario a
 seguimiento variable **ignora el tiempo**; un modelo de tiempo-al-evento (supervivencia en tiempo discreto) es el paso
