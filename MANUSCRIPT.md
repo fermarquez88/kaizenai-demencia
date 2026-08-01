@@ -2,9 +2,9 @@
 
 **Congreso Argentino de Neurología (CAN)** · Área temática: **Neurología Cognitiva, Demencias y Neuropsicología** · Tipo: Tema libre (oral/póster)
 
-**Autores:** Fernando Márquez¹,²; Paula Virginia Arellano¹⁻³; Diana Bruno¹; Luciana Vita¹⁻³; María Beatriz Bistué¹⁻³; María Celeste Moyano¹⁻³; María Laura Noguera Roberto¹; Mariana Zanino¹⁻³; Cristian Ignacio Posleman¹⁻³; Iara Jácome¹; Florencia Portillo¹⁻³; Daniel Lucato²; Martín Alejandro Bruno¹⁻³.
+**Autores:** Fernando Márquez¹˒²˒⁴; Paula Virginia Arellano¹⁻³; Diana Bruno¹˒⁴; Luciana Vita¹⁻⁴; María Beatriz Bistué¹⁻³; María Celeste Moyano¹⁻³; María Laura Noguera Roberto¹; Mariana Zanino¹⁻³; Cristian Ignacio Posleman¹⁻³; Iara Jácome¹˒⁴; Florencia Portillo¹⁻³; Daniel Lucato²; Martín Alejandro Bruno¹⁻³.
 
-**Afiliaciones:** ¹ Universidad Católica de Cuyo, San Juan, Argentina. ² Hospital Dr. Guillermo Rawson, San Juan, Argentina. ³ Consejo Nacional de Investigaciones Científicas y Técnicas (CONICET), Argentina.
+**Afiliaciones:** ¹ Universidad Católica de Cuyo, San Juan, Argentina. ² Hospital Dr. Guillermo Rawson, San Juan, Argentina. ³ Consejo Nacional de Investigaciones Científicas y Técnicas (CONICET), Argentina. ⁴ Instituto de Neurociencias San Juan (Clínica El Castaño), San Juan, Argentina.
 
 **Autor de correspondencia:** Fernando Márquez — fmarquez.mum@gmail.com
 
