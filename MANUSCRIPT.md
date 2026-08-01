@@ -120,7 +120,9 @@ El cambio se resumió en un índice z global (media de cinco dominios core). Com
 confundido por la **regresión a la media**, se modeló el puntaje final sobre el basal (ANCOVA) y se usó el **residuo**
 como cambio ajustado; las tasas de declive por fenotipo usan esta métrica ajustada. Los modelos pronósticos usaron
 **regresión logística penalizada** (L2 para los modelos desplegados; L1 para selección), con imputación por mediana +
-indicadores de faltante y estandarización **dentro** de la validación cruzada. El rendimiento se estimó por
+indicadores de faltante y estandarización **dentro** de la validación cruzada; los datos faltantes fueron bajos (edad
+0%, memoria diferida 6%, severidad basal 0%). Se estimó el **valor incremental** de la memoria sobre la edad comparando
+el AUC de modelos anidados. El rendimiento se estimó por
 **validación cruzada anidada repetida** (5×20) con ajuste interno de hiperparámetros y por **corrección de optimismo por
 bootstrap** (Steyerberg); las cohortes pequeñas usaron además LOOCV. Las probabilidades se **recalibraron (Platt)** y se
 reportan con Brier y pendiente/intercepto de calibración. La robustez de las variables se evaluó por **stability
@@ -132,7 +134,7 @@ coeficientes (test de paridad).
 
 ### Cohorte y variable perfil (Tabla 1)
 De 334 pacientes con más de una evaluación archivada, 81 tenían todas las evaluaciones el mismo día (duplicados) y 250
-tuvieron una reevaluación genuina en ≥2 fechas distintas (mediana de seguimiento 1,83 años; IQR 1,25–2,97). Quienes
+tuvieron una reevaluación genuina en ≥2 fechas distintas (mediana de seguimiento 1,83 años; IQR 1,25–2,97) (**Figura 1**). Quienes
 volvieron para reevaluación fueron mayores que los de una sola visita (66,9 vs 63,3 años) con severidad basal
 comparable, lo que indica vigilancia guiada por la edad y la sospecha clínica más que por la gravedad.
 
@@ -142,13 +144,16 @@ constructo**: el número medio de dominios deficitarios de la batería creció d
 severidad codificada (normal 0,44 → leve 1,98 → moderado 3,83 → grave 4,50), y la proporción con deterioro objetivo
 subió de 29% (normal) a 100% (≥ leve-a-moderado). Estos resultados avalan el uso del perfil como desenlace.
 
-### La evolución de los perfiles solo se interpreta tras ajustar por el basal (Figura 1)
-En el seguimiento, 33% empeoró ≥1 banda, 55% permaneció estable y 13% mejoró. Sin embargo, el cambio seriado estuvo
-dominado por la **regresión a la media**: la correlación basal–final del z global fue de solo 0,26, de modo que quien
-partía de “normal” solo podía empeorar y quien partía de “grave” solo podía mejorar. En la métrica **cruda** el
-fenotipo amnésico parecía plano (Δz≈0,00); su declive emergió **únicamente tras el ajuste por el basal**.
+### La evolución de los perfiles solo se interpreta tras ajustar por el basal (Figuras 2 y 4)
+La **matriz de transición** de severidad (Figura 2) muestra cómo evoluciona cada banda basal. En el seguimiento, 33%
+empeoró ≥1 banda, 55% permaneció estable y 13% mejoró; la **reversión** de DCL a normal ocurrió en **6%** (5/85). La
+**tasa de progresión** a demencia en la cohorte pre-demencia fue de **11,0%/año** (32 eventos / 290 persona-años),
+dentro del rango publicado en clínicas de memoria (~10–15%/año).[3] Sin embargo, el cambio seriado estuvo dominado por
+la **regresión a la media**: la correlación basal–final del z global fue de solo 0,26 (Figura 4), de modo que quien
+partía de “normal” solo podía empeorar y quien partía de “grave” solo podía mejorar. En la métrica **cruda** el fenotipo
+amnésico parecía plano (Δz≈0,00); su declive emergió **únicamente tras el ajuste por el basal**.
 
-Las tasas de declive fiable ajustadas por el basal difirieron por **fenotipo basal** (χ² omnibus p=0,030; Figura 1):
+Las tasas de declive fiable ajustadas por el basal difirieron por **fenotipo basal** (χ² omnibus p=0,030; Figura 3):
 el fenotipo **amnésico** presentó la mayor tasa (**47%**, IC95% 35–59; n=66), seguido por disejecutivo (33%, 23–45;
 n=69), multidominio (22%, 11–37; n=37) y preservado (17%, 5–45; n=12). Los intervalos amplios reflejan subgrupos
 pequeños, por lo que **sólo la posición del fenotipo amnésico como el de mayor riesgo es robusta**; el ordenamiento de
@@ -176,7 +181,7 @@ Aportamos RCIs locales para el testeo seriado: ≈0,97 z a nivel persona y umbra
 de lista) a ±2,5 (reconocimiento), con 7–14% de pacientes mostrando declive fiable por dominio en el intervalo. Son,
 hasta donde sabemos, de las primeras normas locales de cambio para esta población.
 
-### Predicción de la progresión a demencia (Tabla 2, Figura 2)
+### Predicción de la progresión a demencia (Tabla 2, Figura 5)
 En los tres desenlaces, **la parsimonia superó a la complejidad**. La stability selection de alta dimensión sobre ~40
 variables dio menor AUC honesto que sets pequeños pre-especificados, y un modelo de árbol que parecía excelente por AUC
 aparente (0,97) colapsó a ~0,66 bajo corrección de optimismo, evidenciando sobreajuste a este tamaño muestral. Los
@@ -187,7 +192,10 @@ mejores modelos honestos fueron:
 - **Declive fiable:** edad, Lista de Rey trial 1, intrusiones, CI premórbido, Hayling — AUC 0,69.
 
 En todos, la **memoria (diferida) y la edad** dominaron (OR por DS: memoria ≈0,41; edad ≈1,7–2,0), recapitulando la
-firma amnésica-más-edad de la conversión tipo-Alzheimer. Los modelos quedaron bien calibrados tras Platt. Los modelos
+firma amnésica-más-edad de la conversión tipo-Alzheimer. El **valor incremental** de la memoria sobre la edad sola fue
+sustancial —**ΔAUC +0,13** en DCL→demencia (0,72→0,85) y **+0,08** en pre-demencia (0,69→0,78; Figura 5C)—, confirmando
+que el puntaje de memoria aporta información más allá de la demografía. Los modelos quedaron bien calibrados tras Platt
+(Figura 5B). Los modelos
 finales se despliegan como calculadora abierta que computa el riesgo con banda de incertidumbre bootstrap y **nunca
 transmite datos del paciente** (Figura 3).
 
@@ -288,24 +296,48 @@ IC del modelo DCL→demencia amplio por los 16 eventos (prototipo).*
 
 ## Figuras
 
-**Figura 1. Evolución por fenotipo basal (ajustada por el basal).**
+**Figura 1. Flujo de la cohorte.**
 
-![Figura 1](Figure1.png)
+![Figura 1](Fig1_flujo.png)
 
-*Izquierda: tasa de declive fiable ajustada por el basal según fenotipo basal, con IC95% de Wilson y n por grupo
-(χ² omnibus p=0,030); sólo el fenotipo amnésico como el de mayor riesgo es robusto. Derecha: por mecanismo de memoria
-(almacenamiento comprometido vs conservado; diferencia no significativa, p=0,197) y modulador anímico.*
+*Diagrama de participantes: de 334 pacientes con ≥2 evaluaciones archivadas se excluyeron 81 duplicados del mismo día,
+quedando 250 con reevaluación real; 182 con perfil basal y final codificado, y las cohortes de DCL leve (n=85) y
+pre-demencia (n=136).*
 
-**Figura 2. Discriminación por desenlace.**
+**Figura 2. Evolución de los perfiles: matriz de transición de severidad (basal → reevaluación).**
 
-![Figura 2](Figure2.png)
+![Figura 2](Fig2_transiciones.png)
 
-*AUC (CV anidada, optimismo-corregida) con IC95%; línea punteada = azar (0,50). Para la conversión de banda se muestra
-además el AUC aparente (0,97, círculo abierto) que colapsa a 0,66 tras la corrección, ilustrando el sobreajuste.*
+*Cada celda muestra el n de pacientes; el color codifica el % de la fila. La línea roja separa el rango de demencia
+(≥ moderado). Ningún paciente normal al basal (fila superior) transicionó directamente a demencia.*
 
-**Figura 3. Calculadora desplegada (client-side).**
+**Figura 3. Declive fiable por fenotipo basal.**
 
-![Figura 3](Figure3.png)
+![Figura 3](Fig3_fenotipos.png)
+
+*Tasa de declive fiable ajustada por el basal con IC95% de Wilson y n por grupo (χ² omnibus p=0,030). Sólo la posición
+del fenotipo amnésico como el de mayor riesgo es robusta; el ordenamiento de los demás es incierto por el tamaño de los
+subgrupos.*
+
+**Figura 4. Regresión a la media.**
+
+![Figura 4](Fig4_regresion.png)
+
+*Dispersión del cambio Δz (final − basal) frente al z cognitivo basal; la pendiente negativa muestra que el cambio
+crudo depende del basal (peor basal → “mejora” aparente), lo que obliga a ajustar por el basal antes de interpretar la
+evolución.*
+
+**Figura 5. Rendimiento de los modelos.**
+
+![Figura 5](Fig5_rendimiento.png)
+
+*A: curvas ROC de los modelos de demencia (out-of-fold). B: curva de calibración (modelo pre-demencia). C: valor
+incremental — AUC de la edad sola vs memoria sola vs modelo completo, mostrando que la memoria aporta sobre la
+demografía.*
+
+**Figura 6. Calculadora desplegada (client-side).**
+
+![Figura 6](Figure3.png)
 
 *Al seleccionar la severidad basal aparecen el modelo aplicable y sus campos; el riesgo se muestra con banda de
 incertidumbre bootstrap y la prevalencia de la cohorte como referencia. Corre 100% en el navegador (sin transmitir
