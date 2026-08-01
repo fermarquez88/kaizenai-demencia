@@ -31,12 +31,14 @@ Platt, reportados según TRIPOD.
 **Resultados.** De 334 pacientes con múltiples visitas, 250 tuvieron una reevaluación genuina (mediana de seguimiento
 1,8 años). La codificación del perfil fue altamente reproducible (severidad κ=1,00; fenotipo κ=0,88) y creció de forma
 monótona con el z objetivo. Tras el ajuste por el basal —obligatorio dada la fuerte **regresión a la media**
-(r basal–final=0,26)— los fenotipos **amnésico** y **multidominio** y el **almacenamiento comprometido** predijeron
-declive fiable (43–47% y 44%), mientras que los perfiles **disejecutivo**, **preservado** y **con modulador anímico**
-siguieron cursos benignos (17–22%). Ningún paciente progresó **directamente de cognición normal a demencia**: la
-progresión siempre atravesó un estadio intermedio. Se aportan normas locales de cambio (RCI global ≈0,97 z). La
-progresión a demencia se predijo mejor con **memoria de relatos diferida y edad** (DCL→demencia AUC 0,84 [IC95%
-0,54–1,0]; pre-demencia→demencia 0,81 [0,66–0,93]); los modelos parsimoniosos superaron a la selección de alta dimensión.
+(r basal–final=0,26)— el fenotipo **amnésico** mostró la mayor tasa de declive fiable (**47%**, IC95% 35–59; χ² omnibus
+p=0,030), con tasas menores e inciertas en los demás fenotipos por el tamaño de los subgrupos; el **almacenamiento
+comprometido** fue numéricamente mayor pero **no significativo** (38% vs 26%; OR 1,7; p=0,197) y los perfiles con
+**modulador anímico** declinaron menos (20% vs 36%). De 14 pacientes normales al basal, **ninguno** progresó a demencia
+(0/14) —consistente con, aunque sin poder para probar, un modelo por estadios. Se aportan normas locales de cambio
+(RCI global ≈0,97 z). La progresión a demencia se predijo con **memoria de relatos diferida y edad** (DCL→demencia AUC
+0,84 [IC95% 0,54–1,0], 16 eventos; pre-demencia→demencia 0,81 [0,66–0,93]); los modelos parsimoniosos igualaron o
+superaron a la selección de alta dimensión.
 
 **Conclusiones.** Los perfiles cognitivos evolucionan por caminos fenotipo-específicos y biológicamente coherentes que
 quedan ocultos si el cambio no se ajusta por el basal. Un modelo de dos variables —recuerdo diferido de relatos más
@@ -104,9 +106,11 @@ codebook. La **fiabilidad** se evaluó por una segunda codificación independien
 patrón z objetivo (número de dominios deficitarios de la batería).
 
 ### Desenlaces y cambio fiable
-Desenlace primario: **progresión a demencia**, definida como banda de severidad final ≥ *moderada* (criterio clínico
-del instituto, por el cual el “deterioro cognitivo moderado” denota un síndrome de rango demencial). Las cohortes se
-definieron por la severidad **basal**: “DCL” (basal = leve) y “pre-demencia” (basal normal/leve/leve-a-moderado).
+Desenlace primario: **progresión a deterioro moderado o mayor** (síndrome de rango demencial), definido como banda de
+severidad final ≥ *moderada* según el criterio clínico del instituto. **No se aplicó un criterio funcional independiente**
+para confirmar demencia (véase Limitaciones), por lo que el desenlace debe leerse como progresión de severidad, no como
+demencia confirmada. Las cohortes se definieron por la severidad **basal**: “DCL” (basal = leve) y “pre-demencia”
+(basal normal/leve/leve-a-moderado).
 Desenlace secundario: **declive cognitivo fiable**, cambio de z global que supera un **RCI** derivado localmente
 (RCI ≈ 1,96 × desvío robusto del cambio en pares estables ≈ 0,97 z). Se estimaron RCIs por dominio y por test
 (MAD robusta; z winsorizados a [−6, 4] para eliminar artefactos de piso de los tests cronometrados).
@@ -144,19 +148,28 @@ dominado por la **regresión a la media**: la correlación basal–final del z g
 partía de “normal” solo podía empeorar y quien partía de “grave” solo podía mejorar. En la métrica **cruda** el
 fenotipo amnésico parecía plano (Δz≈0,00); su declive emergió **únicamente tras el ajuste por el basal**.
 
-Las tasas de declive fiable ajustadas por el basal difirieron marcadamente por **fenotipo basal**: multidominio 47%,
-**amnésico 43%**, disejecutivo 22% y **preservado 0%** (Figura 1). A nivel mecanístico, el **almacenamiento
-comprometido** (firma amnésica de tipo hipocampal) predijo declive (Δz ajustado −0,39; 44% de declive fiable) mientras
-que el **almacenamiento conservado** (tipo recuperación) siguió un curso benigno (+0,41; 18%). Los perfiles con
-**modulador anímico** señalado al basal declinaron aproximadamente la mitad (17% vs 34%), consistente con un curso
-parcialmente reversible y no degenerativo. El juicio narrativo del clínico sobre la estabilidad concordó estrechamente
-con el cambio cuantitativo ajustado por el basal (declive declarado: Δz ajustado −0,52; estable declarado: +0,84),
-triangulando dos mediciones independientes.
+Las tasas de declive fiable ajustadas por el basal difirieron por **fenotipo basal** (χ² omnibus p=0,030; Figura 1):
+el fenotipo **amnésico** presentó la mayor tasa (**47%**, IC95% 35–59; n=66), seguido por disejecutivo (33%, 23–45;
+n=69), multidominio (22%, 11–37; n=37) y preservado (17%, 5–45; n=12). Los intervalos amplios reflejan subgrupos
+pequeños, por lo que **sólo la posición del fenotipo amnésico como el de mayor riesgo es robusta**; el ordenamiento de
+los restantes es incierto. A nivel mecanístico, el **almacenamiento comprometido** (firma amnésica hipocampal) mostró
+una tasa **numéricamente mayor pero no significativa** que el conservado (38% [29–47] vs 26% [16–40]; OR 1,7; p=0,197).
+Los perfiles con **modulador anímico** al basal declinaron menos (20% [10–37] vs 36% [29–43]), consistente con un curso
+parcialmente reversible, aunque el subgrupo es pequeño (n=30). El juicio narrativo del clínico sobre la estabilidad
+concordó estrechamente con el cambio cuantitativo ajustado por el basal (declive declarado: Δz ajustado −0,52; estable
+declarado: +0,84), triangulando dos mediciones independientes.
 
-### Ninguna transición directa de cognición normal a demencia
-De 74 pacientes cuyo perfil final alcanzó el rango de demencia, **ninguno** era cognitivamente normal al basal
-(0 normal→demencia). La progresión atravesó invariablemente un estadio intermedio (leve o leve-a-moderado), lo que
-apoya un modelo por estadios y justifica tomar los estados pre-demencia —no los normales— como denominador del pronóstico.
+### Ninguna transición directa observada de cognición normal a demencia
+Entre los **14** pacientes cognitivamente normales al basal, **ninguno** progresó a demencia (0/14); la progresión
+observada partió invariablemente de un estadio intermedio (leve o leve-a-moderado). Este patrón es consistente con un
+modelo por estadios —aunque el escaso número de normales es **insuficiente para probar** que la transición directa
+nunca ocurra— y justifica tomar los estados pre-demencia, no los normales, como denominador del pronóstico a corto plazo.
+
+### Análisis de sensibilidad de la definición del desenlace
+La definición de progresión (severidad final ≥ moderada) rindió 32 eventos en la cohorte pre-demencia (n=136).
+Umbrales más estrictos redujeron drásticamente los eventos —9 (≥moderado-grave) y 4 (grave)— tornándolos inestimables
+en esta muestra. Por tanto, el desenlace se interpreta como **progresión a deterioro moderado o mayor** (síndrome de
+rango demencial por criterio clínico), no como demencia confirmada por criterio funcional independiente.
 
 ### Normas locales de cambio fiable
 Aportamos RCIs locales para el testeo seriado: ≈0,97 z a nivel persona y umbrales por test de ±1,4 (recuerdo diferido
@@ -204,9 +217,10 @@ normal directamente a demencia** en ~2 años refuerza un modelo por estadios y t
 los estados pre-demencia, no los individuos normales, son la población apropiada para la predicción de demencia a corto plazo.
 
 Tercero, **para predecir, menos fue más.** Un modelo de dos variables —recuerdo diferido de relatos más edad— predijo la
-progresión DCL→demencia con un AUC optimismo-corregido de 0,84, comparable o superior a modelos publicados basados en
-neuropsicología que usan baterías mayores,[5–10] y un modelo de pre-demencia agregó solo la severidad basal para alcanzar
-0,81 con beneficio clínico neto demostrable. Los intentos de mejorarlo con selección de alta dimensión no ayudaron y a
+progresión DCL→demencia con un AUC optimismo-corregido de 0,84, **comparable** al de modelos publicados basados en
+neuropsicología que usan baterías mayores[5–10] (sin que ello constituya una comparación directa, dado que provienen de
+cohortes distintas), y un modelo de pre-demencia agregó solo la severidad basal para alcanzar 0,81 con beneficio clínico
+neto demostrable. Los intentos de mejorarlo con selección de alta dimensión no ayudaron y a
 veces perjudicaron, y la aparente excelencia de un árbol resultó ser memorización. A los recuentos de eventos típicos de
 una clínica única, el techo de la discriminación lo fija el tamaño muestral y la ausencia de biomarcadores más que la
 sofisticación algorítmica —consistente con la prioridad regional de extraer el máximo valor pronóstico de **medidas
@@ -219,11 +233,19 @@ reproducible y altamente fiable validada contra puntajes objetivos, validación 
 (CV anidada, corrección de optimismo, calibración, análisis de curva de decisión) reportada según TRIPOD,[18] y liberación
 abierta del código y de una calculadora desplegada.
 
-Las **limitaciones** son relevantes. La muestra es modesta y los eventos escasos —en particular para el modelo DCL→demencia
-(16 eventos), cuyo IC es amplio; debe considerarse un **prototipo** validado internamente. La cohorte generaliza a quienes
-regresan a reevaluarse, subgrupo no aleatorio y de mayor edad con posible gradiente de acceso. Excluimos deliberadamente el
-diagnóstico etiológico: los modelos predicen **trayectoria cognitiva, no enfermedad**, y la definición de demencia se apoya
-en el juicio de severidad del clínico sin criterio funcional independiente. La deriva de la documentación de mundo real y la
+Las **limitaciones** son relevantes y acotan las conclusiones a un nivel **exploratorio**. (i) La muestra es modesta y los
+eventos escasos; los **eventos por variable** fueron 6,8–10,7 (por debajo del ≥10 recomendado en dos modelos), y el modelo
+DCL→demencia (16 eventos) tiene un IC amplio (0,54–1,0) con un límite inferior poco informativo: es un **prototipo** validado
+sólo internamente. (ii) Los análisis de **subgrupos por fenotipo** se basan en grupos pequeños con IC amplios; sólo la
+posición del fenotipo amnésico es robusta, y el efecto del mecanismo de almacenamiento no alcanzó significación. (iii) La
+cohorte generaliza a quienes **regresan a reevaluarse** —subgrupo no aleatorio, de mayor edad, con posible gradiente de
+acceso—; el **riesgo competitivo de muerte** no se modeló y la censura puede ser informativa. (iv) El desenlace binario a
+seguimiento variable **ignora el tiempo**; un modelo de tiempo-al-evento (supervivencia en tiempo discreto) es el paso
+metodológico siguiente. (v) La severidad basal (predictor) y el desenlace (severidad final) se codificaron de la misma
+sección del informe por el mismo proceso automatizado (en distintos momentos): comparten **varianza de método** y provienen
+de un **único centro y esquema de codificación**, aunque la validez de constructo contra el z objetivo la respalda.
+(vi) Excluimos el diagnóstico etiológico: los modelos predicen **trayectoria cognitiva, no enfermedad**, y el desenlace
+—“deterioro moderado o mayor”— carece de criterio funcional independiente. La deriva de la documentación de mundo real y la
 ausencia de biomarcadores acotan aún más el rendimiento. La **validación externa** —idealmente en consorcios regionales y
 frente a los biomarcadores en sangre que hoy se caracterizan en Latinoamérica[17]— es el paso esencial, junto con la
 recalibración periódica a medida que crezca la cohorte.
@@ -239,22 +261,55 @@ entornos subrepresentados —a la espera de validación externa.
 
 ## Tablas
 
-**Tabla 1.** Características de la cohorte y fiabilidad/validez del perfil (n=250; seguimiento mediano 1,8 a; κ severidad
-1,00, almacenamiento 0,96, fenotipo 0,88; validez: dominios deficitarios 0,44 [normal] → 4,50 [grave]).
+**Tabla 1. Características de la cohorte y fiabilidad/validez del perfil.**
 
-**Tabla 2.** Rendimiento de los modelos pronósticos (TRIPOD): desenlace, cohorte, predictores, n/eventos, AUC (CV anidada,
-optimismo-corregido) con IC95%, calibración.
+| Variable | Reevaluación (n=250) | Una visita (n=2648) |
+|---|---|---|
+| Edad, años (media ± DE) | 67,0 ± 14,3 | 63,8 ± 19,1 |
+| Educación, años (media ± DE) | 13,3 ± 3,4 | 12,9 ± 3,7 |
+| Sexo femenino, % | 55 | 56 |
+| Seguimiento, años, mediana (IQR) | 1,83 (1,25–2,97) | — |
+| Nº de evaluaciones (2 / 3 / 4) | 213 / 36 / 1 | — |
 
-## Leyendas de figuras
+*Fiabilidad inter-codificador (κ):* severidad 1,00; almacenamiento 0,96; fenotipo 0,88; estabilidad 0,85.
+*Validez de constructo* (dominios deficitarios objetivos por banda): normal 0,44 → leve 1,98 → moderado 3,83 → grave 4,50.
 
-**Figura 1.** Tasa de declive fiable ajustada por el basal según fenotipo basal (multidominio 47%, amnésico 43%,
-disejecutivo 22%, preservado 0%) y según almacenamiento de memoria (comprometido 44% vs conservado 18%).
+**Tabla 2. Rendimiento de los modelos pronósticos (TRIPOD).**
 
-**Figura 2.** Discriminación (AUC) de los tres desenlaces con IC95%; estimaciones honestas (optimismo-corregidas) vs
-aparentes, con el sobreajuste del árbol en conversión de banda.
+| Desenlace | Cohorte (n / eventos) | Predictores | AUC [IC95%] | EPV |
+|---|---|---|---|---|
+| DCL → demencia | 85 / 16 | Memoria de relatos diferida + edad | **0,84** [0,54–1,0] | 8,0 |
+| Pre-demencia → demencia | 136 / 32 | + severidad basal | **0,81** [0,66–0,93] | 10,7 |
+| Declive fiable | 182 / 34 | edad, Rey trial 1, intrusiones, CI premórbido, Hayling | 0,69 [0,48–0,88] | 6,8 |
+| Conversión de banda | 189 / 58 | (débil; aparente 0,97 → honesto) | 0,66 [0,53–0,81] | — |
 
-**Figura 3.** Calculadora de riesgo desplegada (client-side): al seleccionar la severidad basal aparecen el modelo
-aplicable y sus campos; el riesgo se muestra con banda de incertidumbre bootstrap y la prevalencia de la cohorte.
+*AUC por CV anidada, optimismo-corregido; calibración Platt (pendiente 1,3–1,4). EPV = eventos por variable.
+IC del modelo DCL→demencia amplio por los 16 eventos (prototipo).*
+
+## Figuras
+
+**Figura 1. Evolución por fenotipo basal (ajustada por el basal).**
+
+![Figura 1](Figure1.png)
+
+*Izquierda: tasa de declive fiable ajustada por el basal según fenotipo basal, con IC95% de Wilson y n por grupo
+(χ² omnibus p=0,030); sólo el fenotipo amnésico como el de mayor riesgo es robusto. Derecha: por mecanismo de memoria
+(almacenamiento comprometido vs conservado; diferencia no significativa, p=0,197) y modulador anímico.*
+
+**Figura 2. Discriminación por desenlace.**
+
+![Figura 2](Figure2.png)
+
+*AUC (CV anidada, optimismo-corregida) con IC95%; línea punteada = azar (0,50). Para la conversión de banda se muestra
+además el AUC aparente (0,97, círculo abierto) que colapsa a 0,66 tras la corrección, ilustrando el sobreajuste.*
+
+**Figura 3. Calculadora desplegada (client-side).**
+
+![Figura 3](Figure3.png)
+
+*Al seleccionar la severidad basal aparecen el modelo aplicable y sus campos; el riesgo se muestra con banda de
+incertidumbre bootstrap y la prevalencia de la cohorte como referencia. Corre 100% en el navegador (sin transmitir
+datos). Disponible en https://fermarquez88.github.io/kaizenai-demencia/*
 
 ---
 
