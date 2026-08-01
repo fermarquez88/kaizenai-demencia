@@ -4,7 +4,7 @@
 > entrenada con datos longitudinales reales del **Instituto de Neurociencias San Juan (Clínica El Castaño)**
 > y normada localmente. **Prototipo de investigación — NO es un dispositivo médico.**
 
-**🔗 App (GitHub Pages):** _se completa al publicar_ · **Idiomas:** Español / English
+**🔗 App (GitHub Pages):** https://fermarquez88.github.io/kaizenai-demencia/ · **Idiomas:** Español / English
 
 ---
 
