@@ -13,3 +13,6 @@ __pycache__/
 .DS_Store
 .ipynb_checkpoints/
 scratchpad/
+
+# excepción: el manuscrito SÍ se publica
+!MANUSCRIPT.pdf
