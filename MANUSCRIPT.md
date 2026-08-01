@@ -2,8 +2,11 @@
 
 **Congreso Argentino de Neurología (CAN)** · Área temática: **Neurología Cognitiva, Demencias y Neuropsicología** · Tipo: Tema libre (oral/póster)
 
-**Autores:** Fernando Márquez (MD)¹; Diana Bruno (Lic.)¹; [coautores]. ¹ Instituto de Neurociencias San Juan (Clínica El Castaño), San Juan, Argentina.
-**Autor de correspondencia:** F. Márquez — fmarquez.mum@gmail.com
+**Autores:** Fernando Márquez¹,²; Paula Virginia Arellano¹⁻³; Diana Bruno¹; Luciana Vita¹⁻³; María Beatriz Bistué¹⁻³; María Celeste Moyano¹⁻³; María Laura Noguera Roberto¹; Mariana Zanino¹⁻³; Cristian Ignacio Posleman¹⁻³; Iara Jácome¹; Florencia Portillo¹⁻³; Daniel Lucato²; Martín Alejandro Bruno¹⁻³.
+
+**Afiliaciones:** ¹ Universidad Católica de Cuyo, San Juan, Argentina. ² Hospital Dr. Guillermo Rawson, San Juan, Argentina. ³ Consejo Nacional de Investigaciones Científicas y Técnicas (CONICET), Argentina.
+
+**Autor de correspondencia:** Fernando Márquez — fmarquez.mum@gmail.com
 
 **Código y calculadora (acceso abierto):** https://github.com/fermarquez88/kaizenai-demencia · App: https://fermarquez88.github.io/kaizenai-demencia/
 
@@ -161,9 +164,8 @@ severidad (z ≤ −2: normal 0,5 → leve 2,0 → moderado 3,7 → grave 4,2) y
 del 38% (normal) al 100% (≥ leve-a-moderado). Cabe destacar que solo 2 de 121 pacientes con DCL codificado carecían de todo
 deterioro objetivo en la batería: a diferencia de los criterios convencionales, que producen alrededor de un tercio de
 falsos positivos “dentro de límites normales”,[14] la codificación clínica-narrativa casi no sobre-diagnosticó, lo que
-respalda su validez. En términos prácticos, la banda de severidad y el subtipo consignados en el informe se comportan
-como una variable objetiva y reproducible —no como una impresión idiosincrásica—, y una conclusión de “DCL” corresponde
-casi siempre a un déficit medible en la batería.
+respalda su validez. Así, la banda de severidad y el subtipo consignados en el informe constituyen una variable objetiva
+y reproducible, y una conclusión de “DCL” se acompaña casi siempre de un déficit medible en la batería.
 
 ### La evolución de los perfiles requiere ajustar por el basal antes de compararse (Figuras 2 y 4)
 La **matriz de transición** de severidad (Figura 2) muestra la evolución de cada banda basal: 34% de los pacientes
@@ -174,10 +176,7 @@ clínicas de memoria (~10–15%/año).[5] El cambio seriado estuvo parcialmente 
 al regresar el z global final sobre el basal la pendiente fue de 0,82 (r=0,73), de modo que el cambio crudo Δz dependió
 del nivel basal (pendiente Δz ≈ −0,18; Figura 4). Como los fenotipos difieren en severidad basal, el cambio crudo debe
 ajustarse antes de comparar trayectorias; tras el ajuste, el perfil amnésico fue el único que declinó, mientras que los
-perfiles disejecutivo, multidominio y preservado no lo hicieron. Al leer un informe seriado esto tiene una consecuencia
-concreta: la diferencia cruda entre dos evaluaciones depende en parte del punto de partida —quien rinde muy bajo al
-inicio tiende a “mejorar” en el retest y quien parte apenas por debajo tiende a “empeorar”—, de modo que un cambio no
-debería tomarse al pie de la letra sin un umbral de cambio fiable.
+perfiles disejecutivo, multidominio y preservado no lo hicieron.
 
 ### El compromiso de memoria es el eje del riesgo; el subtipo fino está infrapotenciado (Figura 3)
 Operacionalizados según criterios de Petersen/Winblad a partir del patrón objetivo de dominios, los subtipos de la
@@ -188,9 +187,7 @@ subtipos es **frágil**: alcanza significación marginal bajo el esquema objetiv
 casi vacías) y bajo la etiqueta dominante previa (p=0,008), pero no bajo el esquema de dominios señalados por el clínico
 (p=0,411). La lectura robusta no es una jerarquía categórica, sino que **el compromiso de memoria (el eje amnésico), que
 domina esta cohorte, porta esencialmente todo el riesgo** —conclusión que converge con el modelo pronóstico continuo
-(véase abajo). La concordancia entre memoria afectada por z objetivo y por juicio clínico fue del 86%. El corolario es
-directo: a la hora de estimar el pronóstico pesa más comprobar si el recuerdo diferido está comprometido que asignar una
-etiqueta fina de subtipo.
+(véase abajo). La concordancia entre memoria afectada por z objetivo y por juicio clínico fue del 86%.
 
 A nivel del mecanismo de memoria, el subtipo amnésico se **define** por el **compromiso del almacenamiento** (falla de
 consolidación de tipo temporal-medial, à la Sarazin/Dubois[7]), presente en el **93%** de los casos amnésicos. Es la
@@ -206,25 +203,19 @@ independientes.
 Entre los 14 pacientes cognitivamente normales al basal, ninguno progresó a demencia (0/14); la progresión partió
 invariablemente de un estadio intermedio. El patrón es consistente con un modelo por estadios —aunque el escaso número
 de normales es **insuficiente para probar** que la transición directa nunca ocurra— y justifica tomar los estados de
-deterioro leve-moderado, no los normales, como denominador del pronóstico a corto plazo. En otras palabras, un paciente
-cognitivamente normal difícilmente desarrolle demencia en ~2 años sin atravesar antes un estadio intermedio, lo que
-permite concentrar la vigilancia estrecha en quienes ya presentan DCL y tranquilizar, con seguimiento de rutina, a los
-normales.
+deterioro leve-moderado, no los normales, como denominador del pronóstico a corto plazo.
 
 ### Análisis de sensibilidad de la definición del desenlace
 La definición de progresión (severidad final ≥ moderada) rindió 32 eventos en la cohorte de deterioro leve-moderado
 (n=122). Umbrales más estrictos redujeron drásticamente los eventos —9 (≥moderado-grave) y 4 (grave)— tornándolos
 inestimables. El desenlace se interpreta, por tanto, como **progresión a deterioro moderado o mayor** (síndrome de rango
-demencial), no como demencia confirmada por criterio funcional independiente. Una predicción positiva señala, así, a
-quién conviene constatar el compromiso de las actividades de la vida diaria en la consulta, más que un diagnóstico de
-demencia ya establecido.
+demencial), no como demencia confirmada por criterio funcional independiente.
 
 ### Normas locales de cambio fiable
 Aportamos RCIs locales para el testeo seriado: ≈0,97 z a nivel persona y umbrales por test de ±1,4 (recuerdo diferido de
 lista) a ±2,5 (reconocimiento), con 7–14% de pacientes mostrando declive fiable por dominio en el intervalo. Son, hasta
-donde sabemos, de las primeras normas locales de cambio para esta población. Su utilidad es inmediata: frente a un
-retest, un cambio en torno a 1 z a nivel global —o de ±1,4 a ±2,5 z según el test— puede tomarse como real y no como
-ruido de medición.
+donde sabemos, de las primeras normas locales de cambio para esta población. Operativamente, superan el umbral de
+fiabilidad los cambios en torno a 1 z a nivel global (±1,4 a ±2,5 z según el test).
 
 ### Predicción de la progresión a demencia (Tabla 2, Figura 5)
 En los tres desenlaces, **la parsimonia superó a la complejidad**. La stability selection de alta dimensión sobre ~40
@@ -242,9 +233,7 @@ sustancial —ΔAUC **+0,13** en DCL→demencia (0,72→0,85) y **+0,08** en det
 confirmando que el puntaje de memoria aporta información más allá de la demografía. Los modelos quedaron bien calibrados
 tras Platt (Figura 5B). Que la señal categórica de subtipo y el modelo continuo converjan sobre la misma variable —la
 memoria diferida— refuerza que ese es el eje pronóstico. Los modelos finales se despliegan como calculadora abierta que
-computa el riesgo con banda de incertidumbre bootstrap y **nunca transmite datos del paciente** (Figura 6). En la
-práctica, esto vuelve estimable el riesgo de progresión a ~2 años a partir de dos datos disponibles en cualquier
-consulta —el z del recuerdo diferido de relatos y la edad—, sin necesidad de estudios adicionales.
+computa el riesgo con banda de incertidumbre bootstrap y **nunca transmite datos del paciente** (Figura 6).
 
 ## Discusión
 
@@ -259,22 +248,30 @@ los pronósticos. Tras el ajuste, el perfil amnésico siguió siendo el que más
 hallazgos. El mismo tipo de confusión —el cambio temprano condicionando la exposición o la medición— subyace a
 asociaciones “protectoras” que se disuelven bajo escrutinio causal, como se demostró para el alcohol y la demencia
 (causalidad inversa).[26] Un Índice de Cambio Fiable local y las métricas ajustadas por el basal, junto con los RCIs
-corregidos por efecto de práctica,[27] deberían acompañar toda interpretación neuropsicológica seriada.
+corregidos por efecto de práctica,[27] deberían acompañar toda interpretación neuropsicológica seriada. En la consulta
+esto se vuelve una regla simple: la diferencia cruda entre dos evaluaciones no debe leerse literalmente sino contrastarse
+con el umbral de cambio fiable que aportamos —en torno a 1 z global, o ±1,4 a ±2,5 z por test—, por debajo del cual el
+cambio es indistinguible del ruido de medición; de otro modo, un paciente que partió de un rendimiento muy bajo puede
+parecer que “mejora” solo por regresión a la media.
 
 **Segundo, el eje del riesgo es el compromiso de memoria, más que una jerarquía categórica de subtipos.** La cohorte en
 riesgo estuvo dominada por perfiles amnésicos multidominio, que concentraron la progresión, mientras que los subtipos de
 dominio único y no amnésicos fueron infrecuentes y sin eventos. Antes que sobreinterpretar un gradiente entre subtipos
 —que resultó infrapotenciado y sensible a la operacionalización—, la lectura honesta es que la memoria es el eje del
-pronóstico, y así lo confirma la convergencia con el modelo continuo. Esta primacía de la memoria es mecanísticamente
+pronóstico, y así lo confirma la convergencia con el modelo continuo. Para la decisión clínica esto es liberador: desplaza
+el foco desde la etiqueta fina de subtipo —difícil de asignar y poco estable— hacia una pregunta más simple y potente,
+la de si el recuerdo diferido está comprometido. Esta primacía de la memoria es mecanísticamente
 esperable: el subtipo amnésico se define por el **compromiso del almacenamiento** (falla de consolidación de tipo
 temporal-medial), frente a la falla de **recuperación** (frontal) de los perfiles disejecutivos; es el síndrome amnésico
 que identifica la enfermedad de Alzheimer prodrómica[7] y explica por qué el recuerdo diferido es el predictor por
 excelencia de la conversión.[7–13] El curso benigno de los perfiles con carga anímica concuerda con el deterioro
 cognitivo reversible del trastorno afectivo de la vejez y con la noción del compromiso conductual como pródromo
-diferenciable,[20], y advierte contra equiparar el deterioro actual con una trayectoria inexorable. Que ningún paciente
+diferenciable,[20], y advierte contra equiparar el deterioro actual con una trayectoria inexorable —un matiz clínicamente
+importante cuando hay ánimo comprometido de por medio. Que ningún paciente
 pasara de cognición normal directamente a demencia en ~2 años refuerza un modelo por estadios y tiene una implicancia
-metodológica concreta: los estados de deterioro leve-moderado, no los individuos normales, son la población apropiada
-para la predicción de demencia a corto plazo.
+metodológica y asistencial concreta: los estados de deterioro leve-moderado, no los individuos normales, son la población
+apropiada para la predicción a corto plazo, lo que habilita una vigilancia por estadios —seguimiento estrecho de quienes
+ya presentan DCL y control de rutina, tranquilizador, en los cognitivamente normales.
 
 **Tercero, para predecir, menos fue más.** Un modelo de dos variables —recuerdo diferido de relatos y edad— predijo la
 progresión DCL→demencia con un AUC optimismo-corregido de 0,84, comparable al de modelos publicados basados en
@@ -286,7 +283,11 @@ clínica única, el techo de la discriminación lo fija el tamaño muestral y la
 sofisticación algorítmica —consistente con la prioridad regional de extraer el máximo valor pronóstico de **medidas
 cognitivas de rutina** mientras se expande el acceso a biomarcadores.[23–25] La parsimonia emergente es, además, lo que
 vuelve usable la herramienta: cada input se transcribe de un informe estándar y la inferencia corre íntegramente en el
-navegador, preservando la privacidad. Extraer el máximo de las medidas de rutina es también coherente con la agenda de
+navegador, preservando la privacidad. En términos asistenciales, el riesgo a ~2 años queda estimable con dos datos
+disponibles en cualquier consulta —el recuerdo diferido de relatos y la edad—, sin estudios adicionales; y como el
+desenlace marca la progresión a un rango de severidad y no una demencia confirmada, una predicción positiva orienta a
+constatar el compromiso funcional (actividades de la vida diaria) antes que a rotular la enfermedad. Extraer el máximo de
+las medidas de rutina es también coherente con la agenda de
 prevención, que sitúa la detección y el manejo tempranos de la trayectoria cognitiva en el centro de la reducción del
 riesgo de demencia.[21,22]
 
