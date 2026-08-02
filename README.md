@@ -19,9 +19,9 @@ con su **banda de incertidumbre (IC95%)** y el respaldo científico.
 
 | Severidad basal | Modelo | Variables | AUC (CV anidada, optimismo-corregido) |
 |---|---|---|---|
-| DCL | Progresión a demencia · DCL | Memoria de Relatos Diferido (z) + edad | **0.84** [0.54–1.0] |
-| Leve-moderado | Progresión a demencia · deterioro leve-moderado | Memoria de Relatos Diferido (z) + edad + severidad | **0.80** [0.64–0.92] |
-| Moderado+ (ya demencia) | Declive cognitivo fiable | edad, Rey Trial-1, intrusiones, WAT, Hayling | 0.69 [0.48–0.88] |
+| Leve-moderado (primario) | Progresión a demencia · deterioro leve-moderado | Memoria de Relatos Diferido (z) + edad | **0.74** [0.54–0.92] |
+| DCL (sensibilidad) | Progresión a demencia · DCL | Memoria de Relatos Diferido (z) + edad | **0.76** [0.53–1.0] |
+| Moderado+ (ya demencia) | Declive cognitivo fiable | edad, Rey Trial-1, intrusiones, CI premórbido, Hayling | 0.68 [0.52–0.83] |
 
 Desenlace = **progresión a demencia** definido como severidad del perfil ≥ *moderado* en la reevaluación
 (criterio clínico del instituto). *Declive fiable* = cambio z que supera el índice de cambio fiable (RCI) local.

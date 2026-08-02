@@ -12,9 +12,9 @@ Tres modelos logísticos, condicionados por la severidad basal del perfil:
 
 | Modelo | Cohorte | Variables | n / eventos | AUC (optimismo-corr.) | IC95% |
 |---|---|---|---|---|---|
-| Demencia · DCL | severidad basal = DCL | Memoria de Relatos Diferido (z), edad | 85 / 16 | 0.84 | 0.54–1.0 |
-| Demencia · deterioro leve-moderado | basal leve o leve-mod | Memoria de Relatos Diferido (z), edad, severidad | 122 / 32 | 0.80 | 0.64–0.92 |
-| Declive fiable | todos los reevaluados | edad, Rey Trial-1 (z), intrusiones, WAT (z), Hayling (z) | 182 / 34 | 0.69 | 0.48–0.88 |
+| Demencia · deterioro leve-moderado (primario) | basal leve o leve-mod | Memoria de Relatos Diferido (z), edad | 140 / 37 | 0.74 | 0.54–0.92 |
+| Demencia · DCL (sensibilidad) | severidad basal = DCL | Memoria de Relatos Diferido (z), edad | 96 / 18 | 0.76 | 0.53–1.0 |
+| Declive fiable | todos los reevaluados | edad, Rey Trial-1 (z), intrusiones, CI premórbido (z), Hayling (z) | 250 / 47 | 0.68 | 0.52–0.83 |
 
 - **Desenlace demencia:** severidad del perfil ≥ *moderado* en la reevaluación (criterio clínico del instituto).
 - **Desenlace declive:** cambio z global que supera el índice de cambio fiable (RCI) empírico local (≈0.97 z).

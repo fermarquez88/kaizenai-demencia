@@ -29,8 +29,8 @@ F=F.merge(pd.DataFrame({'persona_id':fb.index,'sev_ord':fb.values,'y_dem':(lb>=3
 
 def sigmoid(z): return 1/(1+np.exp(-z))
 MODELS={
- 'demencia_dclleve':dict(y='y_dem',filt=lambda d:d.sev_ord==1,feats=['mr_diferido','edad']),
- 'demencia_dlm':    dict(y='y_dem',filt=lambda d:d.sev_ord.isin([1,2]),feats=['mr_diferido','edad','sev_ord']),
+ 'demencia_dlm':    dict(y='y_dem',filt=lambda d:d.sev_ord.isin([1,2]),feats=['mr_diferido','edad']),   # PRIMARIO
+ 'demencia_dclleve':dict(y='y_dem',filt=lambda d:d.sev_ord==1,feats=['mr_diferido','edad']),           # sensibilidad (subgrupo DCL)
  'declive_fiable':  dict(y='y_rci',filt=None,feats=['edad','rey_trial1','intrusiones','z_premorbido','hayling']),
 }
 def fit_export(cfg):
@@ -57,8 +57,9 @@ def fit_export(cfg):
         bootstrap=[{'coef':[round(c,5) for c in bc],'intercept':round(bi,5),'A':round(ba,5),'B':round(bb,5)} for bc,bi,ba,bb in boots],
         metrics={'auc':round(float(auc.mean()),2),'ci':[round(float(np.percentile(auc,2.5)),2),round(float(np.percentile(auc,97.5)),2)]})
 out={k:fit_export(v) for k,v in MODELS.items()}
-out['conversion_banda']={'metrics':{'auc':0.69,'ci':[0.55,0.85]},'n':189,'eventos':58,'solo_tabla':True}  # transparencia (no activo)
+out['conversion_banda']={'metrics':{'auc':0.66,'ci':[0.53,0.81]},'n':189,'eventos':58,'solo_tabla':True}  # transparencia (no activo)
 json.dump(out,open('data/interim/models_deploy.json','w'),indent=1)
-for k in ['demencia_dclleve','demencia_dlm','declive_fiable']:
+import shutil; shutil.copy('data/interim/models_deploy.json','/Users/fernandomarquez/Documents/Claude/Projects/kaizenai-demencia/models/models_deploy.json')
+for k in ['demencia_dlm','demencia_dclleve','declive_fiable']:
     v=out[k]; print(f"{k:18s} n={v['n']} ev={v['eventos']} AUC={v['metrics']['auc']} {v['metrics']['ci']} feats={[f['name'] for f in v['features']]}")
 print("cobertura hayling:", f"{100*F.hayling.notna().mean():.0f}%","| z_premorbido:", f"{100*F.z_premorbido.notna().mean():.0f}%")
