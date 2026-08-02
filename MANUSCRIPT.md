@@ -59,27 +59,34 @@ informante, y requiere validación externa.
 ## Introducción
 
 El deterioro cognitivo leve (DCL) es una entidad heterogénea cuyo desenlace depende de cómo se lo define y del fenotipo
-cognitivo subyacente.[1–3] Desde su caracterización inicial como estado transicional con predominio de compromiso de
-memoria,[1,2] el consenso internacional estableció que el DCL exige deterioro cognitivo objetivo con **actividades de la
-vida diaria preservadas** —el rasgo que lo separa de la demencia— y reconoció subtipos amnésico y no amnésico, de dominio
-único o múltiple, con pronósticos distintos.[3] Es el **perfil neuropsicológico** —y no la mera presencia de deterioro—
-lo central para el pronóstico.[4–6]
+cognitivo subyacente.[1–3] El consenso internacional lo caracterizó como estado transicional con deterioro cognitivo
+objetivo y **actividades de la vida diaria preservadas** —el rasgo que lo separa de la demencia— con subtipos amnésico y
+no amnésico, de dominio único o múltiple, de pronóstico distinto.[1–3] Los criterios NIA-AA formalizaron el continuo
+—DCL debido a enfermedad de Alzheimer[29] y **demencia**, que por definición exige compromiso **cognitivo y
+funcional**[30]— y en la práctica la severidad se **estadifica clínicamente** (p. ej., el Clinical Dementia Rating).[31]
+Dentro de este marco, es el **perfil neuropsicológico** —y no la mera presencia de deterioro— lo central para el
+pronóstico.[4–6]
 
-Dentro de ese perfil, la memoria episódica ocupa un lugar privilegiado. El **síndrome amnésico de tipo temporal-medial**
-identifica la enfermedad de Alzheimer prodrómica con alta especificidad,[7] y el **recuerdo diferido** es uno de los
-predictores neuropsicológicos más potentes de conversión.[7–13] Los **criterios neuropsicológicos actuariales** mejoran
-la estratificación y reducen los falsos positivos.[14–16] El compromiso amnésico multidominio, la atrofia temporal medial
-y la carga vascular incrementan el riesgo,[5,17,18] mientras que la **reserva** modula la expresión clínica,[19] y los
-síntomas conductuales/anímicos pueden constituir un pródromo.[20] La mayor parte de esta evidencia proviene de cohortes
-de altos ingresos, con baterías fijas.
+Dentro de ese perfil, la memoria episódica ocupa un lugar privilegiado: el **síndrome amnésico de tipo temporal-medial**
+identifica la enfermedad de Alzheimer prodrómica con alta especificidad,[7] el **recuerdo diferido** es uno de los
+predictores más potentes de conversión,[7–13] y los **criterios neuropsicológicos actuariales** mejoran la estratificación
+y reducen los falsos positivos.[14–16] El compromiso amnésico multidominio, la atrofia temporal medial y la carga vascular
+incrementan el riesgo,[5,17,18] la **reserva** modula la expresión clínica,[19] y los síntomas conductuales pueden ser
+prodrómicos.[20] La era de los biomarcadores redefinió la enfermedad de Alzheimer como constructo **biológico** (marco
+AT(N)),[32] pero ese marco es explícitamente de investigación: la **estadificación clínica del síndrome** sigue siendo la
+piedra angular de la práctica, sobre todo allí donde los biomarcadores no están disponibles.[30,32]
 
-Dos vacíos motivan este trabajo. Primero, la **trayectoria cognitiva longitudinal de los perfiles en la práctica de
-rutina** —a nivel de banda de severidad y de test— rara vez se describe con el cuidado psicométrico que exigen los datos
-seriados (cambio fiable, regresión a la media, efecto de piso), pese a que la prevención depende de identificar la
-trayectoria temprana.[21,22] Segundo, **Latinoamérica está marcadamente subrepresentada**; las herramientas validadas en
-otros contextos transfieren mal, y las iniciativas regionales enfatizan desarrollar instrumentos localmente desde
-**medidas de rutina**.[23–25] Abordamos ambos con un objetivo primero **descriptivo** (la trayectoria cognitiva) y luego
-**predictivo** (qué de la basal anticipa la progresión).
+Esta caracterización importa hoy más que nunca: las primeras **terapias modificadoras de la enfermedad** (anticuerpos
+anti-amiloide) actúan en estadios tempranos —DCL y demencia leve— y enlentecen modestamente la progresión clínica medida
+por escalas de severidad,[33,34] lo que vuelve **accionable** identificar tempranamente al paciente de alto riesgo. Sin
+embargo, la mayor parte de la evidencia proviene de cohortes de altos ingresos con baterías fijas, y **Latinoamérica está
+marcadamente subrepresentada**: sistemas de salud frágiles, acceso limitado a biomarcadores y a terapias, y un llamado
+regional explícito a desarrollar herramientas localmente y desde **medidas de rutina**.[23–25,35] Sobre este telón, dos
+vacíos concretos motivan el trabajo: (i) la **trayectoria cognitiva longitudinal** en la práctica rara vez se describe con
+el cuidado psicométrico que exigen los datos seriados (cambio fiable, regresión a la media, efecto de piso),[21,22] pese a
+que la prevención depende de identificar la trayectoria temprana; y (ii) la **predicción del agravamiento desde medidas de
+rutina** es escasa en la región. Abordamos ambos con un objetivo primero **descriptivo** (la trayectoria cognitiva) y luego
+**predictivo** (qué de la basal anticipa la progresión a demencia).
 
 ## Materiales y métodos
 
@@ -231,15 +238,23 @@ anticiparon el agravamiento (AUC 0,74; IC95% 0,63–0,83), sobre todo como **pru
 riesgo** (progresión 9%→45% del tercil inferior al superior). Para el neurólogo cognitivo sin acceso rutinario a
 biomarcadores —la realidad de gran parte de Latinoamérica[23–25]— esto es directamente accionable: **dos números de una
 evaluación estándar ubican al paciente en una banda de riesgo relativo que informa la frecuencia de seguimiento y la
-priorización de estudios**, sin sustituir el juicio clínico. El techo del desempeño lo fija el tamaño muestral y la
-ausencia de biomarcadores más que el algoritmo, consistente con las iniciativas regionales que buscan extraer el máximo de
-**medidas de rutina** y anticipan el aporte de biomarcadores en sangre.[24,25]
+priorización de estudios**, sin sustituir el juicio clínico. Esta accionabilidad es especialmente oportuna en la **era de
+las terapias modificadoras**: los anticuerpos anti-amiloide actúan en estadios tempranos y su ventana depende de
+identificar pronto al paciente en riesgo;[33,34] cuando esa es la lógica asistencial, un estratificador basado en la
+evaluación de rutina —barato y sin biomarcadores— funciona como primer filtro pragmático, en línea con las iniciativas
+regionales (LAC-CD/ReDLat)[35] y con el énfasis de las Comisiones del Lancet en la prevención a lo largo del curso
+vital.[21,22] El techo del desempeño lo fija el tamaño muestral y la ausencia de biomarcadores más que el algoritmo,
+consistente con las iniciativas que buscan extraer el máximo de **medidas de rutina** y anticipan el aporte de
+biomarcadores en sangre en la región.[24,25]
 
 **Alcance y encuadre honestos.** La demencia se definió **operacionalmente por la severidad clínica del perfil**
 (≥ moderada), y esta definición se **corroboró con un criterio funcional independiente**: en el grupo con demencia, el
 ADLQ del informante mostró compromiso funcional (mediana 42% de áreas alteradas vs 19% en no-demencia; gradiente monótono
 Normal 6% → grave 72%), lo que respalda el constructo (deterioro cognitivo **y** funcional) y **atenúa** —sin eliminar— la
-preocupación por circularidad, pues el ADLQ es independiente de la narrativa cognitiva que informa el predictor. Persisten
+preocupación por circularidad, pues el ADLQ es independiente de la narrativa cognitiva que informa el predictor. Esta
+operacionalización es coherente con la definición vigente de demencia —que exige compromiso **cognitivo y funcional**[30]—
+y con la estadificación clínica de severidad;[31] y, crucialmente, predice una **trayectoria clínica**, no la enfermedad de
+Alzheimer **definida biológicamente** (marco AT(N)),[32] que requeriría biomarcadores ausentes en esta cohorte. Persisten
 límites (cobertura del ADLQ ~63%, sin biomarcadores ni confirmación etiológica), por lo que la contribución se enmarca como
 un **estratificador de riesgo** normado localmente, no un diagnosticador. Dos productos digitales abiertos materializan el trabajo y corren íntegramente
 en el navegador (sin transmitir datos): un **estratificador de riesgo** individual y un **artefacto navegable de
@@ -354,3 +369,10 @@ interpretables.** El n figura en cada celda.*
 26. Jacobson NS, Truax P. Clinical significance: a statistical approach to defining meaningful change in psychotherapy research. *J Consult Clin Psychol.* 1991. https://doi.org/10.1037/0022-006X.59.1.12
 27. Tröster AI, Woods SP, Morgan EE. Assessing cognitive change in Parkinson's disease: practice effect-corrected reliable change indices. *Arch Clin Neuropsychol.* 2007. https://doi.org/10.1016/j.acn.2007.05.004
 28. Collins GS, Reitsma JB, Altman DG, Moons KGM. Transparent reporting of a multivariable prediction model (TRIPOD). *Ann Intern Med.* 2015. https://doi.org/10.7326/M14-0697
+29. Albert MS, DeKosky ST, Dickson D, et al. The diagnosis of mild cognitive impairment due to Alzheimer's disease: recommendations from the NIA-AA workgroups. *Alzheimers Dement.* 2011. https://doi.org/10.1016/j.jalz.2011.03.008
+30. McKhann GM, Knopman DS, Chertkow H, et al. The diagnosis of dementia due to Alzheimer's disease: recommendations from the NIA-AA workgroups. *Alzheimers Dement.* 2011. https://doi.org/10.1016/j.jalz.2011.03.005
+31. Morris JC. The Clinical Dementia Rating (CDR): current version and scoring rules. *Neurology.* 1993. https://doi.org/10.1212/wnl.43.11.2412-a
+32. Jack CR, Bennett DA, Blennow K, et al. NIA-AA Research Framework: toward a biological definition of Alzheimer's disease. *Alzheimers Dement.* 2018. https://doi.org/10.1016/j.jalz.2018.02.018
+33. van Dyck CH, Swanson CJ, Aisen P, et al. Lecanemab in early Alzheimer's disease. *N Engl J Med.* 2023. https://doi.org/10.1056/NEJMoa2212948
+34. Sims JR, Zimmer JA, Evans CD, et al. Donanemab in early symptomatic Alzheimer disease: the TRAILBLAZER-ALZ 2 randomized clinical trial. *JAMA.* 2023. https://doi.org/10.1001/jama.2023.13239
+35. Ibáñez A, Parra MA, Butler C, et al. The Latin America and the Caribbean Consortium on Dementia (LAC-CD): from networking to research to implementation science. *J Alzheimers Dis.* 2021. https://doi.org/10.3233/JAD-201384
