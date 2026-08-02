@@ -91,12 +91,15 @@ rutina** es escasa en la región. Abordamos ambos con un objetivo primero **desc
 ## Materiales y métodos
 
 ### Aspectos éticos y declaraciones
-Análisis retrospectivo de datos clínicos de rutina, anonimizados por un identificador a nivel persona derivado del DNI; no
-se comparten datos identificatorios. Por tratarse de datos asistenciales retrospectivos y anonimizados, no se requirió
-consentimiento adicional. **Financiamiento:** ninguno específico. **Conflictos de interés:** ninguno. **Uso de
+Análisis retrospectivo de datos clínicos de rutina, conducido conforme a los principios de la **Declaración de Helsinki** y
+anonimizado por un identificador a nivel persona derivado del DNI; no se comparten datos identificatorios. Por tratarse de
+datos asistenciales retrospectivos y anonimizados, no se requirió consentimiento adicional, conforme a la normativa
+institucional para el uso secundario de datos asistenciales. **Financiamiento:** ninguno específico. **Conflictos de interés:** ninguno. **Uso de
 inteligencia artificial:** un modelo de lenguaje restringido por un codebook cerrado se usó para **extraer y codificar**
 el perfil desde el texto de las Conclusiones, y como asistencia en el análisis y la redacción; la IA **no** es autora y
-toda decisión metodológica y de interpretación fue de los autores. **Disponibilidad:** los datos individuales son
+toda decisión metodológica y de interpretación fue de los autores. **Contribuciones de los autores:** todos los autores
+contribuyeron a la concepción o el diseño del trabajo, o a la adquisición, el análisis o la interpretación de los datos;
+revisaron críticamente el manuscrito y aprobaron la versión final. **Disponibilidad:** los datos individuales son
 sensibles y no se comparten; el código, el codebook, los coeficientes del modelo, los conteos agregados y el material
 suplementario son abiertos.
 
@@ -144,7 +147,9 @@ con análisis de sensibilidad en casos completos. Como modelos secundarios se re
 cognitivo fiable** (para bandas normal y ya-demencial). Un modelo con **criterio funcional independiente (ADLQ)** se
 presenta como análisis exploratorio (material suplementario) dada su fragilidad (EPV bajo). Los modelos desplegados
 exportan coeficientes + Platt + bootstrap; una implementación en JavaScript reproduce los coeficientes (test de paridad).
-Reporte según **TRIPOD** y **STROBE**.
+Los análisis se realizaron en **Python** (scikit-learn, lifelines, pandas; DuckDB para la gestión de datos); las pruebas
+de hipótesis fueron a **dos colas con α = 0,05** y la multiplicidad del análisis de trayectoria se controló por FDR
+(Benjamini-Hochberg). Reporte según **TRIPOD** (predicción) y **STROBE** (cohorte).
 
 ## Resultados
 
@@ -257,8 +262,8 @@ y con la estadificación clínica de severidad;[31] y, crucialmente, predice una
 Alzheimer **definida biológicamente** (marco AT(N)),[32] que requeriría biomarcadores ausentes en esta cohorte. Persisten
 límites (cobertura del ADLQ ~63%, sin biomarcadores ni confirmación etiológica), por lo que la contribución se enmarca como
 un **estratificador de riesgo** normado localmente, no un diagnosticador. Dos productos digitales abiertos materializan el trabajo y corren íntegramente
-en el navegador (sin transmitir datos): un **estratificador de riesgo** individual y un **artefacto navegable de
-trayectoria cognitiva**, que llevan la descripción y la estratificación a la consulta.
+en el navegador (sin transmitir datos): un **estratificador de riesgo** individual (Figura 6) y un **artefacto navegable
+de trayectoria cognitiva**, que llevan la descripción y la estratificación a la consulta.
 
 **Fortalezas y limitaciones.** Fortalezas: datos genuinos de mundo real; depuración e identificación auditadas con
 recuperación de N; una variable perfil reproducible; psicometría de cambio fiable con control de multiplicidad; validación
