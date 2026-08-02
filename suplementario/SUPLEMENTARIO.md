@@ -56,23 +56,22 @@ Orden por Δz ajustado (más negativo = más cambio). **Ningún test alcanza q<0
 
 ## S3. Tabla S2 — Subtipos objetivos (Petersen/Winblad) y mecanismo de memoria
 
-| Subtipo (Petersen/Winblad) | n |
+| Subtipo (Petersen/Winblad; sb no demencial, n=175) | n |
 |---|---|
-| Amnésico multidominio | 190 |
-| No amnésico multidominio | 20 |
-| No amnésico dominio único | 15 |
+| Amnésico multidominio | 122 |
+| No amnésico multidominio | 16 |
+| No amnésico dominio único | 14 |
 | Amnésico dominio único | 12 |
 | Sin déficit objetivo | 8 |
-| Indeterminado (memoria) | 6 |
-| Indeterminado | 3 |
+| Indeterminado (memoria) | 3 |
 
 Entre los amnésicos, el mecanismo predominante es el de almacenamiento (firma hipocampal/temporal-medial):
 
-| Mecanismo (entre amnésicos, n=202) | n | % de los evaluables |
+| Mecanismo (amnésicos no demenciales; evaluables n=116) | n | % de los evaluables |
 |---|---|---|
-| Almacenamiento (hipocampal/temporal-medial) | 122 | 70% |
-| Recuperación (frontal) | 53 | 30% |
-| No especificado | 27 | — |
+| Almacenamiento (patrón de codificación/consolidación) | 67 | 58% |
+| Recuperación (frontal) | 49 | 42% |
+| No especificado | 18 | — |
 
 El almacenamiento comprometido **enriquece** la caracterización del subtipo amnésico pero no estratifica el riesgo más allá del propio subtipo en esta muestra.
 
@@ -95,7 +94,7 @@ Sobre la diagonal = progresión. Ningún paciente normal al basal progresó a de
 
 ## S5. Validación funcional del desenlace (ADLQ del informante) — criterio independiente
 
-La demencia se definió por severidad clínica; el **ADLQ del informante** (compromiso en actividades de la vida diaria) aporta un **criterio funcional independiente** de la narrativa cognitiva. El compromiso funcional crece de forma **monótona con la severidad cognitiva** y separa al grupo con demencia (≥ moderado) del resto — sostén del constructo (deterioro cognitivo **y** funcional) y atenuación de la circularidad.
+La demencia se definió por severidad clínica; el **ADLQ del informante** (compromiso en actividades de la vida diaria) aporta un **criterio funcional independiente** de la narrativa cognitiva. La corroboración es **a nivel de grupo** (gradiente monótono con la severidad), **no** una reclasificación por caso: la severidad la fija la narrativa y el ADLQ concuerda en promedio.
 
 | Severidad final | n con ADLQ | ADLQ mediana (% áreas) | % con ≥40% alterado |
 |---|---|---|---|
@@ -108,7 +107,7 @@ La demencia se definió por severidad clínica; el **ADLQ del informante** (comp
 
 ![Figura S3](FigS3_adlq.png)
 
-*Grupo con demencia (≥ moderado): ADLQ mediana 42% de áreas alteradas, 55% con ≥40%; no-demencia: 19% y 15%. Cobertura del ADLQ ~63% (limitación).*
+*Grupo con demencia (≥ moderado): ADLQ mediana 42% de áreas alteradas, 55% con ≥40%; no-demencia: 19% y 15%. **Solapamiento distribucional** (delimita la validez del término): ≈45% de los clasificados como demencia no alcanza el umbral funcional individual (≥40%), y ≈18% de los DCL sí lo alcanza. **Cobertura del ADLQ: 132/254 reevaluados (52%; 60% de los 219 analizables)**; la comparación de grupos usa los 121 con banda final y ADLQ (limitación).*
 
 ---
 
@@ -124,13 +123,13 @@ El eje de memoria se mantiene bajo el criterio funcional, pero la escasez de eve
 
 ---
 
-## S6. Figura S1 — El eje del riesgo: memoria y subtipos (versión en barras)
+## S7. Figura S1 — El eje del riesgo: memoria y subtipos (versión en barras)
 
 ![Figura S1](FigS1_eje_memoria.png)
 
-(a) Progresión por estado de memoria basal (afectada vs conservada; OR de Fisher 9,3; p=0,008). (b) Distribución de subtipos objetivos; el multidominio es 89% amnésico (190/214). Complementa la Figura 4 del cuerpo (Kaplan-Meier), que muestra el mismo eje en el tiempo.
+(a) Progresión por estado de memoria basal (afectada vs conservada; OR de Fisher 9,3; p=0,008). (b) Distribución de subtipos objetivos en bandas no demenciales al basal; el patrón multidominio fue 88% amnésico (122/139). Complementa la Figura 4 del cuerpo (Kaplan-Meier), que muestra el mismo eje en el tiempo.
 
-## S7. Figura S2 — Regresión a la media en el cambio seriado
+## S8. Figura S2 — Regresión a la media en el cambio seriado
 
 ![Figura S2](FigS2_regresion_media.png)
 

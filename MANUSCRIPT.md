@@ -37,8 +37,8 @@ test (RCI/SRB, descriptivo) y con un análisis de **tiempo-al-evento** (Kaplan-M
 pre-especificado (memoria de relatos diferida y edad) usó regresión logística con validación cruzada anidada, corrección
 de optimismo, calibración de Platt e IC bootstrap.
 
-**Resultados.** De 334 pacientes con múltiples visitas, 254 tuvieron reevaluación genuina (mediana 1,8 años); la
-depuración recuperó 63 perfiles y 4 reevaluaciones (219 analizables). La trayectoria fue **amnésico-céntrica**: el
+**Resultados.** De 334 pacientes con múltiples visitas, 250 tuvieron reevaluación genuina (+4 recuperadas por corrección de
+fecha = **254**; mediana 1,8 años); la recuperación de 63 perfiles del PDF dejó 219 analizables. La trayectoria fue **amnésico-céntrica**: el
 compromiso objetivo de memoria fue el eje del riesgo (progresión 31% [36/117] vs 5% [1/22]; OR de Fisher 9,3; p=0,008), y
 el análisis temporal lo confirmó (Cox: memoria HR 0,55 [IC95% 0,40–0,76] por DE; C-index 0,72; log-rank p=0,010). Ningún
 paciente normal al basal progresó (0/17). El **modelo memoria diferida + edad** anticipó el agravamiento con **AUC 0,74
@@ -149,7 +149,7 @@ presenta como análisis exploratorio (material suplementario) dada su fragilidad
 exportan coeficientes + Platt + bootstrap; una implementación en JavaScript reproduce los coeficientes (test de paridad).
 Los análisis se realizaron en **Python** (scikit-learn, lifelines, pandas; DuckDB para la gestión de datos); las pruebas
 de hipótesis fueron a **dos colas con α = 0,05** y la multiplicidad del análisis de trayectoria se controló por FDR
-(Benjamini-Hochberg). Reporte según **TRIPOD** (predicción) y **STROBE** (cohorte).
+(Benjamini-Hochberg; 24 tests). Reporte según **TRIPOD**[28] (predicción) y **STROBE**[36] (cohorte).
 
 ## Resultados
 
@@ -162,19 +162,22 @@ creció monótonamente con el número de dominios objetivamente deficitarios.
 
 ### El desenlace "demencia" tiene correlato funcional independiente (validación de constructo)
 La definición de demencia por severidad clínica se **corroboró con el ADLQ** del informante, una medida funcional
-independiente de la narrativa cognitiva. En la submuestra con ADLQ, el grupo con **demencia** mostró compromiso funcional
-sustancialmente mayor que el grupo sin demencia (mediana de áreas alteradas **42% vs 19%**; con compromiso funcional
-marcado [≥40%] **55% vs 15%**; con algún compromiso, 100% en ambos). El compromiso funcional creció de forma **monótona con
-la severidad cognitiva** (mediana: Normal 6% → DCL 20% → leve-moderado 29% → moderado 35% → moderado-grave 50% → grave
-72%; Figura S3). Este correlato funcional independiente respalda que el desenlace captura deterioro **cognitivo y
-funcional** (constructo de demencia) y atenúa la preocupación por circularidad; su límite es la cobertura parcial del
-ADLQ (~63%).
+independiente de la narrativa cognitiva (disponible en **132/254 reevaluados, 52%**; comparación de grupos en los 121 con
+banda final y ADLQ). El compromiso funcional creció de forma **monótona con la severidad cognitiva** (mediana de áreas
+alteradas: Normal 6% → DCL 20% → leve-moderado 29% → moderado 35% → moderado-grave 50% → grave 72%; Figura S3), y el grupo
+con **demencia** mostró más compromiso que el grupo sin demencia (mediana **42% vs 19%**; con compromiso marcado [≥40%]
+**55% vs 15%**). Esta corroboración opera **a nivel de grupo** (validación de constructo agregada), no como criterio
+diagnóstico por caso; el solapamiento distribucional delimita el alcance del término (≈45% de los clasificados como
+demencia no alcanza el umbral funcional individual, y ≈18% de los DCL sí lo alcanza). Es, por tanto, **consistente en
+promedio con compromiso funcional acompañante** —lo que respalda el constructo y atenúa la circularidad, dado que el ADLQ
+es independiente de la narrativa—, con el límite de su cobertura parcial (52%).
 
 ### Trayectoria a nivel de banda de severidad: transiciones (Figura 2)
-La mayoría de los perfiles se mantuvieron estables o progresaron un escalón. La progresión a demencia
-fue de **12,0 por 100 persona-años** (37 eventos / 308 persona-años; IC95% Poisson 8,5–16,6) en la cohorte
-leve-moderado. Las transiciones se concentraron sobre la diagonal y su vecindad; **ningún paciente normal al basal
-progresó directamente a demencia (0/17)**, coherente con un modelo por estadios.
+La mayoría de los perfiles se mantuvieron estables o progresaron un escalón. En la cohorte del modelo (leve-moderado,
+n=140, 308 persona-años), la progresión a demencia fue de **12,0 por 100 persona-años** (37 eventos; IC95% Poisson
+8,5–16,6); esta tasa es **condicional a la reevaluación** y su dirección de sesgo es indeterminada (véase Limitaciones).
+Las transiciones se concentraron sobre la diagonal y su vecindad; **ningún paciente normal al basal progresó directamente
+a demencia (0/17)**, coherente con un modelo por estadios.
 
 ### Trayectoria a nivel de test: cambio cognitivo fiable, descriptivo (Figura 3)
 El análisis de cambio fiable por test —tras re-escalar, descontar la regresión a la media y manejar el efecto de piso—
@@ -191,14 +194,17 @@ seriado sin RCI y sin manejar el piso conduce a conclusiones erróneas.
 ### El compromiso de memoria es el eje del riesgo, en el tiempo (Figura 4)
 El compromiso objetivo de memoria fue el eje del riesgo: en la cohorte en riesgo, los perfiles con **memoria afectada**
 (z ≤ −1,5) progresaron mucho más que los de memoria conservada (**31%** [36/117] vs **5%** [1/22]; OR de Fisher **9,3**;
-p=0,008). El análisis de **tiempo-al-evento**, que respeta el seguimiento variable, lo confirmó: la incidencia acumulada
+p=0,008 —IC95% muy amplio por el único evento en el grupo conservado, por lo que la estimación robusta es el HR de Cox). El
+análisis de **tiempo-al-evento**, que respeta el seguimiento variable, lo confirmó: la incidencia acumulada
 de progresión a 2 y 3 años fue 15% y 34% con memoria afectada vs ~0% con memoria conservada (**log-rank p=0,010**); en el
 modelo de Cox, mejor memoria se asoció a menor riesgo (**HR 0,55 [IC95% 0,40–0,76] por DE**; edad HR 1,32 [0,79–2,18]),
 con **C-index 0,72**, concordante con el AUC logístico. Coherentemente, la cohorte en riesgo estuvo dominada por el
-subtipo **amnésico multidominio (≈76%)**, y el multidominio fue **89% amnésico** (190/214). El subtipo amnésico mostró un
-mecanismo de **almacenamiento comprometido** en ~70% de los casos con mecanismo evaluable (122/175), con predominio de la
-firma hipocampal sobre la de recuperación (~70% vs ~30%); esta firma **enriquece** la caracterización del subtipo amnésico
-pero, en esta muestra, **no estratifica el riesgo más allá del propio subtipo**.
+subtipo **amnésico multidominio (≈76%; 120/158)**, y —en las bandas no demenciales al basal, donde aplican las etiquetas de
+subtipo— el patrón multidominio objetivo fue predominantemente **amnésico (88%; 122/139)**. Entre esos amnésicos, el
+mecanismo de **almacenamiento** (patrón de codificación/consolidación, sugestivo de compromiso temporal-medial) fue el más
+frecuente (**58%; 67/116** con mecanismo evaluable), sin predominio marcado sobre el de recuperación (42%); este patrón
+**enriquece** la caracterización del subtipo amnésico pero, en esta muestra, **no estratifica el riesgo más allá del propio
+subtipo**.
 
 ### Qué anticipa el agravamiento: modelos predictivos (Figura 5, Tabla 2)
 El modelo **pre-especificado de dos variables —recuerdo diferido de relatos y edad—** anticipó el agravamiento con **AUC
@@ -246,9 +252,10 @@ evaluación estándar ubican al paciente en una banda de riesgo relativo que inf
 priorización de estudios**, sin sustituir el juicio clínico. Esta accionabilidad es especialmente oportuna en la **era de
 las terapias modificadoras**: los anticuerpos anti-amiloide actúan en estadios tempranos y su ventana depende de
 identificar pronto al paciente en riesgo;[33,34] cuando esa es la lógica asistencial, un estratificador basado en la
-evaluación de rutina —barato y sin biomarcadores— funciona como primer filtro pragmático, en línea con las iniciativas
-regionales (LAC-CD/ReDLat)[35] y con el énfasis de las Comisiones del Lancet en la prevención a lo largo del curso
-vital.[21,22] El techo del desempeño lo fija el tamaño muestral y la ausencia de biomarcadores más que el algoritmo,
+evaluación de rutina —barato y sin biomarcadores— funciona como primer filtro para **priorizar derivación y vigilancia**
+(no como criterio de elegibilidad para anti-amiloide, que exige confirmación de amiloide y no se infiere de un modelo
+clínico), en línea con las iniciativas regionales (LAC-CD/ReDLat)[35] y con el énfasis de las Comisiones del Lancet en la
+prevención a lo largo del curso vital.[21,22] El techo del desempeño lo fija el tamaño muestral y la ausencia de biomarcadores más que el algoritmo,
 consistente con las iniciativas que buscan extraer el máximo de **medidas de rutina** y anticipan el aporte de
 biomarcadores en sangre en la región.[24,25]
 
@@ -260,22 +267,24 @@ preocupación por circularidad, pues el ADLQ es independiente de la narrativa co
 operacionalización es coherente con la definición vigente de demencia —que exige compromiso **cognitivo y funcional**[30]—
 y con la estadificación clínica de severidad;[31] y, crucialmente, predice una **trayectoria clínica**, no la enfermedad de
 Alzheimer **definida biológicamente** (marco AT(N)),[32] que requeriría biomarcadores ausentes en esta cohorte. Persisten
-límites (cobertura del ADLQ ~63%, sin biomarcadores ni confirmación etiológica), por lo que la contribución se enmarca como
+límites (cobertura del ADLQ 52%, corroboración a nivel de grupo, sin biomarcadores ni confirmación etiológica), por lo que la contribución se enmarca como
 un **estratificador de riesgo** normado localmente, no un diagnosticador. Dos productos digitales abiertos materializan el trabajo y corren íntegramente
 en el navegador (sin transmitir datos): un **estratificador de riesgo** individual (Figura 6) y un **artefacto navegable
 de trayectoria cognitiva**, que llevan la descripción y la estratificación a la consulta.
 
 **Fortalezas y limitaciones.** Fortalezas: datos genuinos de mundo real; depuración e identificación auditadas con
 recuperación de N; una variable perfil reproducible; psicometría de cambio fiable con control de multiplicidad; validación
-interna con IC bootstrap y calibración reportados según TRIPOD/STROBE; análisis de tiempo-al-evento; y liberación abierta
-de código y herramientas. Limitaciones que acotan las conclusiones a un nivel exploratorio: (i) **unicéntrico**, con
-eventos escasos (subgrupos con EPV bajo e IC amplios); (ii) **demencia definida por severidad clínica**, con corroboración
-funcional independiente (ADLQ) de **cobertura parcial (~63%)** y posible circularidad residual predictor–desenlace; (iii)
-**codificación por IA** = extracción de texto con
-fiabilidad LLM–LLM, pendiente de validación contra experto humano; (iv) **sesgo de selección** de quiénes se reevalúan y
-**censura informativa** → la proporción de progresión es un límite inferior y no se modeló el riesgo competitivo de
-muerte; (v) **datos faltantes** en el predictor de memoria (9%) manejados por imputación, con sensibilidad en casos
-completos; (vi) desenlace binario a seguimiento variable, mitigado —no resuelto— por el análisis de Cox; (vii) mayoría con
+interna con IC bootstrap y calibración reportados según TRIPOD[28]/STROBE[36]; análisis de tiempo-al-evento; y liberación
+abierta de código y herramientas. Limitaciones que acotan las conclusiones a un nivel exploratorio: (i) **unicéntrico**,
+con eventos escasos (subgrupos con EPV bajo e IC amplios); (ii) **demencia definida por severidad clínica**, con
+corroboración funcional independiente (ADLQ) de **cobertura parcial (52%)**, a nivel de grupo, y posible circularidad
+residual predictor–desenlace; (iii) **codificación por IA** = extracción de texto con fiabilidad LLM–LLM, pendiente de
+validación contra experto humano; (iv) **sesgo de selección** de quiénes se reevalúan y **censura informativa**: la tasa es
+condicional a la reevaluación y, dado que la clínica de memoria tiende a re-citar a quienes empeoran, la dirección del
+sesgo es **indeterminada** (no un límite inferior); además, no se dispuso de estado vital, por lo que **no se modeló el
+riesgo competitivo de muerte** y las cifras de incidencia acumulada del Kaplan-Meier deben leerse con esa reserva; (v)
+**datos faltantes** en el predictor de memoria (9%) manejados por imputación, con sensibilidad en casos completos; (vi)
+desenlace binario a seguimiento variable, mitigado —no resuelto— por el análisis de Cox; (vii) mayoría con
 solo 2 visitas (85%), lo que impide modelar la forma de la trayectoria individual (por eso el análisis de trayectoria es
 descriptivo). La **validación externa** —en consorcios regionales y frente a biomarcadores en sangre[25]— es el paso
 esencial.
@@ -381,3 +390,4 @@ interpretables.** El n figura en cada celda.*
 33. van Dyck CH, Swanson CJ, Aisen P, et al. Lecanemab in early Alzheimer's disease. *N Engl J Med.* 2023. https://doi.org/10.1056/NEJMoa2212948
 34. Sims JR, Zimmer JA, Evans CD, et al. Donanemab in early symptomatic Alzheimer disease: the TRAILBLAZER-ALZ 2 randomized clinical trial. *JAMA.* 2023. https://doi.org/10.1001/jama.2023.13239
 35. Ibáñez A, Parra MA, Butler C, et al. The Latin America and the Caribbean Consortium on Dementia (LAC-CD): from networking to research to implementation science. *J Alzheimers Dis.* 2021. https://doi.org/10.3233/JAD-201384
+36. von Elm E, Altman DG, Egger M, et al. The Strengthening the Reporting of Observational Studies in Epidemiology (STROBE) statement: guidelines for reporting observational studies. *J Clin Epidemiol.* 2008. https://doi.org/10.1016/j.jclinepi.2007.11.008
