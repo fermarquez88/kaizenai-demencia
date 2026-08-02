@@ -1964,9 +1964,14 @@ const MODELS = {
   "metrics": {
    "auc": 0.74,
    "ci": [
+    0.63,
+    0.83
+   ],
+   "ci_folds": [
     0.54,
     0.92
-   ]
+   ],
+   "auc_oof": 0.73
   }
  },
  "demencia_dclleve": {
@@ -3801,9 +3806,14 @@ const MODELS = {
   "metrics": {
    "auc": 0.76,
    "ci": [
+    0.59,
+    0.88
+   ],
+   "ci_folds": [
     0.53,
     1.0
-   ]
+   ],
+   "auc_oof": 0.75
   }
  },
  "declive_fiable": {
@@ -6259,9 +6269,14 @@ const MODELS = {
   "metrics": {
    "auc": 0.68,
    "ci": [
+    0.58,
+    0.77
+   ],
+   "ci_folds": [
     0.52,
     0.83
-   ]
+   ],
+   "auc_oof": 0.68
   }
  },
  "conversion_banda": {
@@ -6337,7 +6352,7 @@ const I18N={es:{brand_tag:"· Neurociencias San Juan",eyebrow:"Calculadora de ri
 let LANG='es';
 const sig=z=>1/(1+Math.exp(-z));
 const SEVV=()=>parseFloat(document.getElementById('sev_ord').value);
-function primaryKey(){const s=SEVV();return s>=3?'declive_fiable':(s==1?'demencia_dclleve':(s==2?'demencia_dlm':null));}
+function primaryKey(){const s=SEVV();if(isNaN(s))return null;return s==1?'demencia_dclleve':(s==2?'demencia_dlm':'declive_fiable');}
 function stdvec(m){return m.features.map(f=>{let raw=f.name==='sev_ord'?SEVV():VALS[f.name];if(raw==null||isNaN(raw))raw=f.median;return (raw-f.mean)/f.std;});}
 function pcal(c,i,A,B,xs){let lin=i;for(let k=0;k<xs.length;k++)lin+=c[k]*xs[k];return sig(A*lin+B);}
 function predict(m){const xs=stdvec(m);const p=pcal(m.coef,m.intercept,m.platt.A,m.platt.B,xs);

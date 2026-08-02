@@ -12,9 +12,11 @@ Tres modelos logísticos, condicionados por la severidad basal del perfil:
 
 | Modelo | Cohorte | Variables | n / eventos | AUC (optimismo-corr.) | IC95% |
 |---|---|---|---|---|---|
-| Demencia · deterioro leve-moderado (primario) | basal leve o leve-mod | Memoria de Relatos Diferido (z), edad | 140 / 37 | 0.74 | 0.54–0.92 |
-| Demencia · DCL (sensibilidad) | severidad basal = DCL | Memoria de Relatos Diferido (z), edad | 96 / 18 | 0.76 | 0.53–1.0 |
-| Declive fiable | todos los reevaluados | edad, Rey Trial-1 (z), intrusiones, CI premórbido (z), Hayling (z) | 250 / 47 | 0.68 | 0.52–0.83 |
+| Rango severidad demencial (proxy) · leve-moderado (primario) | basal leve o leve-mod | Memoria de Relatos Diferido (z), edad | 140 / 37 | 0.74 | 0.63–0.83 |
+| Rango severidad demencial (proxy) · DCL (sensibilidad) | severidad basal = DCL | Memoria de Relatos Diferido (z), edad | 96 / 18 | 0.76 | 0.59–0.88 |
+| Declive fiable | bandas normal/demencial | edad, Rey Trial-1 (z), intrusiones, CI premórbido (z), Hayling (z) | 250 / 47 | 0.68 | 0.58–0.77 |
+
+*Desenlace = progresión a banda de severidad ≥ moderada (proxy psicométrico, sin criterio funcional universal; NO demencia confirmada). IC95% por bootstrap sobre predicciones fuera-de-muestra. Predictor de memoria imputado en 13/140 (9%); completos 127/35. El modelo estratifica riesgo relativo (terciles 9%/26%/45%), recalibrado por Platt.*
 
 - **Desenlace demencia:** severidad del perfil ≥ *moderado* en la reevaluación (criterio clínico del instituto).
 - **Desenlace declive:** cambio z global que supera el índice de cambio fiable (RCI) empírico local (≈0.97 z).

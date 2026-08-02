@@ -1831,9 +1831,14 @@
   "metrics": {
    "auc": 0.74,
    "ci": [
+    0.63,
+    0.83
+   ],
+   "ci_folds": [
     0.54,
     0.92
-   ]
+   ],
+   "auc_oof": 0.73
   }
  },
  "demencia_dclleve": {
@@ -3668,9 +3673,14 @@
   "metrics": {
    "auc": 0.76,
    "ci": [
+    0.59,
+    0.88
+   ],
+   "ci_folds": [
     0.53,
     1.0
-   ]
+   ],
+   "auc_oof": 0.75
   }
  },
  "declive_fiable": {
@@ -6126,9 +6136,14 @@
   "metrics": {
    "auc": 0.68,
    "ci": [
+    0.58,
+    0.77
+   ],
+   "ci_folds": [
     0.52,
     0.83
-   ]
+   ],
+   "auc_oof": 0.68
   }
  },
  "conversion_banda": {
