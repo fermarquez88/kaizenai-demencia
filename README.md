@@ -19,8 +19,8 @@ con su **banda de incertidumbre (IC95%)** y el respaldo científico.
 
 | Severidad basal | Modelo | Variables | AUC (CV anidada, optimismo-corregido) |
 |---|---|---|---|
-| Leve-moderado (primario) | Progresión a demencia (severidad clínica) | Memoria de Relatos Diferido (z) + edad | **0.74** [0.63–0.83] |
-| DCL (sensibilidad) | Progresión a demencia (severidad clínica) | Memoria de Relatos Diferido (z) + edad | **0.76** [0.59–0.88] |
+| Leve-moderado (primario) | Progresión a demencia (severidad clínica) | Recuerdo diferido de relatos (z) + edad | **0.74** [0.63–0.83] |
+| DCL (sensibilidad) | Progresión a demencia (severidad clínica) | Recuerdo diferido de relatos (z) + edad | **0.76** [0.59–0.88] |
 | Normal / Moderado+ | Declive cognitivo fiable | edad, Rey Trial-1, intrusiones, CI premórbido, Hayling | 0.68 [0.58–0.77] |
 
 > **Desenlace = progresión a demencia** (severidad clínica ≥ moderada, **corroborada funcionalmente** por el ADLQ del informante; sin biomarcadores). IC95% bootstrap. El modelo estratifica riesgo relativo (terciles 9%/26%/45%; VPN 92%). Detalle y análisis exploratorios en [material suplementario](suplementario/SUPLEMENTARIO.md).

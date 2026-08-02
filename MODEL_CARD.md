@@ -12,8 +12,8 @@ Tres modelos logísticos, condicionados por la severidad basal del perfil:
 
 | Modelo | Cohorte | Variables | n / eventos | AUC (optimismo-corr.) | IC95% |
 |---|---|---|---|---|---|
-| Demencia (severidad clínica) · leve-moderado (primario) | basal leve o leve-mod | Memoria de Relatos Diferido (z), edad | 140 / 37 | 0.74 | 0.63–0.83 |
-| Demencia (severidad clínica) · DCL (sensibilidad) | severidad basal = DCL | Memoria de Relatos Diferido (z), edad | 96 / 18 | 0.76 | 0.59–0.88 |
+| Demencia (severidad clínica) · leve-moderado (primario) | basal leve o leve-mod | Recuerdo diferido de relatos (z), edad | 140 / 37 | 0.74 | 0.63–0.83 |
+| Demencia (severidad clínica) · DCL (sensibilidad) | severidad basal = DCL | Recuerdo diferido de relatos (z), edad | 96 / 18 | 0.76 | 0.59–0.88 |
 | Declive fiable | bandas normal/demencial | edad, Rey Trial-1 (z), intrusiones, CI premórbido (z), Hayling (z) | 250 / 47 | 0.68 | 0.58–0.77 |
 
 *Desenlace = progresión a demencia, definida por severidad clínica del perfil ≥ moderada y **corroborada funcionalmente** por el ADLQ del informante (mediana 42% de áreas alteradas vs 19% en no-demencia); sin biomarcadores ni confirmación etiológica. IC95% por bootstrap sobre predicciones fuera-de-muestra. Predictor de memoria imputado en 13/140 (9%); completos 127/35. El modelo estratifica riesgo relativo (terciles 9%/26%/45%), recalibrado por Platt.*

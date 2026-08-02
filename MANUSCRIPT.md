@@ -9,7 +9,7 @@
 **Autor de correspondencia:** Fernando Márquez — fmarquez.mum@gmail.com
 
 **Productos digitales de acceso abierto:**
-- **Estratificador de riesgo (calculadora client-side):** https://fermarquez88.github.io/kaizenai-demencia/
+- **Estratificador de riesgo (calculadora en el navegador):** https://fermarquez88.github.io/kaizenai-demencia/
 - **Artefacto navegable de trayectoria cognitiva** (heatmaps + tabla maestra): enlazado desde la app.
 - **Código, material suplementario y coeficientes:** https://github.com/fermarquez88/kaizenai-demencia — [material suplementario](suplementario/SUPLEMENTARIO.md).
 
@@ -20,7 +20,7 @@
 ## Resumen (estructurado)
 
 **Introducción.** La **trayectoria cognitiva longitudinal** de los perfiles neuropsicológicos en la práctica real de una
-clínica de memoria —y qué de la evaluación basal anticipa el agravamiento— está poco caracterizada en Latinoamérica,
+clínica de memoria —y qué de la evaluación basal anticipa la progresión— está poco caracterizada en Latinoamérica,
 región subrepresentada en la investigación de demencias.
 
 **Objetivo.** (1) Describir, a nivel de banda de severidad y de test, la **trayectoria cognitiva longitudinal** de los
@@ -32,16 +32,16 @@ distintas (2020–2026), en el Instituto de Neurociencias San Juan. Tras una dep
 por hash, recuperación de perfiles desde el PDF firmado, corrección de fechas), el perfil se codificó desde la sección
 Conclusiones mediante un modelo de lenguaje restringido por un codebook (uso de IA declarado). El **desenlace** fue la
 **progresión a demencia**, definida por la severidad clínica del perfil ≥ moderada y **corroborada funcionalmente** por el
-ADLQ del informante. La trayectoria se describió con la matriz de transición de bandas, con **cambio fiable regression-based** por
-test (RCI/SRB, descriptivo) y con un análisis de **tiempo-al-evento** (Kaplan-Meier, Cox). El modelo predictivo
-pre-especificado (memoria de relatos diferida y edad) usó regresión logística con validación cruzada anidada, corrección
+ADLQ del informante. La trayectoria se describió con la matriz de transición de bandas, con **cambio fiable basado en regresión** por
+test (RCI/SRB, descriptivo) y con un análisis de **tiempo hasta el evento** (Kaplan-Meier, Cox). El modelo predictivo
+pre-especificado (recuerdo diferido de relatos y edad) usó regresión logística con validación cruzada anidada, corrección
 de optimismo, calibración de Platt e IC bootstrap.
 
 **Resultados.** De 334 pacientes con múltiples visitas, 250 tuvieron reevaluación genuina (+4 recuperadas por corrección de
 fecha = **254**; mediana 1,8 años); la recuperación de 63 perfiles del PDF dejó 219 analizables. La trayectoria fue **amnésico-céntrica**: el
 compromiso objetivo de memoria fue el eje del riesgo (progresión 31% [36/117] vs 5% [1/22]; OR de Fisher 9,3; p=0,008), y
 el análisis temporal lo confirmó (Cox: memoria HR 0,55 [IC95% 0,40–0,76] por DE; C-index 0,72; log-rank p=0,010). Ningún
-paciente normal al basal progresó (0/17). El **modelo memoria diferida + edad** anticipó el agravamiento con **AUC 0,74
+paciente normal al basal progresó (0/17). El **modelo recuerdo diferido de relatos + edad** anticipó la progresión con **AUC 0,74
 (IC95% bootstrap 0,63–0,83; 140 pacientes, 37 eventos)**, con estratificación de riesgo útil (progresión observada por
 tercil 9%/26%/45%) y alto valor de descarte (VPN 92%). El análisis descriptivo de trayectoria por test sugirió patrones
 fenotipo-específicos, si bien **ningún contraste sobrevivió la corrección por comparaciones múltiples** (q mín 0,091), por
@@ -52,7 +52,7 @@ y la progresión es anticipable con dos variables de rutina. Se despliegan dos h
 exploratorios y unicéntricos; la demencia se definió por severidad clínica, corroborada funcionalmente por el ADLQ del
 informante, y requiere validación externa.
 
-**Palabras clave:** deterioro cognitivo leve; demencia; neuropsicología; trayectoria cognitiva; predicción; índice de cambio fiable; Latinoamérica.
+**Palabras clave:** disfunción cognitiva; demencia; pruebas neuropsicológicas; recuerdo diferido; trayectoria cognitiva; estudios longitudinales; progresión de la enfermedad; índice de cambio fiable; América Latina.
 
 ---
 
@@ -67,7 +67,7 @@ funcional**[30]— y en la práctica la severidad se **estadifica clínicamente*
 Dentro de este marco, es el **perfil neuropsicológico** —y no la mera presencia de deterioro— lo central para el
 pronóstico.[4–6]
 
-Dentro de ese perfil, la memoria episódica ocupa un lugar privilegiado: el **síndrome amnésico de tipo temporal-medial**
+Dentro de ese perfil, la memoria episódica ocupa un lugar privilegiado: el **síndrome amnésico de tipo temporal medial**
 identifica la enfermedad de Alzheimer prodrómica con alta especificidad,[7] el **recuerdo diferido** es uno de los
 predictores más potentes de conversión,[7–13] y los **criterios neuropsicológicos actuariales** mejoran la estratificación
 y reducen los falsos positivos.[14–16] El compromiso amnésico multidominio, la atrofia temporal medial y la carga vascular
@@ -84,7 +84,7 @@ marcadamente subrepresentada**: sistemas de salud frágiles, acceso limitado a b
 regional explícito a desarrollar herramientas localmente y desde **medidas de rutina**.[23–25,35] Sobre este telón, dos
 vacíos concretos motivan el trabajo: (i) la **trayectoria cognitiva longitudinal** en la práctica rara vez se describe con
 el cuidado psicométrico que exigen los datos seriados (cambio fiable, regresión a la media, efecto de piso),[21,22] pese a
-que la prevención depende de identificar la trayectoria temprana; y (ii) la **predicción del agravamiento desde medidas de
+que la prevención depende de identificar la trayectoria temprana; y (ii) la **predicción de la progresión desde medidas de
 rutina** es escasa en la región. Abordamos ambos con un objetivo primero **descriptivo** (la trayectoria cognitiva) y luego
 **predictivo** (qué de la basal anticipa la progresión a demencia).
 
@@ -110,8 +110,9 @@ duplicados del mismo día se confirmaron por **hash SHA-256** (mismo archivo re-
 **recuperaron 4 reevaluaciones** colapsadas por errores de fecha. La identidad se resolvió por DNI (Figura 1).
 
 ### Evaluación y codificación del perfil
-Las baterías se adaptaron al motivo de consulta (ACE-III, IFS, Lista de Rey [RAVLT], Memoria de Relatos, Figura de Rey,
-fluencias, dígitos, Hayling, WAIS-IV, CI premórbido). Del texto de *Conclusiones* se codificó, mediante un LLM restringido
+Las baterías se adaptaron al motivo de consulta (ACE-III; IFS [INECO Frontal Screening]; Lista de Rey [RAVLT]; Memoria de
+Relatos [Memoria Lógica de la WMS]; Figura de Rey [Figura Compleja de Rey-Osterrieth, ROCF]; fluencias verbales; dígitos;
+Hayling; WAIS-IV; CI premórbido). Del texto de *Conclusiones* se codificó, mediante un LLM restringido
 por codebook, la **banda de severidad** ordinal (normal / DCL / leve-moderado / moderado / moderado-grave / grave), el
 mecanismo de memoria (almacenamiento vs. recuperación) y moduladores (ánimo, sueño). La **fiabilidad** entre dos
 codificaciones ciegas fue alta (severidad κ=1,00; subtipo κ=0,88); esto refleja **consistencia de extracción, no
@@ -130,10 +131,10 @@ predictor de memoria comparten **fuente textual** (la narrativa de Conclusiones 
 etiológica; por ello los resultados se interpretan como **exploratorios**. La proporción de progresión
 se expresa por 100 persona-años en los reevaluados (no como incidencia poblacional). La trayectoria se describió con: (a) la **matriz de transición** entre bandas (Figura 2); (b) el
 **cambio fiable por test**, re-escalando cada prueba a una referencia común (mediana/MAD basal, congelada) y cuantificando
-el cambio con un **RCI regression-based** (SRB, Crawford-Howell) que descuenta la **regresión a la media** y el efecto de
+el cambio con un **RCI basado en regresión** (SRB, Crawford-Howell) que descuenta la **regresión a la media** y el efecto de
 práctica, excluyendo del denominador a los ya-en-piso al basal; la multiplicidad se controló por FDR
 (Benjamini-Hochberg), y el resultado se presenta como **descriptivo/generador de hipótesis** (Figura 3, material
-suplementario); y (c) un análisis de **tiempo-al-evento** (Kaplan-Meier y Cox de riesgos proporcionales) que respeta el
+suplementario); y (c) un análisis de **tiempo hasta el evento** (Kaplan-Meier y Cox de riesgos proporcionales) que respeta el
 seguimiento variable (Figura 4).
 
 ### Modelos predictivos y análisis estadístico
@@ -141,8 +142,8 @@ El modelo primario, **pre-especificado por teoría** (recuerdo diferido de relat
 severidad basal leve o leve-moderada. Usó regresión logística penalizada (L2), con estandarización e imputación por la
 mediana **dentro** de la validación cruzada anidada repetida (5×20) y **corrección de optimismo**. Se reportan: AUC con
 **IC95% por bootstrap** (remuestreo de pacientes sobre las predicciones fuera-de-muestra; la dispersión entre folds fue
-mayor y **no** se interpreta como IC), **calibración** (pendiente, Brier, intercepto-in-the-large) y **estratificación de
-riesgo por terciles** con IC de Wilson. El **dato faltante** del predictor único (memoria de relatos diferida) se declara,
+mayor y **no** se interpreta como IC), **calibración** (pendiente, índice de Brier e intercepto de calibración global) y **estratificación de
+riesgo por terciles** con IC de Wilson. El **dato faltante** del predictor único (recuerdo diferido de relatos) se declara,
 con análisis de sensibilidad en casos completos. Como modelos secundarios se reportan el subgrupo DCL y el **declive
 cognitivo fiable** (para bandas normal y ya-demencial). Un modelo con **criterio funcional independiente (ADLQ)** se
 presenta como análisis exploratorio (material suplementario) dada su fragilidad (EPV bajo). Los modelos desplegados
@@ -181,13 +182,13 @@ a demencia (0/17)**, coherente con un modelo por estadios.
 
 ### Trayectoria a nivel de test: cambio cognitivo fiable, descriptivo (Figura 3)
 El análisis de cambio fiable por test —tras re-escalar, descontar la regresión a la media y manejar el efecto de piso—
-sugirió patrones **fenotipo-específicos** de agravamiento (más cambio en memoria episódica diferida en los perfiles
+sugirió patrones **fenotipo-específicos** de progresión (más cambio en recuerdo episódico diferido en los perfiles
 amnésicos; en velocidad/ejecutivo en los disejecutivos; amplio en los amnésico-multidominio), con un gradiente por
 severidad basal (Normal ~4% → moderado o mayor ~22% de cambio fiable). **No obstante, ningún contraste a nivel de test
-sobrevivió la corrección por comparaciones múltiples (FDR; q mínimo 0,091; p. ej., Memoria de Relatos Diferido p=0,276,
+sobrevivió la corrección por comparaciones múltiples (FDR; q mínimo 0,091; p. ej., Recuerdo diferido de relatos p=0,276,
 q=0,43), y muchas celdas fenotipo-específicas descansan en n<15.** En consecuencia, estos patrones se reportan como
-**estrictamente descriptivos y generadores de hipótesis**, no como hallazgos confirmatorios ni como una firma mecanística.
-Un hallazgo psicométrico relevante y robusto es que los tests de memoria diferida están fuertemente **en piso** al basal
+**estrictamente descriptivos y generadores de hipótesis**, no como hallazgos confirmatorios ni como una patrón mecanístico.
+Un hallazgo psicométrico relevante y robusto es que los tests de recuerdo diferido de relatos están fuertemente **en piso** al basal
 en una clínica de memoria (censura por abajo), lo que enmascara su cambio en la métrica cruda: interpretar el cambio
 seriado sin RCI y sin manejar el piso conduce a conclusiones erróneas.
 
@@ -195,19 +196,19 @@ seriado sin RCI y sin manejar el piso conduce a conclusiones erróneas.
 El compromiso objetivo de memoria fue el eje del riesgo: en la cohorte en riesgo, los perfiles con **memoria afectada**
 (z ≤ −1,5) progresaron mucho más que los de memoria conservada (**31%** [36/117] vs **5%** [1/22]; OR de Fisher **9,3**;
 p=0,008 —IC95% muy amplio por el único evento en el grupo conservado, por lo que la estimación robusta es el HR de Cox). El
-análisis de **tiempo-al-evento**, que respeta el seguimiento variable, lo confirmó: la incidencia acumulada
+análisis de **tiempo hasta el evento**, que respeta el seguimiento variable, lo confirmó: la incidencia acumulada
 de progresión a 2 y 3 años fue 15% y 34% con memoria afectada vs ~0% con memoria conservada (**log-rank p=0,010**); en el
 modelo de Cox, mejor memoria se asoció a menor riesgo (**HR 0,55 [IC95% 0,40–0,76] por DE**; edad HR 1,32 [0,79–2,18]),
 con **C-index 0,72**, concordante con el AUC logístico. Coherentemente, la cohorte en riesgo estuvo dominada por el
 subtipo **amnésico multidominio (≈76%; 120/158)**, y —en las bandas no demenciales al basal, donde aplican las etiquetas de
 subtipo— el patrón multidominio objetivo fue predominantemente **amnésico (88%; 122/139)**. Entre esos amnésicos, el
-mecanismo de **almacenamiento** (patrón de codificación/consolidación, sugestivo de compromiso temporal-medial) fue el más
+mecanismo de **almacenamiento** (patrón de codificación/consolidación, sugestivo de compromiso temporal medial) fue el más
 frecuente (**58%; 67/116** con mecanismo evaluable), sin predominio marcado sobre el de recuperación (42%); este patrón
 **enriquece** la caracterización del subtipo amnésico pero, en esta muestra, **no estratifica el riesgo más allá del propio
 subtipo**.
 
-### Qué anticipa el agravamiento: modelos predictivos (Figura 5, Tabla 2)
-El modelo **pre-especificado de dos variables —recuerdo diferido de relatos y edad—** anticipó el agravamiento con **AUC
+### Qué anticipa la progresión: modelos predictivos (Figura 5, Tabla 2)
+El modelo **pre-especificado de dos variables —recuerdo diferido de relatos y edad—** anticipó la progresión con **AUC
 0,74 (IC95% bootstrap 0,63–0,83)** en la cohorte leve-moderado (140 pacientes, 37 eventos; EPV 18,5; **13 pacientes [9%]
 con el predictor de memoria imputado — casos completos 127/35, AUC concordante**). Su utilidad principal es la
 **estratificación de riesgo**: la progresión observada creció por tercil de riesgo predicho (**9% → 26% → 45%**; n≈47 por
@@ -226,26 +227,26 @@ En una clínica de memoria argentina de mundo real, los perfiles neuropsicológi
 **amnésico-céntrica**, y la progresión se anticipó con un modelo parsimonioso, normado localmente. Discutimos los
 hallazgos bajo la lente de la evidencia de alto impacto y su **utilidad para el neurólogo cognitivo**.
 
-**El eje del riesgo es la memoria — y esto orienta la conducta clínica.** El riesgo de agravamiento fue varias veces mayor
+**El eje del riesgo es la memoria — y esto orienta la conducta clínica.** El riesgo de progresión fue varias veces mayor
 con memoria comprometida (OR 9,3), y el análisis temporal (Cox HR 0,55/DE; C-index 0,72) mostró que la señal es estable en
-el tiempo. Es consistente con la evidencia de que el síndrome amnésico de tipo temporal-medial identifica la EA prodrómica
+el tiempo. Es consistente con la evidencia de que el síndrome amnésico de tipo temporal medial identifica la EA prodrómica
 con alta especificidad[7] y con el recuerdo diferido como predictor central de conversión,[8–13] y con que el DCL amnésico
 multidominio conlleva mayor riesgo.[5,17] Para el neurólogo cognitivo, la implicancia es concreta: **ante un DCL, el peso
 del compromiso de memoria episódica de almacenamiento debe elevar el umbral de vigilancia, acortar el intervalo de
 reevaluación y motivar la búsqueda etiológica** (biomarcadores, neuroimagen de lóbulo temporal medial), mientras que un
-perfil no amnésico con memoria conservada, en esta muestra, tuvo un riesgo de agravamiento marcadamente menor.
+perfil no amnésico con memoria conservada, en esta muestra, tuvo un riesgo de progresión marcadamente menor.
 
 **La interpretación del cambio seriado exige psicometría de cambio fiable — y disciplina inferencial.** La regresión a la
-media y el efecto de piso distorsionan el cambio crudo: en una clínica de memoria, los tests de memoria diferida están
-saturados al basal y parecen “estables” por censura. El RCI regression-based y el manejo explícito del piso son
+media y el efecto de piso distorsionan el cambio crudo: en una clínica de memoria, los tests de recuerdo diferido de relatos están
+saturados al basal y parecen “estables” por censura. El RCI basado en regresión y el manejo explícito del piso son
 imprescindibles, y aportamos normas locales de cambio fiable, de las primeras para esta población. Ahora bien, somos
 deliberadamente cautos: **ningún contraste de trayectoria por test sobrevivió la corrección por comparaciones múltiples**,
-por lo que los patrones fenotipo-específicos se ofrecen como **hipótesis a confirmar**, no como una firma mecanística. Esta
+por lo que los patrones fenotipo-específicos se ofrecen como **hipótesis a confirmar**, no como una patrón mecanístico. Esta
 autocontención —reportar el patrón sin sobre-interpretarlo— es, en sí, un mensaje metodológico para la lectura de datos
 seriados en la práctica.[26,27]
 
 **Un modelo de dos variables ofrece utilidad de rutina como estratificador de riesgo.** Recuerdo diferido y edad
-anticiparon el agravamiento (AUC 0,74; IC95% 0,63–0,83), sobre todo como **prueba de descarte** (VPN 92%) y **ordenador de
+anticiparon la progresión (AUC 0,74; IC95% 0,63–0,83), sobre todo como **prueba de descarte** (VPN 92%) y **ordenador de
 riesgo** (progresión 9%→45% del tercil inferior al superior). Para el neurólogo cognitivo sin acceso rutinario a
 biomarcadores —la realidad de gran parte de Latinoamérica[23–25]— esto es directamente accionable: **dos números de una
 evaluación estándar ubican al paciente en una banda de riesgo relativo que informa la frecuencia de seguimiento y la
@@ -274,7 +275,7 @@ de trayectoria cognitiva**, que llevan la descripción y la estratificación a l
 
 **Fortalezas y limitaciones.** Fortalezas: datos genuinos de mundo real; depuración e identificación auditadas con
 recuperación de N; una variable perfil reproducible; psicometría de cambio fiable con control de multiplicidad; validación
-interna con IC bootstrap y calibración reportados según TRIPOD[28]/STROBE[36]; análisis de tiempo-al-evento; y liberación
+interna con IC bootstrap y calibración reportados según TRIPOD[28]/STROBE[36]; análisis de tiempo hasta el evento; y liberación
 abierta de código y herramientas. Limitaciones que acotan las conclusiones a un nivel exploratorio: (i) **unicéntrico**,
 con eventos escasos (subgrupos con EPV bajo e IC amplios); (ii) **demencia definida por severidad clínica**, con
 corroboración funcional independiente (ADLQ) de **cobertura parcial (52%)**, a nivel de grupo, y posible circularidad
@@ -292,7 +293,7 @@ esencial.
 ## Conclusiones
 Los perfiles cognitivos siguen una trayectoria amnésico-céntrica; el compromiso de memoria episódica de almacenamiento es
 el eje del riesgo de progresión, estable en el análisis temporal. La progresión a demencia es
-anticipable con memoria diferida y edad, útil como prueba de descarte y estratificador de riesgo. Se aportan dos productos
+anticipable con recuerdo diferido de relatos y edad, útil como prueba de descarte y estratificador de riesgo. Se aportan dos productos
 digitales abiertos. Los hallazgos son exploratorios y unicéntricos; la demencia se definió por severidad clínica,
 corroborada funcionalmente por el ADLQ (independiente de la narrativa cognitiva), y se requiere validación externa.
 
@@ -317,8 +318,8 @@ severidad 1,00; subtipo 0,88.*
 
 | Desenlace / cohorte | n / eventos | Predictores | AUC [IC95% bootstrap] |
 |---|---|---|---|
-| **Demencia — leve-moderado (primario)** | 140 / 37 | Memoria de relatos diferida + edad | **0,74** [0,63–0,83] |
-| Demencia — subgrupo DCL | 96 / 18 | Memoria de relatos diferida + edad | 0,76 [0,59–0,88] |
+| **Demencia — leve-moderado (primario)** | 140 / 37 | Recuerdo diferido de relatos + edad | **0,74** [0,63–0,83] |
+| Demencia — subgrupo DCL | 96 / 18 | Recuerdo diferido de relatos + edad | 0,76 [0,59–0,88] |
 | Declive cognitivo fiable (bandas normal/demencial) | 250 / 47 | edad, Rey trial 1, intrusiones, CI premórbido, Hayling | 0,68 [0,58–0,77] |
 
 *Estratificación (modelo primario): progresión observada por tercil 9% / 26% / 45% (n≈47 c/u); VPN 92%, VPP ~45%;
@@ -337,17 +338,17 @@ perfiles recuperados del PDF → 219 analizables; cohortes DCL (96) y leve-moder
 *Proporción por fila; sobre la diagonal = progresión. Ningún normal basal progresó a demencia.*
 
 **Figura 3. Cambio fiable por test, descriptivo (por severidad y por fenotipo basal).** ![Figura 3](Fig7_trayectoria.png)
-*% de pacientes con cambio fiable (RCI regression-based) por test, excluidos los ya-en-piso al basal. **Análisis
+*% de pacientes con cambio fiable (RCI basado en regresión) por test, excluidos los ya-en-piso al basal. **Análisis
 descriptivo/generador de hipótesis: ningún contraste sobrevive corrección FDR (q mín 0,091); celdas rayadas n<15, no
 interpretables.** El n figura en cada celda.*
 
 **Figura 4. El eje del riesgo en el tiempo: incidencia acumulada de progresión por estado de memoria basal (Kaplan-Meier).** ![Figura 4](Fig8_km.png)
 *Cohorte leve-moderado. Cox: memoria HR 0,55 [0,40–0,76]/DE; log-rank p=0,010; C-index 0,72. Bandas: IC95%; marcas: censura.*
 
-**Figura 5. Qué anticipa el agravamiento: rendimiento del modelo (memoria + edad).** ![Figura 5](Fig5_rendimiento.png)
+**Figura 5. Qué anticipa la progresión: rendimiento del modelo (memoria + edad).** ![Figura 5](Fig5_rendimiento.png)
 *(a) Discriminación (AUC 0,74 [0,63–0,83]); (b) estratificación por tercil de riesgo (9%/26%/45%); (c) efectos (OR en dirección de riesgo).*
 
-**Figura 6. Estratificador de riesgo desplegado (client-side).** ![Figura 6](Figure3.png)
+**Figura 6. Estratificador de riesgo desplegado (en el navegador).** ![Figura 6](Figure3.png)
 *Prototipo de investigación, no validado para decisión clínica. https://fermarquez88.github.io/kaizenai-demencia/*
 
 ---
