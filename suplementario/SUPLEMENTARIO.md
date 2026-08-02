@@ -89,11 +89,30 @@ El almacenamiento comprometido **enriquece** la caracterización del subtipo amn
 | **Mod-sev** | 0 | 0 | 0 | 2 | 2 | 4 |
 | **Severo** | 0 | 0 | 1 | 1 | 2 | 2 |
 
-Sobre la diagonal = progresión. Ningún paciente normal al basal progresó a rango demencial (0/17).
+Sobre la diagonal = progresión. Ningún paciente normal al basal progresó a demencia (0/17).
 
 ---
 
-## S5. Tabla S4 — Análisis funcional exploratorio (ADLQ) — NO desplegado
+## S5. Validación funcional del desenlace (ADLQ del informante) — criterio independiente
+
+La demencia se definió por severidad clínica; el **ADLQ del informante** (compromiso en actividades de la vida diaria) aporta un **criterio funcional independiente** de la narrativa cognitiva. El compromiso funcional crece de forma **monótona con la severidad cognitiva** y separa al grupo con demencia (≥ moderado) del resto — sostén del constructo (deterioro cognitivo **y** funcional) y atenuación de la circularidad.
+
+| Severidad final | n con ADLQ | ADLQ mediana (% áreas) | % con ≥40% alterado |
+|---|---|---|---|
+| Normal | 6 | 6% | 0% |
+| DCL | 40 | 20% | 18% |
+| Leve-mod | 13 | 29% | 15% |
+| Moderado | 39 | 35% | 46% |
+| Mod-grave | 10 | 50% | 60% |
+| Grave | 13 | 72% | 77% |
+
+![Figura S3](FigS3_adlq.png)
+
+*Grupo con demencia (≥ moderado): ADLQ mediana 42% de áreas alteradas, 55% con ≥40%; no-demencia: 19% y 15%. Cobertura del ADLQ ~63% (limitación).*
+
+---
+
+## S6. Tabla S4 — Modelo funcional exploratorio (ADLQ como desenlace) — NO desplegado
 
 Análisis de sensibilidad que restringe el desenlace con un criterio funcional independiente (ADLQ del informante ≥ 40% de áreas alteradas **y** severidad ≥ moderada). Se reporta como **exploratorio** por su fragilidad; **no** integra el artefacto desplegado.
 

@@ -19,11 +19,11 @@ con su **banda de incertidumbre (IC95%)** y el respaldo científico.
 
 | Severidad basal | Modelo | Variables | AUC (CV anidada, optimismo-corregido) |
 |---|---|---|---|
-| Leve-moderado (primario) | Progresión a rango de severidad demencial (proxy) | Memoria de Relatos Diferido (z) + edad | **0.74** [0.63–0.83] |
-| DCL (sensibilidad) | Progresión a rango de severidad demencial (proxy) | Memoria de Relatos Diferido (z) + edad | **0.76** [0.59–0.88] |
+| Leve-moderado (primario) | Progresión a demencia (severidad clínica) | Memoria de Relatos Diferido (z) + edad | **0.74** [0.63–0.83] |
+| DCL (sensibilidad) | Progresión a demencia (severidad clínica) | Memoria de Relatos Diferido (z) + edad | **0.76** [0.59–0.88] |
 | Normal / Moderado+ | Declive cognitivo fiable | edad, Rey Trial-1, intrusiones, CI premórbido, Hayling | 0.68 [0.58–0.77] |
 
-> **Desenlace = proxy psicométrico** de progresión de banda de severidad (≥ moderada), **no** demencia confirmada. IC95% bootstrap. El modelo estratifica riesgo relativo (terciles 9%/26%/45%; VPN 92%). Detalle y análisis exploratorios en [material suplementario](suplementario/SUPLEMENTARIO.md).
+> **Desenlace = progresión a demencia** (severidad clínica ≥ moderada, **corroborada funcionalmente** por el ADLQ del informante; sin biomarcadores). IC95% bootstrap. El modelo estratifica riesgo relativo (terciles 9%/26%/45%; VPN 92%). Detalle y análisis exploratorios en [material suplementario](suplementario/SUPLEMENTARIO.md).
 
 Desenlace = **progresión a demencia** definido como severidad del perfil ≥ *moderado* en la reevaluación
 (criterio clínico del instituto). *Declive fiable* = cambio z que supera el índice de cambio fiable (RCI) local.

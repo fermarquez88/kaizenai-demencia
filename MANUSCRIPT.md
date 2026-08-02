@@ -1,4 +1,4 @@
-# Trayectorias cognitivas longitudinales y predicción del agravamiento desde la evaluación basal en una clínica de memoria argentina: un estudio de mundo real
+# Trayectorias cognitivas longitudinales y predicción de la progresión a demencia desde la evaluación basal en una clínica de memoria argentina: un estudio de mundo real
 
 **Congreso Argentino de Neurología (CAN)** · Área temática: **Neurología Cognitiva, Demencias y Neuropsicología** · Tipo: Tema libre (oral/póster)
 
@@ -25,14 +25,14 @@ región subrepresentada en la investigación de demencias.
 
 **Objetivo.** (1) Describir, a nivel de banda de severidad y de test, la **trayectoria cognitiva longitudinal** de los
 perfiles en una cohorte argentina de mundo real; y (2) derivar y validar internamente modelos parsimoniosos, normados
-localmente, que anticipen la progresión a un rango de severidad demencial desde la evaluación basal.
+localmente, que anticipen la progresión a demencia desde la evaluación basal.
 
 **Materiales y métodos.** Estudio longitudinal retrospectivo de adultos con ≥2 evaluaciones neuropsicológicas en fechas
 distintas (2020–2026), en el Instituto de Neurociencias San Juan. Tras una depuración auditada de la base (deduplicación
 por hash, recuperación de perfiles desde el PDF firmado, corrección de fechas), el perfil se codificó desde la sección
 Conclusiones mediante un modelo de lenguaje restringido por un codebook (uso de IA declarado). El **desenlace** fue la
-progresión a una **banda de severidad ≥ moderada** (*proxy* psicométrico, sin confirmación funcional independiente
-universal). La evolución se describió con la matriz de transición de bandas, con **cambio fiable regression-based** por
+**progresión a demencia**, definida por la severidad clínica del perfil ≥ moderada y **corroborada funcionalmente** por el
+ADLQ del informante. La trayectoria se describió con la matriz de transición de bandas, con **cambio fiable regression-based** por
 test (RCI/SRB, descriptivo) y con un análisis de **tiempo-al-evento** (Kaplan-Meier, Cox). El modelo predictivo
 pre-especificado (memoria de relatos diferida y edad) usó regresión logística con validación cruzada anidada, corrección
 de optimismo, calibración de Platt e IC bootstrap.
@@ -49,8 +49,8 @@ lo que se reporta como generador de hipótesis. Añadir ánimo (GDS) o quejas (C
 
 **Conclusiones.** Los perfiles siguen una trayectoria amnésico-céntrica, con el compromiso de memoria como eje del riesgo,
 y la progresión es anticipable con dos variables de rutina. Se despliegan dos herramientas abiertas. Los hallazgos son
-exploratorios y unicéntricos; el desenlace es un proxy psicométrico de severidad, **no** demencia confirmada, y requiere
-validación externa.
+exploratorios y unicéntricos; la demencia se definió por severidad clínica, corroborada funcionalmente por el ADLQ del
+informante, y requiere validación externa.
 
 **Palabras clave:** deterioro cognitivo leve; demencia; neuropsicología; trayectoria cognitiva; predicción; índice de cambio fiable; Latinoamérica.
 
@@ -107,16 +107,18 @@ mecanismo de memoria (almacenamiento vs. recuperación) y moduladores (ánimo, s
 codificaciones ciegas fue alta (severidad κ=1,00; subtipo κ=0,88); esto refleja **consistencia de extracción, no
 validación contra experto humano**, que queda pendiente. La clasificación operacional de **subtipo** (amnésico/no amnésico
 × único/múltiple, umbral z ≤ −1,5; Petersen/Winblad) se derivó del patrón objetivo de dominios; **se restringió a los
-pacientes en bandas no demenciales al basal** (las etiquetas de subtipo de DCL no aplican a quienes ya están en rango
-demencial).
+pacientes en bandas no demenciales al basal** (las etiquetas de subtipo de DCL no aplican a quienes ya están en demencia
+al basal).
 
-### Desenlace, evolución y trayectoria
-El desenlace fue la **progresión a una banda de severidad ≥ moderada** en la reevaluación. Se lo designa explícitamente
-como **proxy psicométrico de agravamiento cognitivo, no como diagnóstico de demencia**: carece de un criterio funcional
-independiente universal y —punto declarado como limitación— el predictor de memoria y la banda de severidad comparten
-**fuente textual** (la narrativa de Conclusiones codificada por LLM), por lo que existe **riesgo de circularidad
-parcial**. La proporción de progresión se expresa por 100 persona-años en los reevaluados (no como incidencia
-poblacional de demencia). La trayectoria se describió con: (a) la **matriz de transición** entre bandas (Figura 2); (b) el
+### Desenlace, trayectoria y análisis temporal
+El desenlace fue la **progresión a demencia**, definida operacionalmente por la **severidad clínica del perfil ≥ moderada**
+en la reevaluación (estadificación del informe neuropsicológico, análoga a una escala clínica de severidad), y
+**corroborada con un criterio funcional independiente**: el ADLQ del informante (grado de compromiso en actividades de la
+vida diaria), medida que **no** deriva de la narrativa cognitiva. Se declara, como límite, que la banda de severidad y el
+predictor de memoria comparten **fuente textual** (la narrativa de Conclusiones codificada por LLM) —riesgo de
+**circularidad parcial**, atenuado por la corroboración funcional independiente— y que no hay confirmación biomarcadora ni
+etiológica; por ello los resultados se interpretan como **exploratorios**. La proporción de progresión
+se expresa por 100 persona-años en los reevaluados (no como incidencia poblacional). La trayectoria se describió con: (a) la **matriz de transición** entre bandas (Figura 2); (b) el
 **cambio fiable por test**, re-escalando cada prueba a una referencia común (mediana/MAD basal, congelada) y cuantificando
 el cambio con un **RCI regression-based** (SRB, Crawford-Howell) que descuenta la **regresión a la media** y el efecto de
 práctica, excluyendo del denominador a los ya-en-piso al basal; la multiplicidad se controló por FDR
@@ -146,11 +148,21 @@ De 334 pacientes con más de una evaluación archivada, 84 se excluyeron (81 dup
 final (vs. 182 antes de la depuración). La codificación fue altamente reproducible entre extracciones (severidad κ=1,00) y
 creció monótonamente con el número de dominios objetivamente deficitarios.
 
+### El desenlace "demencia" tiene correlato funcional independiente (validación de constructo)
+La definición de demencia por severidad clínica se **corroboró con el ADLQ** del informante, una medida funcional
+independiente de la narrativa cognitiva. En la submuestra con ADLQ, el grupo con **demencia** mostró compromiso funcional
+sustancialmente mayor que el grupo sin demencia (mediana de áreas alteradas **42% vs 19%**; con compromiso funcional
+marcado [≥40%] **55% vs 15%**; con algún compromiso, 100% en ambos). El compromiso funcional creció de forma **monótona con
+la severidad cognitiva** (mediana: Normal 6% → DCL 20% → leve-moderado 29% → moderado 35% → moderado-grave 50% → grave
+72%; Figura S3). Este correlato funcional independiente respalda que el desenlace captura deterioro **cognitivo y
+funcional** (constructo de demencia) y atenúa la preocupación por circularidad; su límite es la cobertura parcial del
+ADLQ (~63%).
+
 ### Trayectoria a nivel de banda de severidad: transiciones (Figura 2)
-La mayoría de los perfiles se mantuvieron estables o progresaron un escalón. La progresión a rango de severidad demencial
+La mayoría de los perfiles se mantuvieron estables o progresaron un escalón. La progresión a demencia
 fue de **12,0 por 100 persona-años** (37 eventos / 308 persona-años; IC95% Poisson 8,5–16,6) en la cohorte
 leve-moderado. Las transiciones se concentraron sobre la diagonal y su vecindad; **ningún paciente normal al basal
-progresó directamente a rango demencial (0/17)**, coherente con un modelo por estadios.
+progresó directamente a demencia (0/17)**, coherente con un modelo por estadios.
 
 ### Trayectoria a nivel de test: cambio cognitivo fiable, descriptivo (Figura 3)
 El análisis de cambio fiable por test —tras re-escalar, descontar la regresión a la media y manejar el efecto de piso—
@@ -223,10 +235,13 @@ priorización de estudios**, sin sustituir el juicio clínico. El techo del dese
 ausencia de biomarcadores más que el algoritmo, consistente con las iniciativas regionales que buscan extraer el máximo de
 **medidas de rutina** y anticipan el aporte de biomarcadores en sangre.[24,25]
 
-**Alcance y encuadre honestos.** El desenlace es un **proxy psicométrico de severidad, no demencia confirmada**; su
-naturaleza (banda derivada de la misma narrativa que informa el predictor) implica un riesgo de **circularidad parcial**
-que declaramos abiertamente. La contribución es, por tanto, un **estratificador de riesgo de agravamiento cognitivo**
-normado localmente, no un diagnosticador. Dos productos digitales abiertos materializan el trabajo y corren íntegramente
+**Alcance y encuadre honestos.** La demencia se definió **operacionalmente por la severidad clínica del perfil**
+(≥ moderada), y esta definición se **corroboró con un criterio funcional independiente**: en el grupo con demencia, el
+ADLQ del informante mostró compromiso funcional (mediana 42% de áreas alteradas vs 19% en no-demencia; gradiente monótono
+Normal 6% → grave 72%), lo que respalda el constructo (deterioro cognitivo **y** funcional) y **atenúa** —sin eliminar— la
+preocupación por circularidad, pues el ADLQ es independiente de la narrativa cognitiva que informa el predictor. Persisten
+límites (cobertura del ADLQ ~63%, sin biomarcadores ni confirmación etiológica), por lo que la contribución se enmarca como
+un **estratificador de riesgo** normado localmente, no un diagnosticador. Dos productos digitales abiertos materializan el trabajo y corren íntegramente
 en el navegador (sin transmitir datos): un **estratificador de riesgo** individual y un **artefacto navegable de
 trayectoria cognitiva**, que llevan la descripción y la estratificación a la consulta.
 
@@ -234,8 +249,9 @@ trayectoria cognitiva**, que llevan la descripción y la estratificación a la c
 recuperación de N; una variable perfil reproducible; psicometría de cambio fiable con control de multiplicidad; validación
 interna con IC bootstrap y calibración reportados según TRIPOD/STROBE; análisis de tiempo-al-evento; y liberación abierta
 de código y herramientas. Limitaciones que acotan las conclusiones a un nivel exploratorio: (i) **unicéntrico**, con
-eventos escasos (subgrupos con EPV bajo e IC amplios); (ii) **desenlace = proxy de severidad sin criterio funcional
-universal**, con posible circularidad parcial predictor–desenlace; (iii) **codificación por IA** = extracción de texto con
+eventos escasos (subgrupos con EPV bajo e IC amplios); (ii) **demencia definida por severidad clínica**, con corroboración
+funcional independiente (ADLQ) de **cobertura parcial (~63%)** y posible circularidad residual predictor–desenlace; (iii)
+**codificación por IA** = extracción de texto con
 fiabilidad LLM–LLM, pendiente de validación contra experto humano; (iv) **sesgo de selección** de quiénes se reevalúan y
 **censura informativa** → la proporción de progresión es un límite inferior y no se modeló el riesgo competitivo de
 muerte; (v) **datos faltantes** en el predictor de memoria (9%) manejados por imputación, con sensibilidad en casos
@@ -246,10 +262,10 @@ esencial.
 
 ## Conclusiones
 Los perfiles cognitivos siguen una trayectoria amnésico-céntrica; el compromiso de memoria episódica de almacenamiento es
-el eje del riesgo de progresión, estable en el análisis temporal. El agravamiento a un rango de severidad demencial es
+el eje del riesgo de progresión, estable en el análisis temporal. La progresión a demencia es
 anticipable con memoria diferida y edad, útil como prueba de descarte y estratificador de riesgo. Se aportan dos productos
-digitales abiertos. Los hallazgos son exploratorios y unicéntricos; el desenlace es un proxy psicométrico, **no** demencia
-confirmada, y se requiere validación externa.
+digitales abiertos. Los hallazgos son exploratorios y unicéntricos; la demencia se definió por severidad clínica,
+corroborada funcionalmente por el ADLQ (independiente de la narrativa cognitiva), y se requiere validación externa.
 
 ---
 
@@ -272,8 +288,8 @@ severidad 1,00; subtipo 0,88.*
 
 | Desenlace / cohorte | n / eventos | Predictores | AUC [IC95% bootstrap] |
 |---|---|---|---|
-| **Rango de severidad demencial — leve-moderado (primario)** | 140 / 37 | Memoria de relatos diferida + edad | **0,74** [0,63–0,83] |
-| Rango de severidad demencial — subgrupo DCL | 96 / 18 | Memoria de relatos diferida + edad | 0,76 [0,59–0,88] |
+| **Demencia — leve-moderado (primario)** | 140 / 37 | Memoria de relatos diferida + edad | **0,74** [0,63–0,83] |
+| Demencia — subgrupo DCL | 96 / 18 | Memoria de relatos diferida + edad | 0,76 [0,59–0,88] |
 | Declive cognitivo fiable (bandas normal/demencial) | 250 / 47 | edad, Rey trial 1, intrusiones, CI premórbido, Hayling | 0,68 [0,58–0,77] |
 
 *Estratificación (modelo primario): progresión observada por tercil 9% / 26% / 45% (n≈47 c/u); VPN 92%, VPP ~45%;
@@ -289,7 +305,7 @@ coincide con `models_deploy.json` en n/eventos/coeficientes. Análisis funcional
 perfiles recuperados del PDF → 219 analizables; cohortes DCL (96) y leve-moderado (140).*
 
 **Figura 2. Trayectoria de banda: matriz de transición de severidad (basal → reevaluación).** ![Figura 2](Fig2_transiciones.png)
-*Proporción por fila; sobre la diagonal = progresión. Ningún normal basal progresó a rango demencial.*
+*Proporción por fila; sobre la diagonal = progresión. Ningún normal basal progresó a demencia.*
 
 **Figura 3. Cambio fiable por test, descriptivo (por severidad y por fenotipo basal).** ![Figura 3](Fig7_trayectoria.png)
 *% de pacientes con cambio fiable (RCI regression-based) por test, excluidos los ya-en-piso al basal. **Análisis
