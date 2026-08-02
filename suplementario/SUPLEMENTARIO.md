@@ -135,6 +135,18 @@ El eje de memoria se mantiene bajo el criterio funcional, pero la escasez de eve
 
 Puntaje basal vs reevaluación (recuerdo diferido de relatos re-escalado). La pendiente < 1 evidencia la regresión a la media que el RCI basado en regresión descuenta; ignorarla invierte el orden aparente de los cambios.
 
+## S9. Figura S4 — Rendimiento del modelo predictivo (recuerdo diferido de relatos + edad)
+
+![Figura S4](FigS4_modelo.png)
+
+(a) Discriminación (curva ROC; AUC 0,74 [IC95% 0,63–0,83]); (b) estratificación por tercil de riesgo (progresión observada 9%/26%/45%); (c) efectos (OR en dirección de riesgo). Métricas numéricas en la Tabla 2 del cuerpo (se muestran en tabla o figura, no en ambas simultáneamente; esta figura complementa visualmente sin duplicar cifras).
+
+## S10. Figura S5 — Estratificador de riesgo desplegado (en el navegador)
+
+![Figura S5](FigS5_app.png)
+
+Prototipo de investigación, no validado para decisión clínica. Corre íntegramente en el navegador (sin transmitir datos). https://fermarquez88.github.io/kaizenai-demencia/
+
 ---
 
 *Generado reproduciblemente desde la base congelada del Instituto de Neurociencias San Juan (Clínica El Castaño). Cifras exploratorias, unicéntricas.*

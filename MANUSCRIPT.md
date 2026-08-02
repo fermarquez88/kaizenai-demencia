@@ -8,6 +8,8 @@
 
 **Autor de correspondencia:** Fernando Márquez — fmarquez.mum@gmail.com
 
+**Número total de palabras (cuerpo, excluye resumen, tablas, figuras y referencias):** ~3540 (límite del reglamento: 4500).
+
 **Productos digitales de acceso abierto:**
 - **Estratificador de riesgo (calculadora en el navegador):** https://fermarquez88.github.io/kaizenai-demencia/
 - **Artefacto navegable de trayectoria cognitiva** (heatmaps + tabla maestra): enlazado desde la app.
@@ -19,40 +21,57 @@
 
 ## Resumen (estructurado)
 
-**Introducción.** La **trayectoria cognitiva longitudinal** de los perfiles neuropsicológicos en la práctica real de una
-clínica de memoria —y qué de la evaluación basal anticipa la progresión— está poco caracterizada en Latinoamérica,
-región subrepresentada en la investigación de demencias.
+**Introducción y objetivos.** La trayectoria cognitiva longitudinal de los perfiles neuropsicológicos en una clínica de
+memoria —y qué de la evaluación basal anticipa la progresión a demencia— está poco caracterizada en Latinoamérica, región
+subrepresentada. Nos propusimos (1) describir esa trayectoria en una cohorte argentina de mundo real y (2) derivar y
+validar internamente modelos parsimoniosos, normados localmente, que anticipen la progresión a demencia.
 
-**Objetivo.** (1) Describir, a nivel de banda de severidad y de test, la **trayectoria cognitiva longitudinal** de los
-perfiles en una cohorte argentina de mundo real; y (2) derivar y validar internamente modelos parsimoniosos, normados
-localmente, que anticipen la progresión a demencia desde la evaluación basal.
+**Materiales y métodos.** Estudio longitudinal retrospectivo (Instituto de Neurociencias San Juan, 2020–2026) de adultos
+con ≥2 evaluaciones. El perfil se codificó desde las Conclusiones mediante un modelo de lenguaje restringido por codebook
+(IA declarada). El desenlace fue la progresión a demencia (severidad clínica ≥ moderada, corroborada por el ADLQ del
+informante). La trayectoria se describió con matriz de transición, cambio fiable basado en regresión y tiempo hasta el
+evento (Kaplan-Meier, Cox); el modelo (recuerdo diferido de relatos + edad) usó regresión logística con validación cruzada
+anidada, corrección de optimismo e IC bootstrap (TRIPOD/STROBE).
 
-**Materiales y métodos.** Estudio longitudinal retrospectivo de adultos con ≥2 evaluaciones neuropsicológicas en fechas
-distintas (2020–2026), en el Instituto de Neurociencias San Juan. Tras una depuración auditada de la base (deduplicación
-por hash, recuperación de perfiles desde el PDF firmado, corrección de fechas), el perfil se codificó desde la sección
-Conclusiones mediante un modelo de lenguaje restringido por un codebook (uso de IA declarado). El **desenlace** fue la
-**progresión a demencia**, definida por la severidad clínica del perfil ≥ moderada y **corroborada funcionalmente** por el
-ADLQ del informante. La trayectoria se describió con la matriz de transición de bandas, con **cambio fiable basado en regresión** por
-test (RCI/SRB, descriptivo) y con un análisis de **tiempo hasta el evento** (Kaplan-Meier, Cox). El modelo predictivo
-pre-especificado (recuerdo diferido de relatos y edad) usó regresión logística con validación cruzada anidada, corrección
-de optimismo, calibración de Platt e IC bootstrap.
+**Resultados.** De 334 pacientes, 254 tuvieron reevaluación (219 analizables). La trayectoria fue amnésico-céntrica: el
+compromiso de memoria fue el eje del riesgo (31% [36/117] vs 5% [1/22]; OR 9,3; Cox HR 0,55 [IC95% 0,40–0,76] por DE;
+log-rank p=0,010). El modelo recuerdo diferido de relatos + edad anticipó la progresión con AUC 0,74 (IC95% 0,63–0,83;
+140 pacientes/37 eventos), útil como estratificador de riesgo (progresión por tercil 9%/26%/45%; VPN 92%). Ningún test de
+trayectoria sobrevivió la corrección por comparaciones múltiples (marco descriptivo).
 
-**Resultados.** De 334 pacientes con múltiples visitas, 250 tuvieron reevaluación genuina (+4 recuperadas por corrección de
-fecha = **254**; mediana 1,8 años); la recuperación de 63 perfiles del PDF dejó 219 analizables. La trayectoria fue **amnésico-céntrica**: el
-compromiso objetivo de memoria fue el eje del riesgo (progresión 31% [36/117] vs 5% [1/22]; OR de Fisher 9,3; p=0,008), y
-el análisis temporal lo confirmó (Cox: memoria HR 0,55 [IC95% 0,40–0,76] por DE; C-index 0,72; log-rank p=0,010). Ningún
-paciente normal al basal progresó (0/17). El **modelo recuerdo diferido de relatos + edad** anticipó la progresión con **AUC 0,74
-(IC95% bootstrap 0,63–0,83; 140 pacientes, 37 eventos)**, con estratificación de riesgo útil (progresión observada por
-tercil 9%/26%/45%) y alto valor de descarte (VPN 92%). El análisis descriptivo de trayectoria por test sugirió patrones
-fenotipo-específicos, si bien **ningún contraste sobrevivió la corrección por comparaciones múltiples** (q mín 0,091), por
-lo que se reporta como generador de hipótesis. Añadir ánimo (GDS) o quejas (CQC) no mejoró la predicción.
+**Conclusiones.** Los perfiles siguen una trayectoria amnésico-céntrica; la progresión a demencia es anticipable con dos
+variables de rutina, aportando un estratificador de riesgo abierto y normado localmente para una región subrepresentada.
+Hallazgos exploratorios y unicéntricos que requieren validación externa.
 
-**Conclusiones.** Los perfiles siguen una trayectoria amnésico-céntrica, con el compromiso de memoria como eje del riesgo,
-y la progresión es anticipable con dos variables de rutina. Se despliegan dos herramientas abiertas. Los hallazgos son
-exploratorios y unicéntricos; la demencia se definió por severidad clínica, corroborada funcionalmente por el ADLQ del
-informante, y requiere validación externa.
+**Palabras clave:** disfunción cognitiva; demencia; pruebas neuropsicológicas; recuerdo diferido; trayectoria cognitiva; estudios longitudinales; progresión de la enfermedad; América Latina.
 
-**Palabras clave:** disfunción cognitiva; demencia; pruebas neuropsicológicas; recuerdo diferido; trayectoria cognitiva; estudios longitudinales; progresión de la enfermedad; índice de cambio fiable; América Latina.
+---
+
+## Abstract
+
+**Background and objectives.** The longitudinal cognitive trajectory of neuropsychological profiles in a memory clinic —and
+what at baseline anticipates progression to dementia— is poorly characterized in Latin America, an underrepresented region.
+We aimed to (1) describe this trajectory in a real-world Argentine cohort and (2) derive and internally validate
+parsimonious, locally-normed models anticipating progression to dementia.
+
+**Methods.** Retrospective longitudinal study (Instituto de Neurociencias San Juan, 2020–2026) of adults with ≥2
+assessments. Profiles were coded from report Conclusions using a codebook-constrained language model (AI declared). The
+outcome was progression to dementia (clinical severity ≥ moderate, corroborated by the informant ADLQ). Trajectory was
+described with a transition matrix, regression-based reliable change, and time-to-event analysis (Kaplan-Meier, Cox); the
+model (delayed story recall + age) used penalized logistic regression with nested cross-validation, optimism correction,
+and bootstrap CIs (TRIPOD/STROBE).
+
+**Results.** Of 334 patients, 254 had reassessment (219 analyzable). The trajectory was amnestic-centered: memory
+impairment was the risk axis (31% [36/117] vs 5% [1/22]; OR 9.3; Cox HR 0.55 [95%CI 0.40–0.76]/SD; log-rank p=0.010). The
+delayed-story-recall + age model anticipated progression with AUC 0.74 (95%CI 0.63–0.83; 140 patients/37 events), useful
+for risk stratification (tercile progression 9%/26%/45%; NPV 92%). No per-test trajectory contrast survived
+multiple-comparison correction (descriptive framing).
+
+**Conclusions.** Profiles follow an amnestic-centered trajectory; progression to dementia is anticipable from two routine
+variables, providing an open, locally-normed risk stratifier for an underrepresented region. Exploratory, single-center
+findings requiring external validation.
+
+**Keywords:** cognitive dysfunction; dementia; neuropsychological tests; delayed recall; cognitive trajectory; longitudinal studies; disease progression; Latin America.
 
 ---
 
@@ -92,9 +111,10 @@ rutina** es escasa en la región. Abordamos ambos con un objetivo primero **desc
 
 ### Aspectos éticos y declaraciones
 Análisis retrospectivo de datos clínicos de rutina, conducido conforme a los principios de la **Declaración de Helsinki** y
-anonimizado por un identificador a nivel persona derivado del DNI; no se comparten datos identificatorios. Por tratarse de
-datos asistenciales retrospectivos y anonimizados, no se requirió consentimiento adicional, conforme a la normativa
-institucional para el uso secundario de datos asistenciales. **Financiamiento:** ninguno específico. **Conflictos de interés:** ninguno. **Uso de
+anonimizado por un identificador a nivel persona derivado del DNI; no se comparten datos identificatorios. Los pacientes
+firman, al ingreso, un **consentimiento institucional para el uso de sus datos asistenciales** con fines de investigación;
+por tratarse, además, de un análisis de datos anonimizados, el **comité de ética institucional interviniente aprobó el
+estudio y otorgó la dispensa de consentimiento específico adicional** (acta de aprobación N.° \_\_\_\_). **Financiamiento:** ninguno específico. **Conflictos de interés:** ninguno. **Uso de
 inteligencia artificial:** un modelo de lenguaje restringido por un codebook cerrado se usó para **extraer y codificar**
 el perfil desde el texto de las Conclusiones, y como asistencia en el análisis y la redacción; la IA **no** es autora y
 toda decisión metodológica y de interpretación fue de los autores. **Contribuciones de los autores:** todos los autores
@@ -197,7 +217,8 @@ El compromiso objetivo de memoria fue el eje del riesgo: en la cohorte en riesgo
 (z ≤ −1,5) progresaron mucho más que los de memoria conservada (**31%** [36/117] vs **5%** [1/22]; OR de Fisher **9,3**;
 p=0,008 —IC95% muy amplio por el único evento en el grupo conservado, por lo que la estimación robusta es el HR de Cox). El
 análisis de **tiempo hasta el evento**, que respeta el seguimiento variable, lo confirmó: la incidencia acumulada
-de progresión a 2 y 3 años fue 15% y 34% con memoria afectada vs ~0% con memoria conservada (**log-rank p=0,010**); en el
+de progresión a 2 y 3 años fue 15% y 34% con memoria afectada vs ~0% con memoria conservada (cifras no ajustadas por
+mortalidad competitiva; véase Limitaciones) (**log-rank p=0,010**); en el
 modelo de Cox, mejor memoria se asoció a menor riesgo (**HR 0,55 [IC95% 0,40–0,76] por DE**; edad HR 1,32 [0,79–2,18]),
 con **C-index 0,72**, concordante con el AUC logístico. Coherentemente, la cohorte en riesgo estuvo dominada por el
 subtipo **amnésico multidominio (≈76%; 120/158)**, y —en las bandas no demenciales al basal, donde aplican las etiquetas de
@@ -207,7 +228,7 @@ frecuente (**58%; 67/116** con mecanismo evaluable), sin predominio marcado sobr
 **enriquece** la caracterización del subtipo amnésico pero, en esta muestra, **no estratifica el riesgo más allá del propio
 subtipo**.
 
-### Qué anticipa la progresión: modelos predictivos (Figura 5, Tabla 2)
+### Qué anticipa la progresión: modelos predictivos (Tabla 2)
 El modelo **pre-especificado de dos variables —recuerdo diferido de relatos y edad—** anticipó la progresión con **AUC
 0,74 (IC95% bootstrap 0,63–0,83)** en la cohorte leve-moderado (140 pacientes, 37 eventos; EPV 18,5; **13 pacientes [9%]
 con el predictor de memoria imputado — casos completos 127/35, AUC concordante**). Su utilidad principal es la
@@ -270,7 +291,7 @@ y con la estadificación clínica de severidad;[31] y, crucialmente, predice una
 Alzheimer **definida biológicamente** (marco AT(N)),[32] que requeriría biomarcadores ausentes en esta cohorte. Persisten
 límites (cobertura del ADLQ 52%, corroboración a nivel de grupo, sin biomarcadores ni confirmación etiológica), por lo que la contribución se enmarca como
 un **estratificador de riesgo** normado localmente, no un diagnosticador. Dos productos digitales abiertos materializan el trabajo y corren íntegramente
-en el navegador (sin transmitir datos): un **estratificador de riesgo** individual (Figura 6) y un **artefacto navegable
+en el navegador (sin transmitir datos): un **estratificador de riesgo** individual y un **artefacto navegable
 de trayectoria cognitiva**, que llevan la descripción y la estratificación a la consulta.
 
 **Fortalezas y limitaciones.** Fortalezas: datos genuinos de mundo real; depuración e identificación auditadas con
@@ -343,13 +364,8 @@ descriptivo/generador de hipótesis: ningún contraste sobrevive corrección FDR
 interpretables.** El n figura en cada celda.*
 
 **Figura 4. El eje del riesgo en el tiempo: incidencia acumulada de progresión por estado de memoria basal (Kaplan-Meier).** ![Figura 4](Fig8_km.png)
-*Cohorte leve-moderado. Cox: memoria HR 0,55 [0,40–0,76]/DE; log-rank p=0,010; C-index 0,72. Bandas: IC95%; marcas: censura.*
-
-**Figura 5. Qué anticipa la progresión: rendimiento del modelo (memoria + edad).** ![Figura 5](Fig5_rendimiento.png)
-*(a) Discriminación (AUC 0,74 [0,63–0,83]); (b) estratificación por tercil de riesgo (9%/26%/45%); (c) efectos (OR en dirección de riesgo).*
-
-**Figura 6. Estratificador de riesgo desplegado (en el navegador).** ![Figura 6](Figure3.png)
-*Prototipo de investigación, no validado para decisión clínica. https://fermarquez88.github.io/kaizenai-demencia/*
+*Cohorte leve-moderado. Cox: memoria HR 0,55 [0,40–0,76]/DE; log-rank p=0,010; C-index 0,72. Bandas: IC95%; marcas: censura.
+El rendimiento del modelo (curva ROC, calibración) y el estratificador desplegado se muestran en el [material suplementario](suplementario/SUPLEMENTARIO.md) (Figuras S4–S5).*
 
 ---
 
