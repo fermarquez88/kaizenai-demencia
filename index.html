@@ -1,0 +1,6406 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dementia progression risk calculator</title></head>
+<body>
+<style>
+  :root{
+    --paper:#fbfcfc;--card:#fff;--ink:#15201f;--muted:#5a6b6a;--line:#e4eaea;--line2:#eef3f3;
+    --primary:#0b6b70;--primary-deep:#073e42;--wash:#e6f1f1;--low:#2f8f6f;--mid:#c39433;--high:#b0453b;--ink-serif:#101a19;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .serif{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;color:var(--ink-serif)}
+  .mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+  .wrap{max-width:1020px;margin:0 auto;padding:0 22px}
+  h1,h2,h3{text-wrap:balance;margin:0}
+  a{color:var(--primary-deep)}
+  .eyebrow{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--primary);font-weight:700}
+  header{border-bottom:1px solid var(--line);background:linear-gradient(180deg,#f4f9f9,#fbfcfc)}
+  .topbar{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+  .brand .logo{font-weight:700;letter-spacing:-.02em;color:var(--primary-deep);font-size:1.15rem}
+  .brand .logo b{color:var(--high)} .brand .tag{font-size:.72rem;color:var(--muted);margin-left:8px}
+  .langtog{display:flex;border:1px solid var(--line);border-radius:20px;overflow:hidden;font-size:.78rem}
+  .langtog button{border:0;background:#fff;padding:5px 12px;cursor:pointer;color:var(--muted);font-weight:600}
+  .langtog button.on{background:var(--primary);color:#fff}
+  .hero{padding:24px 0 28px}
+  .hero h1{font-size:clamp(1.7rem,3.8vw,2.4rem);font-weight:600;line-height:1.1;margin:.3em 0}
+  .hero p{max-width:64ch;color:var(--muted);margin:0}
+  .disclaimer{margin-top:14px;display:inline-flex;gap:8px;align-items:center;background:#fdf6ec;border:1px solid #efd9b8;color:#8a5a12;border-radius:8px;padding:7px 12px;font-size:.8rem}
+  .layout{display:grid;grid-template-columns:minmax(0,390px) 1fr;gap:24px;padding:28px 0 10px;align-items:start}
+  @media(max-width:820px){.layout{grid-template-columns:1fr}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+  .panel h2{font-size:1.02rem;font-weight:600} .panel .hint{font-size:.78rem;color:var(--muted);margin:2px 0 12px}
+  .step{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);font-weight:700;margin:14px 0 4px;display:flex;align-items:center;gap:7px}
+  .step .n{background:var(--primary);color:#fff;width:17px;height:17px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:.66rem}
+  .field{margin:10px 0}
+  .field label{display:block;font-size:.82rem;font-weight:600;margin-bottom:4px}
+  .field .u{color:var(--muted);font-weight:400;font-size:.75rem}
+  .field input,.field select{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:.92rem;font-family:inherit;background:#fff;color:var(--ink)}
+  .field input:focus,.field select:focus{outline:2px solid var(--wash);border-color:var(--primary)}
+  .field .warn{font-size:.72rem;color:var(--high);margin-top:3px;display:none} .field.oor .warn{display:block} .field.oor input{border-color:var(--high)}
+  .modelchip{margin-top:12px;background:var(--wash);border:1px solid #cfe6e7;border-radius:8px;padding:9px 12px;font-size:.82rem;color:var(--primary-deep)}
+  .modelchip b{font-weight:700}
+  .rescard{background:var(--card);border:1px solid #bfe0e1;border-radius:14px;padding:20px 22px;box-shadow:0 0 0 3px #f0f7f7}
+  .rescard h3{font-size:1.04rem;font-weight:600} .rescard .sub{font-size:.79rem;color:var(--muted);margin-bottom:12px}
+  .riskrow{display:flex;align-items:flex-end;gap:14px}
+  .riskval{font-size:2.7rem;font-weight:700;line-height:.95;letter-spacing:-.02em}
+  .riskband{font-size:.82rem;color:var(--muted);padding-bottom:7px} .risklabel{font-size:.78rem;font-weight:700;padding:2px 9px;border-radius:20px;align-self:center}
+  .scale{margin:16px 0 6px;position:relative;height:46px}
+  .scale .track{position:absolute;top:16px;left:0;right:0;height:10px;border-radius:5px;background:linear-gradient(90deg,#e7f2ee,#f3ecd9 50%,#f6e2de);border:1px solid var(--line)}
+  .scale .ci{position:absolute;top:16px;height:10px;background:rgba(11,107,112,.22);border-radius:5px}
+  .scale .pt{position:absolute;top:11px;width:3px;height:20px;background:var(--primary-deep);border-radius:2px}
+  .scale .prev{position:absolute;top:8px;height:26px;border-left:2px dashed #9aa}
+  .scale .prev span{position:absolute;top:-14px;left:-16px;font-size:.62rem;color:var(--muted);white-space:nowrap}
+  .scale .ax{position:absolute;top:30px;width:100%;display:flex;justify-content:space-between;font-size:.66rem;color:var(--muted)}
+  .rescard .meta{display:flex;gap:16px;flex-wrap:wrap;font-size:.75rem;color:var(--muted);margin-top:12px;border-top:1px solid var(--line2);padding-top:10px}
+  .rescard .meta b{color:var(--ink)} .na{color:var(--muted);font-size:.9rem;padding:26px 4px;text-align:center}
+  .note{font-size:.8rem;color:var(--muted);margin-top:12px} .note.warnc{color:var(--high)}
+  section.info{padding:32px 0 10px;border-top:1px solid var(--line);margin-top:24px}
+  section.info h2{font-size:1.35rem;font-weight:600}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}@media(max-width:760px){.grid3{grid-template-columns:1fr}}
+  .icard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px} .icard .k{font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--primary);font-weight:700}
+  .icard p{font-size:.88rem;color:var(--muted)}
+  table{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:8px} th,td{text-align:left;padding:8px 9px;border-bottom:1px solid var(--line2)}
+  th{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)} td.n,th.n{text-align:right;font-variant-numeric:tabular-nums} .scroll{overflow-x:auto}
+  footer{border-top:1px solid var(--line);margin-top:28px;padding:22px 0 60px;color:var(--muted);font-size:.82rem}
+  .pillbtn{display:inline-block;border:1px solid var(--line);border-radius:8px;padding:6px 12px;margin-right:8px;text-decoration:none;color:var(--primary-deep);font-weight:600;font-size:.82rem;background:#fff}
+  .tag2{font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--primary-deep);border:1px solid #bfe0e1;border-radius:5px;padding:2px 7px;background:var(--wash)}
+</style>
+
+<header><div class="wrap">
+  <div class="topbar">
+    <div class="brand"><span class="logo">Kaizen<b>·</b>AI</span><span class="tag" data-i18n="brand_tag"></span></div>
+    <div class="langtog"><button id="es" class="on" onclick="setLang('es')">ES</button><button id="en" onclick="setLang('en')">EN</button></div>
+  </div>
+  <div class="hero">
+    <div class="eyebrow" data-i18n="eyebrow"></div>
+    <h1 class="serif" data-i18n="title"></h1>
+    <p data-i18n="lede"></p>
+    <div class="disclaimer"><span data-i18n="disclaimer"></span></div>
+  </div>
+</div></header>
+
+<div class="wrap">
+  <div class="layout">
+    <div class="panel">
+      <h2 data-i18n="form_title"></h2>
+      <div class="hint" data-i18n="form_hint"></div>
+      <div class="step"><span class="n">1</span><span data-i18n="step1"></span></div>
+      <div class="field">
+        <select id="sev_ord" onchange="onSev()">
+          <option value="0" data-i18n="sev0"></option>
+          <option value="1" selected data-i18n="sev1"></option>
+          <option value="2" data-i18n="sev2"></option>
+          <option value="3" data-i18n="sev3"></option>
+          <option value="4" data-i18n="sev4"></option>
+          <option value="5" data-i18n="sev5"></option>
+        </select>
+      </div>
+      <div class="modelchip" id="modelchip"></div>
+      <div class="step"><span class="n">2</span><span data-i18n="step2"></span></div>
+      <div id="dynfields"></div>
+    </div>
+    <div><div id="results"></div><p class="note" id="globalnote"></p></div>
+  </div>
+
+  <section class="info">
+    <div class="eyebrow" data-i18n="sci_eyebrow"></div>
+    <h2 class="serif" data-i18n="sci_title"></h2>
+    <div class="grid3">
+      <div class="icard"><div class="k" data-i18n="sci_how_k"></div><p data-i18n="sci_how"></p></div>
+      <div class="icard"><div class="k" data-i18n="sci_valid_k"></div><p data-i18n="sci_valid"></p></div>
+      <div class="icard"><div class="k" data-i18n="sci_limit_k"></div><p data-i18n="sci_limit"></p></div> <div class="icard"><div class="k" data-i18n="sci_data_k"></div><p data-i18n="sci_data"></p></div>
+    </div>
+    <div class="panel" style="margin-top:16px">
+      <h3 style="font-size:.95rem" data-i18n="perf_title"></h3>
+      <div class="scroll"><table id="perftable"></table></div>
+      <p class="hint" style="margin-top:8px" data-i18n="perf_note"></p>
+    </div>
+  </section>
+
+  <footer>
+    <div style="margin-bottom:10px">
+      <a class="pillbtn" href="https://github.com/fermarquez88/kaizenai-demencia" target="_blank" rel="noopener">↗ <span data-i18n="foot_code"></span></a>
+    </div>
+    <p data-i18n="foot_note"></p>
+    <p class="mono" style="font-size:.75rem" data-i18n="foot_cite"></p>
+  </footer>
+</div>
+
+<script>
+const MODELS = {
+ "demencia_dlm": {
+  "n": 140,
+  "eventos": 37,
+  "prevalencia": 0.264,
+  "features": [
+   {
+    "name": "mr_diferido",
+    "mean": -1.5714,
+    "std": 1.2592,
+    "median": -1.6667
+   },
+   {
+    "name": "edad",
+    "mean": 67.7727,
+    "std": 12.2488,
+    "median": 71.0
+   }
+  ],
+  "coef": [
+   -0.9463,
+   0.3458
+  ],
+  "intercept": -0.23138,
+  "platt": {
+   "A": 1.09325,
+   "B": -1.02618
+  },
+  "bootstrap": [
+   {
+    "coef": [
+     -0.98871,
+     0.43998
+    ],
+    "intercept": -0.25701,
+    "A": 1.0481,
+    "B": -0.95671
+   },
+   {
+    "coef": [
+     -1.50637,
+     0.42131
+    ],
+    "intercept": -0.54644,
+    "A": 1.06423,
+    "B": -1.03483
+   },
+   {
+    "coef": [
+     -0.87453,
+     0.23707
+    ],
+    "intercept": -0.25656,
+    "A": 1.11075,
+    "B": -0.74785
+   },
+   {
+    "coef": [
+     -0.93014,
+     0.2441
+    ],
+    "intercept": -0.19523,
+    "A": 1.13278,
+    "B": -0.77788
+   },
+   {
+    "coef": [
+     -0.9335,
+     0.40279
+    ],
+    "intercept": -0.25168,
+    "A": 1.12188,
+    "B": -0.84945
+   },
+   {
+    "coef": [
+     -1.50357,
+     0.24218
+    ],
+    "intercept": -0.28614,
+    "A": 1.10355,
+    "B": -1.14052
+   },
+   {
+    "coef": [
+     -0.33535,
+     1.07025
+    ],
+    "intercept": -0.22832,
+    "A": 1.08273,
+    "B": -1.22743
+   },
+   {
+    "coef": [
+     -0.59555,
+     0.49385
+    ],
+    "intercept": -0.2159,
+    "A": 1.11029,
+    "B": -0.74866
+   },
+   {
+    "coef": [
+     -0.83308,
+     0.07702
+    ],
+    "intercept": -0.16341,
+    "A": 1.00499,
+    "B": -1.02588
+   },
+   {
+    "coef": [
+     -1.49587,
+     0.68689
+    ],
+    "intercept": -0.61225,
+    "A": 1.10671,
+    "B": -1.31714
+   },
+   {
+    "coef": [
+     -0.90124,
+     0.12491
+    ],
+    "intercept": -0.17003,
+    "A": 1.06204,
+    "B": -1.2203
+   },
+   {
+    "coef": [
+     -0.8891,
+     0.38445
+    ],
+    "intercept": -0.24452,
+    "A": 1.06897,
+    "B": -0.91652
+   },
+   {
+    "coef": [
+     -1.19227,
+     0.34776
+    ],
+    "intercept": -0.32359,
+    "A": 1.09626,
+    "B": -0.92699
+   },
+   {
+    "coef": [
+     -0.96654,
+     0.7744
+    ],
+    "intercept": -0.20747,
+    "A": 1.10142,
+    "B": -0.81878
+   },
+   {
+    "coef": [
+     -1.37994,
+     0.13213
+    ],
+    "intercept": -0.28499,
+    "A": 1.09503,
+    "B": -1.10554
+   },
+   {
+    "coef": [
+     -0.8623,
+     1.13643
+    ],
+    "intercept": -0.65601,
+    "A": 1.09454,
+    "B": -1.00747
+   },
+   {
+    "coef": [
+     -0.84564,
+     0.67386
+    ],
+    "intercept": -0.28678,
+    "A": 0.9831,
+    "B": -0.84498
+   },
+   {
+    "coef": [
+     -0.76655,
+     0.41582
+    ],
+    "intercept": -0.11342,
+    "A": 1.18273,
+    "B": -0.85005
+   },
+   {
+    "coef": [
+     -0.64399,
+     0.27989
+    ],
+    "intercept": -0.11431,
+    "A": 1.25827,
+    "B": -1.26126
+   },
+   {
+    "coef": [
+     -1.37378,
+     0.79037
+    ],
+    "intercept": -0.569,
+    "A": 1.09089,
+    "B": -1.1058
+   },
+   {
+    "coef": [
+     -1.10373,
+     0.45903
+    ],
+    "intercept": -0.35859,
+    "A": 1.135,
+    "B": -1.06426
+   },
+   {
+    "coef": [
+     -0.82555,
+     1.19098
+    ],
+    "intercept": -0.40228,
+    "A": 1.04244,
+    "B": -1.15389
+   },
+   {
+    "coef": [
+     -1.08539,
+     0.68268
+    ],
+    "intercept": -0.41151,
+    "A": 0.98895,
+    "B": -1.06677
+   },
+   {
+    "coef": [
+     -1.26484,
+     0.24077
+    ],
+    "intercept": -0.44151,
+    "A": 1.10185,
+    "B": -0.96259
+   },
+   {
+    "coef": [
+     -0.74159,
+     0.51948
+    ],
+    "intercept": -0.11053,
+    "A": 1.08048,
+    "B": -1.52748
+   },
+   {
+    "coef": [
+     -0.49674,
+     0.2355
+    ],
+    "intercept": -0.03681,
+    "A": 1.10381,
+    "B": -1.02477
+   },
+   {
+    "coef": [
+     -0.92421,
+     0.39376
+    ],
+    "intercept": -0.21339,
+    "A": 1.11704,
+    "B": -1.13769
+   },
+   {
+    "coef": [
+     -1.14956,
+     0.18868
+    ],
+    "intercept": -0.34744,
+    "A": 1.11608,
+    "B": -0.95537
+   },
+   {
+    "coef": [
+     -1.64502,
+     0.12047
+    ],
+    "intercept": -0.47793,
+    "A": 1.02844,
+    "B": -1.30235
+   },
+   {
+    "coef": [
+     -0.80826,
+     0.29463
+    ],
+    "intercept": -0.0749,
+    "A": 1.01691,
+    "B": -0.98837
+   },
+   {
+    "coef": [
+     -0.79488,
+     -0.07677
+    ],
+    "intercept": -0.26722,
+    "A": 1.03875,
+    "B": -0.91814
+   },
+   {
+    "coef": [
+     -0.82949,
+     0.48405
+    ],
+    "intercept": -0.2635,
+    "A": 1.20494,
+    "B": -1.43838
+   },
+   {
+    "coef": [
+     -1.01291,
+     0.82955
+    ],
+    "intercept": -0.45363,
+    "A": 1.04017,
+    "B": -0.81563
+   },
+   {
+    "coef": [
+     -1.01098,
+     0.12881
+    ],
+    "intercept": -0.13526,
+    "A": 1.21467,
+    "B": -1.2602
+   },
+   {
+    "coef": [
+     -1.35735,
+     0.44551
+    ],
+    "intercept": -0.57902,
+    "A": 1.02052,
+    "B": -1.14361
+   },
+   {
+    "coef": [
+     -1.06933,
+     0.22072
+    ],
+    "intercept": -0.19677,
+    "A": 1.01387,
+    "B": -1.0263
+   },
+   {
+    "coef": [
+     -0.91557,
+     0.65136
+    ],
+    "intercept": -0.29452,
+    "A": 1.09068,
+    "B": -1.30902
+   },
+   {
+    "coef": [
+     -0.97282,
+     0.57435
+    ],
+    "intercept": -0.21293,
+    "A": 0.98147,
+    "B": -0.85049
+   },
+   {
+    "coef": [
+     -1.04844,
+     1.31528
+    ],
+    "intercept": -0.52714,
+    "A": 1.04016,
+    "B": -1.24002
+   },
+   {
+    "coef": [
+     -0.971,
+     0.79399
+    ],
+    "intercept": -0.32038,
+    "A": 1.16151,
+    "B": -0.82683
+   },
+   {
+    "coef": [
+     -0.96217,
+     0.08888
+    ],
+    "intercept": -0.16705,
+    "A": 1.19478,
+    "B": -1.02784
+   },
+   {
+    "coef": [
+     -1.03823,
+     0.52982
+    ],
+    "intercept": -0.30791,
+    "A": 1.16253,
+    "B": -1.02311
+   },
+   {
+    "coef": [
+     -1.76738,
+     -0.18706
+    ],
+    "intercept": -0.63175,
+    "A": 1.0548,
+    "B": -1.26933
+   },
+   {
+    "coef": [
+     -1.12812,
+     0.28423
+    ],
+    "intercept": -0.38052,
+    "A": 1.07368,
+    "B": -1.0312
+   },
+   {
+    "coef": [
+     -0.9553,
+     -0.0445
+    ],
+    "intercept": -0.10573,
+    "A": 0.98988,
+    "B": -1.13828
+   },
+   {
+    "coef": [
+     -1.04443,
+     1.0207
+    ],
+    "intercept": -0.3869,
+    "A": 0.97919,
+    "B": -1.06886
+   },
+   {
+    "coef": [
+     -0.62997,
+     0.45253
+    ],
+    "intercept": -0.14849,
+    "A": 1.14327,
+    "B": -0.95178
+   },
+   {
+    "coef": [
+     -0.76105,
+     0.73292
+    ],
+    "intercept": -0.25595,
+    "A": 1.00072,
+    "B": -1.13973
+   },
+   {
+    "coef": [
+     -1.28408,
+     0.09884
+    ],
+    "intercept": -0.37313,
+    "A": 1.14951,
+    "B": -1.26149
+   },
+   {
+    "coef": [
+     -1.04486,
+     0.91915
+    ],
+    "intercept": -0.52013,
+    "A": 1.07211,
+    "B": -1.11361
+   },
+   {
+    "coef": [
+     -1.60645,
+     0.60985
+    ],
+    "intercept": -0.64591,
+    "A": 1.04399,
+    "B": -1.14616
+   },
+   {
+    "coef": [
+     -0.75681,
+     0.29287
+    ],
+    "intercept": -0.15881,
+    "A": 1.03962,
+    "B": -1.06257
+   },
+   {
+    "coef": [
+     -1.13004,
+     0.28739
+    ],
+    "intercept": -0.39294,
+    "A": 1.04667,
+    "B": -1.02799
+   },
+   {
+    "coef": [
+     -1.04176,
+     0.67664
+    ],
+    "intercept": -0.29322,
+    "A": 1.04352,
+    "B": -0.59189
+   },
+   {
+    "coef": [
+     -0.90364,
+     0.38151
+    ],
+    "intercept": -0.11354,
+    "A": 1.07216,
+    "B": -1.10221
+   },
+   {
+    "coef": [
+     -0.88821,
+     0.73554
+    ],
+    "intercept": -0.37858,
+    "A": 1.1545,
+    "B": -1.24887
+   },
+   {
+    "coef": [
+     -0.82033,
+     1.16323
+    ],
+    "intercept": -0.53225,
+    "A": 1.09848,
+    "B": -0.86008
+   },
+   {
+    "coef": [
+     -0.91559,
+     0.33281
+    ],
+    "intercept": -0.0734,
+    "A": 1.21462,
+    "B": -0.88292
+   },
+   {
+    "coef": [
+     -0.77512,
+     -0.11159
+    ],
+    "intercept": -0.16916,
+    "A": 1.07372,
+    "B": -0.91847
+   },
+   {
+    "coef": [
+     -1.29697,
+     0.93128
+    ],
+    "intercept": -0.55646,
+    "A": 1.16506,
+    "B": -1.4227
+   },
+   {
+    "coef": [
+     -1.40199,
+     0.36253
+    ],
+    "intercept": -0.43749,
+    "A": 1.10793,
+    "B": -1.06813
+   },
+   {
+    "coef": [
+     -0.72199,
+     0.21613
+    ],
+    "intercept": -0.1143,
+    "A": 1.11226,
+    "B": -0.6844
+   },
+   {
+    "coef": [
+     -0.88373,
+     0.04317
+    ],
+    "intercept": -0.19458,
+    "A": 1.07078,
+    "B": -1.14232
+   },
+   {
+    "coef": [
+     -1.07716,
+     0.21056
+    ],
+    "intercept": -0.17856,
+    "A": 1.02324,
+    "B": -1.02803
+   },
+   {
+    "coef": [
+     -0.79947,
+     0.82043
+    ],
+    "intercept": -0.30827,
+    "A": 1.03588,
+    "B": -0.92183
+   },
+   {
+    "coef": [
+     -0.79257,
+     0.37836
+    ],
+    "intercept": -0.19585,
+    "A": 1.08619,
+    "B": -0.65068
+   },
+   {
+    "coef": [
+     -1.13314,
+     0.07443
+    ],
+    "intercept": -0.35685,
+    "A": 1.08806,
+    "B": -1.07257
+   },
+   {
+    "coef": [
+     -0.8861,
+     0.41907
+    ],
+    "intercept": -0.1753,
+    "A": 1.08274,
+    "B": -0.95398
+   },
+   {
+    "coef": [
+     -0.73371,
+     0.13587
+    ],
+    "intercept": -0.15402,
+    "A": 1.0919,
+    "B": -0.88349
+   },
+   {
+    "coef": [
+     -1.18754,
+     0.13215
+    ],
+    "intercept": -0.24422,
+    "A": 1.03346,
+    "B": -0.92043
+   },
+   {
+    "coef": [
+     -0.59774,
+     0.53273
+    ],
+    "intercept": -0.21141,
+    "A": 1.05815,
+    "B": -0.91944
+   },
+   {
+    "coef": [
+     -0.58533,
+     0.2932
+    ],
+    "intercept": -0.12811,
+    "A": 1.11841,
+    "B": -1.09959
+   },
+   {
+    "coef": [
+     -0.8118,
+     0.24599
+    ],
+    "intercept": -0.08262,
+    "A": 1.10046,
+    "B": -1.25993
+   },
+   {
+    "coef": [
+     -1.12665,
+     0.22057
+    ],
+    "intercept": -0.12757,
+    "A": 1.0745,
+    "B": -1.13415
+   },
+   {
+    "coef": [
+     -1.22161,
+     0.42111
+    ],
+    "intercept": -0.36221,
+    "A": 1.08168,
+    "B": -1.03068
+   },
+   {
+    "coef": [
+     -0.84976,
+     0.30006
+    ],
+    "intercept": -0.1428,
+    "A": 1.06578,
+    "B": -1.18033
+   },
+   {
+    "coef": [
+     -1.14625,
+     0.57642
+    ],
+    "intercept": -0.25852,
+    "A": 1.07208,
+    "B": -1.14322
+   },
+   {
+    "coef": [
+     -0.86281,
+     0.22914
+    ],
+    "intercept": -0.19796,
+    "A": 1.10205,
+    "B": -0.75101
+   },
+   {
+    "coef": [
+     -0.64914,
+     0.13876
+    ],
+    "intercept": -0.10122,
+    "A": 1.08455,
+    "B": -1.17709
+   },
+   {
+    "coef": [
+     -0.83557,
+     0.19378
+    ],
+    "intercept": -0.17762,
+    "A": 1.08916,
+    "B": -0.95416
+   },
+   {
+    "coef": [
+     -0.69577,
+     -0.07158
+    ],
+    "intercept": -0.14074,
+    "A": 1.08224,
+    "B": -1.25793
+   },
+   {
+    "coef": [
+     -0.96031,
+     0.66633
+    ],
+    "intercept": -0.37167,
+    "A": 1.05739,
+    "B": -1.14227
+   },
+   {
+    "coef": [
+     -0.92998,
+     0.54397
+    ],
+    "intercept": -0.23525,
+    "A": 1.07608,
+    "B": -1.25729
+   },
+   {
+    "coef": [
+     -0.558,
+     0.58498
+    ],
+    "intercept": -0.18971,
+    "A": 1.20782,
+    "B": -0.71702
+   },
+   {
+    "coef": [
+     -0.90876,
+     0.05818
+    ],
+    "intercept": -0.21391,
+    "A": 1.06421,
+    "B": -0.88595
+   },
+   {
+    "coef": [
+     -0.55654,
+     0.2978
+    ],
+    "intercept": -0.09858,
+    "A": 1.15477,
+    "B": -0.98941
+   },
+   {
+    "coef": [
+     -0.39262,
+     0.22234
+    ],
+    "intercept": 0.06567,
+    "A": 1.10516,
+    "B": -1.17676
+   },
+   {
+    "coef": [
+     -0.49838,
+     0.08931
+    ],
+    "intercept": -0.07713,
+    "A": 1.10067,
+    "B": -1.02487
+   },
+   {
+    "coef": [
+     -0.80241,
+     0.38114
+    ],
+    "intercept": -0.0509,
+    "A": 1.05478,
+    "B": -1.17428
+   },
+   {
+    "coef": [
+     -0.91726,
+     0.48096
+    ],
+    "intercept": -0.24572,
+    "A": 1.07886,
+    "B": -0.78176
+   },
+   {
+    "coef": [
+     -1.05916,
+     0.83191
+    ],
+    "intercept": -0.35582,
+    "A": 1.04228,
+    "B": -1.02746
+   },
+   {
+    "coef": [
+     -1.36571,
+     0.31085
+    ],
+    "intercept": -0.4263,
+    "A": 1.05482,
+    "B": -0.92346
+   },
+   {
+    "coef": [
+     -0.73868,
+     0.59506
+    ],
+    "intercept": -0.26679,
+    "A": 1.01318,
+    "B": -0.75033
+   },
+   {
+    "coef": [
+     -1.53332,
+     0.96739
+    ],
+    "intercept": -0.65484,
+    "A": 1.05561,
+    "B": -1.57408
+   },
+   {
+    "coef": [
+     -0.93757,
+     0.86395
+    ],
+    "intercept": -0.45855,
+    "A": 0.99233,
+    "B": -0.95733
+   },
+   {
+    "coef": [
+     -1.37062,
+     0.19402
+    ],
+    "intercept": -0.33086,
+    "A": 1.09645,
+    "B": -1.06739
+   },
+   {
+    "coef": [
+     -1.29612,
+     0.44231
+    ],
+    "intercept": -0.36653,
+    "A": 1.05679,
+    "B": -0.75622
+   },
+   {
+    "coef": [
+     -1.28012,
+     0.62346
+    ],
+    "intercept": -0.22928,
+    "A": 1.06424,
+    "B": -1.33953
+   },
+   {
+    "coef": [
+     -0.90425,
+     0.26534
+    ],
+    "intercept": -0.19989,
+    "A": 1.06196,
+    "B": -0.95423
+   },
+   {
+    "coef": [
+     -1.04336,
+     0.03811
+    ],
+    "intercept": -0.15639,
+    "A": 1.06631,
+    "B": -0.9586
+   },
+   {
+    "coef": [
+     -1.05796,
+     0.28136
+    ],
+    "intercept": -0.39804,
+    "A": 1.08211,
+    "B": -0.95904
+   },
+   {
+    "coef": [
+     -0.98185,
+     0.10484
+    ],
+    "intercept": -0.36964,
+    "A": 1.10043,
+    "B": -1.14055
+   },
+   {
+    "coef": [
+     -1.33719,
+     0.38976
+    ],
+    "intercept": -0.4772,
+    "A": 1.08826,
+    "B": -0.91778
+   },
+   {
+    "coef": [
+     -1.03948,
+     0.07509
+    ],
+    "intercept": -0.41155,
+    "A": 1.10553,
+    "B": -0.85267
+   },
+   {
+    "coef": [
+     -1.01532,
+     0.44715
+    ],
+    "intercept": -0.2082,
+    "A": 1.13849,
+    "B": -1.25887
+   },
+   {
+    "coef": [
+     -1.00925,
+     0.61599
+    ],
+    "intercept": -0.2273,
+    "A": 1.18833,
+    "B": -1.14095
+   },
+   {
+    "coef": [
+     -0.90378,
+     0.09293
+    ],
+    "intercept": -0.33272,
+    "A": 1.11341,
+    "B": -1.43142
+   },
+   {
+    "coef": [
+     -1.03417,
+     -0.14445
+    ],
+    "intercept": -0.28278,
+    "A": 1.04858,
+    "B": -0.88352
+   },
+   {
+    "coef": [
+     -1.17387,
+     0.13399
+    ],
+    "intercept": -0.09519,
+    "A": 1.07603,
+    "B": -0.71748
+   },
+   {
+    "coef": [
+     -0.83281,
+     0.30172
+    ],
+    "intercept": -0.23257,
+    "A": 1.08262,
+    "B": -1.10352
+   },
+   {
+    "coef": [
+     -1.01125,
+     0.30842
+    ],
+    "intercept": -0.30205,
+    "A": 1.05597,
+    "B": -0.88303
+   },
+   {
+    "coef": [
+     -1.32018,
+     0.04186
+    ],
+    "intercept": -0.28677,
+    "A": 1.14706,
+    "B": -0.92258
+   },
+   {
+    "coef": [
+     -0.56881,
+     0.29981
+    ],
+    "intercept": -0.03246,
+    "A": 1.15982,
+    "B": -1.38476
+   },
+   {
+    "coef": [
+     -1.01542,
+     0.18535
+    ],
+    "intercept": -0.26838,
+    "A": 1.07669,
+    "B": -1.34692
+   },
+   {
+    "coef": [
+     -1.06871,
+     0.64581
+    ],
+    "intercept": -0.41577,
+    "A": 1.05859,
+    "B": -0.8851
+   },
+   {
+    "coef": [
+     -1.24944,
+     0.18469
+    ],
+    "intercept": -0.40848,
+    "A": 1.13037,
+    "B": -0.99094
+   },
+   {
+    "coef": [
+     -1.40361,
+     0.28696
+    ],
+    "intercept": -0.35231,
+    "A": 0.99287,
+    "B": -1.17906
+   },
+   {
+    "coef": [
+     -1.24709,
+     0.69087
+    ],
+    "intercept": -0.37098,
+    "A": 1.04015,
+    "B": -0.63026
+   },
+   {
+    "coef": [
+     -0.95926,
+     0.62439
+    ],
+    "intercept": -0.2545,
+    "A": 1.14903,
+    "B": -0.88934
+   },
+   {
+    "coef": [
+     -1.47911,
+     0.48836
+    ],
+    "intercept": -0.52831,
+    "A": 1.02491,
+    "B": -1.14955
+   },
+   {
+    "coef": [
+     -0.70064,
+     0.12238
+    ],
+    "intercept": -0.09796,
+    "A": 1.12294,
+    "B": -1.09934
+   },
+   {
+    "coef": [
+     -1.12277,
+     0.02617
+    ],
+    "intercept": -0.43787,
+    "A": 1.0942,
+    "B": -0.78656
+   },
+   {
+    "coef": [
+     -1.08312,
+     0.36683
+    ],
+    "intercept": -0.25717,
+    "A": 1.05367,
+    "B": -1.34101
+   },
+   {
+    "coef": [
+     -0.63685,
+     0.20239
+    ],
+    "intercept": -0.06348,
+    "A": 1.08618,
+    "B": -1.25765
+   },
+   {
+    "coef": [
+     -1.1349,
+     0.49295
+    ],
+    "intercept": -0.41961,
+    "A": 1.13985,
+    "B": -1.06529
+   },
+   {
+    "coef": [
+     -1.17656,
+     0.33722
+    ],
+    "intercept": -0.32837,
+    "A": 1.10721,
+    "B": -0.8838
+   },
+   {
+    "coef": [
+     -0.49102,
+     1.02525
+    ],
+    "intercept": -0.28661,
+    "A": 1.06478,
+    "B": -0.86007
+   },
+   {
+    "coef": [
+     -1.36609,
+     0.71829
+    ],
+    "intercept": -0.55619,
+    "A": 1.18986,
+    "B": -1.11638
+   },
+   {
+    "coef": [
+     -1.21867,
+     0.53378
+    ],
+    "intercept": -0.4497,
+    "A": 1.08037,
+    "B": -1.17571
+   },
+   {
+    "coef": [
+     -1.19778,
+     0.32352
+    ],
+    "intercept": -0.22843,
+    "A": 1.01305,
+    "B": -0.8853
+   },
+   {
+    "coef": [
+     -1.14106,
+     0.23399
+    ],
+    "intercept": -0.27688,
+    "A": 1.075,
+    "B": -0.78448
+   },
+   {
+    "coef": [
+     -1.11021,
+     0.24713
+    ],
+    "intercept": -0.21242,
+    "A": 1.16985,
+    "B": -0.89003
+   },
+   {
+    "coef": [
+     -1.02964,
+     0.26161
+    ],
+    "intercept": -0.23269,
+    "A": 1.18643,
+    "B": -1.06501
+   },
+   {
+    "coef": [
+     -1.3448,
+     0.00832
+    ],
+    "intercept": -0.37366,
+    "A": 1.06942,
+    "B": -1.14787
+   },
+   {
+    "coef": [
+     -1.39307,
+     -0.0591
+    ],
+    "intercept": -0.4111,
+    "A": 1.02285,
+    "B": -1.30614
+   },
+   {
+    "coef": [
+     -0.90048,
+     0.20905
+    ],
+    "intercept": -0.23194,
+    "A": 1.03758,
+    "B": -1.06515
+   },
+   {
+    "coef": [
+     -1.29763,
+     -0.12053
+    ],
+    "intercept": -0.42026,
+    "A": 1.08977,
+    "B": -1.34933
+   },
+   {
+    "coef": [
+     -0.93174,
+     0.21449
+    ],
+    "intercept": -0.29381,
+    "A": 1.09114,
+    "B": -0.81453
+   },
+   {
+    "coef": [
+     -0.9189,
+     0.17432
+    ],
+    "intercept": -0.20661,
+    "A": 1.03514,
+    "B": -0.88227
+   },
+   {
+    "coef": [
+     -2.0958,
+     -0.16201
+    ],
+    "intercept": -1.057,
+    "A": 1.12422,
+    "B": -1.28943
+   },
+   {
+    "coef": [
+     -0.91136,
+     0.08696
+    ],
+    "intercept": -0.16475,
+    "A": 1.12003,
+    "B": -1.43623
+   },
+   {
+    "coef": [
+     -1.31285,
+     0.19695
+    ],
+    "intercept": -0.37853,
+    "A": 1.08249,
+    "B": -0.82322
+   },
+   {
+    "coef": [
+     -1.59168,
+     0.41178
+    ],
+    "intercept": -0.61086,
+    "A": 1.15587,
+    "B": -1.25977
+   },
+   {
+    "coef": [
+     -0.67022,
+     0.07603
+    ],
+    "intercept": -0.10107,
+    "A": 1.07943,
+    "B": -1.25839
+   },
+   {
+    "coef": [
+     -1.17275,
+     0.08515
+    ],
+    "intercept": -0.14961,
+    "A": 1.11126,
+    "B": -0.95197
+   },
+   {
+    "coef": [
+     -0.64237,
+     1.30774
+    ],
+    "intercept": -0.57905,
+    "A": 1.23527,
+    "B": -1.4671
+   },
+   {
+    "coef": [
+     -0.97715,
+     0.15269
+    ],
+    "intercept": -0.24478,
+    "A": 1.1643,
+    "B": -0.81316
+   },
+   {
+    "coef": [
+     -1.01143,
+     0.8181
+    ],
+    "intercept": -0.38895,
+    "A": 1.11302,
+    "B": -1.07415
+   },
+   {
+    "coef": [
+     -0.8366,
+     0.48677
+    ],
+    "intercept": -0.21363,
+    "A": 1.05907,
+    "B": -0.98844
+   },
+   {
+    "coef": [
+     -0.87729,
+     0.13443
+    ],
+    "intercept": -0.10586,
+    "A": 1.08718,
+    "B": -1.1019
+   },
+   {
+    "coef": [
+     -1.24284,
+     0.9929
+    ],
+    "intercept": -0.62351,
+    "A": 1.02048,
+    "B": -1.03105
+   },
+   {
+    "coef": [
+     -1.03159,
+     0.64478
+    ],
+    "intercept": -0.31644,
+    "A": 1.05558,
+    "B": -1.13922
+   },
+   {
+    "coef": [
+     -1.00473,
+     -0.08332
+    ],
+    "intercept": -0.33162,
+    "A": 1.03116,
+    "B": -1.26306
+   },
+   {
+    "coef": [
+     -0.76419,
+     0.65469
+    ],
+    "intercept": -0.35828,
+    "A": 1.17494,
+    "B": -0.91815
+   },
+   {
+    "coef": [
+     -0.92852,
+     0.32261
+    ],
+    "intercept": -0.25754,
+    "A": 1.0865,
+    "B": -1.10086
+   },
+   {
+    "coef": [
+     -1.18854,
+     0.31985
+    ],
+    "intercept": -0.32793,
+    "A": 1.10147,
+    "B": -0.78498
+   },
+   {
+    "coef": [
+     -0.95891,
+     0.76169
+    ],
+    "intercept": -0.31994,
+    "A": 0.98548,
+    "B": -0.68475
+   },
+   {
+    "coef": [
+     -0.89776,
+     0.31333
+    ],
+    "intercept": -0.17762,
+    "A": 1.06299,
+    "B": -1.21862
+   },
+   {
+    "coef": [
+     -1.17969,
+     0.03688
+    ],
+    "intercept": -0.22781,
+    "A": 1.00217,
+    "B": -1.10377
+   },
+   {
+    "coef": [
+     -0.84223,
+     0.90118
+    ],
+    "intercept": -0.40502,
+    "A": 1.12009,
+    "B": -1.11073
+   },
+   {
+    "coef": [
+     -0.58024,
+     0.19659
+    ],
+    "intercept": -0.06491,
+    "A": 1.10272,
+    "B": -0.88185
+   },
+   {
+    "coef": [
+     -1.33155,
+     0.68642
+    ],
+    "intercept": -0.52723,
+    "A": 1.05824,
+    "B": -1.18705
+   },
+   {
+    "coef": [
+     -0.87834,
+     0.71452
+    ],
+    "intercept": -0.32758,
+    "A": 1.04061,
+    "B": -0.68386
+   },
+   {
+    "coef": [
+     -1.07955,
+     0.6583
+    ],
+    "intercept": -0.38638,
+    "A": 1.12467,
+    "B": -1.10875
+   },
+   {
+    "coef": [
+     -1.01127,
+     0.85613
+    ],
+    "intercept": -0.48217,
+    "A": 1.09183,
+    "B": -1.11172
+   },
+   {
+    "coef": [
+     -1.19193,
+     0.67907
+    ],
+    "intercept": -0.2712,
+    "A": 0.97009,
+    "B": -1.02712
+   },
+   {
+    "coef": [
+     -1.65864,
+     -0.03373
+    ],
+    "intercept": -0.67293,
+    "A": 1.08819,
+    "B": -1.15487
+   },
+   {
+    "coef": [
+     -0.9822,
+     0.29372
+    ],
+    "intercept": -0.32282,
+    "A": 1.08009,
+    "B": -0.81575
+   },
+   {
+    "coef": [
+     -1.01557,
+     0.60732
+    ],
+    "intercept": -0.21731,
+    "A": 0.94559,
+    "B": -0.95449
+   },
+   {
+    "coef": [
+     -0.92099,
+     0.75013
+    ],
+    "intercept": -0.38164,
+    "A": 1.15077,
+    "B": -1.4029
+   },
+   {
+    "coef": [
+     -1.13486,
+     0.53365
+    ],
+    "intercept": -0.40618,
+    "A": 0.99228,
+    "B": -1.2224
+   },
+   {
+    "coef": [
+     -1.35789,
+     0.14649
+    ],
+    "intercept": -0.35865,
+    "A": 1.13058,
+    "B": -1.18521
+   },
+   {
+    "coef": [
+     -0.85877,
+     0.308
+    ],
+    "intercept": -0.07936,
+    "A": 1.08842,
+    "B": -0.65067
+   },
+   {
+    "coef": [
+     -0.84946,
+     0.98846
+    ],
+    "intercept": -0.29561,
+    "A": 1.08962,
+    "B": -1.24577
+   },
+   {
+    "coef": [
+     -1.61609,
+     0.04268
+    ],
+    "intercept": -0.64199,
+    "A": 1.01388,
+    "B": -1.39573
+   },
+   {
+    "coef": [
+     -0.76837,
+     0.42581
+    ],
+    "intercept": -0.20186,
+    "A": 1.06004,
+    "B": -0.88429
+   },
+   {
+    "coef": [
+     -1.44448,
+     0.63083
+    ],
+    "intercept": -0.54733,
+    "A": 1.06503,
+    "B": -1.1989
+   },
+   {
+    "coef": [
+     -0.8819,
+     -0.03877
+    ],
+    "intercept": -0.33505,
+    "A": 1.07357,
+    "B": -0.9531
+   },
+   {
+    "coef": [
+     -0.98955,
+     0.80348
+    ],
+    "intercept": -0.45222,
+    "A": 1.02791,
+    "B": -0.92425
+   },
+   {
+    "coef": [
+     -1.15361,
+     0.01731
+    ],
+    "intercept": -0.33013,
+    "A": 1.11519,
+    "B": -1.06778
+   },
+   {
+    "coef": [
+     -1.20455,
+     0.04463
+    ],
+    "intercept": -0.30991,
+    "A": 1.06591,
+    "B": -0.85325
+   },
+   {
+    "coef": [
+     -0.96396,
+     1.0864
+    ],
+    "intercept": -0.42003,
+    "A": 1.01787,
+    "B": -1.14599
+   },
+   {
+    "coef": [
+     -1.34199,
+     0.88965
+    ],
+    "intercept": -0.61981,
+    "A": 1.08294,
+    "B": -0.9332
+   },
+   {
+    "coef": [
+     -0.73954,
+     0.38193
+    ],
+    "intercept": -0.16033,
+    "A": 1.12037,
+    "B": -1.02445
+   },
+   {
+    "coef": [
+     -0.8489,
+     0.23469
+    ],
+    "intercept": -0.0622,
+    "A": 1.14054,
+    "B": -1.14142
+   },
+   {
+    "coef": [
+     -1.19787,
+     0.11666
+    ],
+    "intercept": -0.30148,
+    "A": 1.05078,
+    "B": -1.14121
+   },
+   {
+    "coef": [
+     -0.72268,
+     0.25966
+    ],
+    "intercept": -0.21197,
+    "A": 1.10456,
+    "B": -0.91721
+   },
+   {
+    "coef": [
+     -0.81644,
+     0.2171
+    ],
+    "intercept": -0.13895,
+    "A": 1.19425,
+    "B": -1.1819
+   },
+   {
+    "coef": [
+     -0.59652,
+     0.54143
+    ],
+    "intercept": -0.06707,
+    "A": 1.19271,
+    "B": -1.13564
+   },
+   {
+    "coef": [
+     -0.63547,
+     0.36189
+    ],
+    "intercept": -0.26746,
+    "A": 1.09055,
+    "B": -0.95249
+   },
+   {
+    "coef": [
+     -0.54885,
+     1.00457
+    ],
+    "intercept": -0.25613,
+    "A": 1.08424,
+    "B": -1.07233
+   },
+   {
+    "coef": [
+     -0.95544,
+     0.30546
+    ],
+    "intercept": -0.30009,
+    "A": 1.11349,
+    "B": -1.17701
+   },
+   {
+    "coef": [
+     -0.96979,
+     0.33164
+    ],
+    "intercept": -0.17027,
+    "A": 1.01853,
+    "B": -0.75024
+   },
+   {
+    "coef": [
+     -1.40385,
+     1.21285
+    ],
+    "intercept": -0.63066,
+    "A": 1.05527,
+    "B": -1.03479
+   },
+   {
+    "coef": [
+     -0.75551,
+     0.42442
+    ],
+    "intercept": -0.18726,
+    "A": 1.06004,
+    "B": -0.78173
+   },
+   {
+    "coef": [
+     -1.18131,
+     -0.02769
+    ],
+    "intercept": -0.24457,
+    "A": 1.07726,
+    "B": -0.9909
+   },
+   {
+    "coef": [
+     -0.96611,
+     0.17858
+    ],
+    "intercept": -0.12337,
+    "A": 1.12574,
+    "B": -1.06403
+   },
+   {
+    "coef": [
+     -1.00337,
+     0.43229
+    ],
+    "intercept": -0.17134,
+    "A": 1.20618,
+    "B": -1.13953
+   },
+   {
+    "coef": [
+     -0.90686,
+     0.61711
+    ],
+    "intercept": -0.32026,
+    "A": 1.09343,
+    "B": -1.14565
+   },
+   {
+    "coef": [
+     -0.97358,
+     0.55481
+    ],
+    "intercept": -0.3142,
+    "A": 1.15349,
+    "B": -1.26399
+   }
+  ],
+  "metrics": {
+   "auc": 0.74,
+   "ci": [
+    0.63,
+    0.83
+   ],
+   "ci_folds": [
+    0.54,
+    0.92
+   ],
+   "auc_oof": 0.73
+  }
+ },
+ "demencia_dclleve": {
+  "n": 96,
+  "eventos": 18,
+  "prevalencia": 0.188,
+  "features": [
+   {
+    "name": "mr_diferido",
+    "mean": -1.2791,
+    "std": 1.2909,
+    "median": -1.3333
+   },
+   {
+    "name": "edad",
+    "mean": 67.0956,
+    "std": 13.2533,
+    "median": 70.5
+   }
+  ],
+  "coef": [
+   -1.06861,
+   0.25163
+  ],
+  "intercept": -0.37365,
+  "platt": {
+   "A": 1.22592,
+   "B": -1.46643
+  },
+  "bootstrap": [
+   {
+    "coef": [
+     -1.38541,
+     0.17261
+    ],
+    "intercept": -0.67558,
+    "A": 1.39321,
+    "B": -1.54624
+   },
+   {
+    "coef": [
+     -0.90839,
+     0.08251
+    ],
+    "intercept": -0.11006,
+    "A": 1.168,
+    "B": -1.04821
+   },
+   {
+    "coef": [
+     -1.03995,
+     -0.16737
+    ],
+    "intercept": -0.35709,
+    "A": 1.50682,
+    "B": -1.70064
+   },
+   {
+    "coef": [
+     -0.89464,
+     -0.13142
+    ],
+    "intercept": -0.18386,
+    "A": 1.15527,
+    "B": -1.27659
+   },
+   {
+    "coef": [
+     -1.0688,
+     -0.16432
+    ],
+    "intercept": -0.20456,
+    "A": 0.89174,
+    "B": -1.85085
+   },
+   {
+    "coef": [
+     -1.48661,
+     -0.1273
+    ],
+    "intercept": -0.5696,
+    "A": 1.35908,
+    "B": -1.60871
+   },
+   {
+    "coef": [
+     -1.67669,
+     1.42233
+    ],
+    "intercept": -1.49811,
+    "A": 1.08506,
+    "B": -1.86245
+   },
+   {
+    "coef": [
+     -1.78552,
+     1.34176
+    ],
+    "intercept": -1.48759,
+    "A": 1.13814,
+    "B": -1.49128
+   },
+   {
+    "coef": [
+     -1.29644,
+     1.617
+    ],
+    "intercept": -1.1249,
+    "A": 1.11594,
+    "B": -1.97842
+   },
+   {
+    "coef": [
+     -1.50315,
+     0.23659
+    ],
+    "intercept": -0.37173,
+    "A": 1.11631,
+    "B": -1.70376
+   },
+   {
+    "coef": [
+     -0.97628,
+     -0.09472
+    ],
+    "intercept": -0.29205,
+    "A": 1.14386,
+    "B": -1.61637
+   },
+   {
+    "coef": [
+     -1.40834,
+     1.73473
+    ],
+    "intercept": -1.52915,
+    "A": 1.1976,
+    "B": -1.27578
+   },
+   {
+    "coef": [
+     -0.60424,
+     0.21181
+    ],
+    "intercept": -0.12204,
+    "A": 1.26834,
+    "B": -1.3328
+   },
+   {
+    "coef": [
+     -0.5546,
+     1.14442
+    ],
+    "intercept": -0.22133,
+    "A": 1.2244,
+    "B": -1.13078
+   },
+   {
+    "coef": [
+     -0.28324,
+     -0.21953
+    ],
+    "intercept": -0.04031,
+    "A": 1.15429,
+    "B": -1.46614
+   },
+   {
+    "coef": [
+     -0.89091,
+     0.52746
+    ],
+    "intercept": -0.3117,
+    "A": 1.11571,
+    "B": -0.98772
+   },
+   {
+    "coef": [
+     -0.93779,
+     0.87419
+    ],
+    "intercept": -0.54161,
+    "A": 1.18961,
+    "B": -1.46561
+   },
+   {
+    "coef": [
+     -1.42162,
+     0.66099
+    ],
+    "intercept": -0.60837,
+    "A": 1.14022,
+    "B": -1.14651
+   },
+   {
+    "coef": [
+     -1.5665,
+     0.84651
+    ],
+    "intercept": -0.71325,
+    "A": 1.25564,
+    "B": -1.43489
+   },
+   {
+    "coef": [
+     -0.45266,
+     0.41875
+    ],
+    "intercept": -0.09634,
+    "A": 1.37797,
+    "B": -1.60837
+   },
+   {
+    "coef": [
+     -1.9271,
+     -0.31471
+    ],
+    "intercept": -0.70914,
+    "A": 1.13938,
+    "B": -1.62427
+   },
+   {
+    "coef": [
+     -1.27443,
+     0.24318
+    ],
+    "intercept": -0.39929,
+    "A": 1.40266,
+    "B": -1.59761
+   },
+   {
+    "coef": [
+     -0.61912,
+     1.07882
+    ],
+    "intercept": -0.41858,
+    "A": 1.07393,
+    "B": -1.10015
+   },
+   {
+    "coef": [
+     -1.18013,
+     1.36486
+    ],
+    "intercept": -0.57616,
+    "A": 1.12933,
+    "B": -1.39242
+   },
+   {
+    "coef": [
+     -0.77726,
+     1.29732
+    ],
+    "intercept": -0.66978,
+    "A": 1.08261,
+    "B": -1.61347
+   },
+   {
+    "coef": [
+     -1.90303,
+     -0.353
+    ],
+    "intercept": -0.76259,
+    "A": 1.14148,
+    "B": -1.40189
+   },
+   {
+    "coef": [
+     -1.4382,
+     -0.2642
+    ],
+    "intercept": -0.49599,
+    "A": 1.2409,
+    "B": -1.71202
+   },
+   {
+    "coef": [
+     -1.16342,
+     -0.09654
+    ],
+    "intercept": -0.50153,
+    "A": 1.24478,
+    "B": -1.69457
+   },
+   {
+    "coef": [
+     -1.64808,
+     -0.09769
+    ],
+    "intercept": -0.77537,
+    "A": 1.13642,
+    "B": -1.06597
+   },
+   {
+    "coef": [
+     -1.14172,
+     -0.06552
+    ],
+    "intercept": -0.23559,
+    "A": 1.02501,
+    "B": -1.95548
+   },
+   {
+    "coef": [
+     -2.08655,
+     1.66491
+    ],
+    "intercept": -1.10573,
+    "A": 1.24047,
+    "B": -1.17606
+   },
+   {
+    "coef": [
+     -0.8658,
+     0.33017
+    ],
+    "intercept": -0.11102,
+    "A": 1.26646,
+    "B": -1.10045
+   },
+   {
+    "coef": [
+     -0.6549,
+     0.45152
+    ],
+    "intercept": -0.15667,
+    "A": 1.31944,
+    "B": -1.39654
+   },
+   {
+    "coef": [
+     -1.08329,
+     0.11685
+    ],
+    "intercept": -0.32464,
+    "A": 1.20164,
+    "B": -1.40464
+   },
+   {
+    "coef": [
+     -1.99607,
+     1.45706
+    ],
+    "intercept": -1.80605,
+    "A": 1.13869,
+    "B": -2.18444
+   },
+   {
+    "coef": [
+     -0.88898,
+     1.14018
+    ],
+    "intercept": -0.61291,
+    "A": 1.09749,
+    "B": -1.93301
+   },
+   {
+    "coef": [
+     -1.00835,
+     -0.16291
+    ],
+    "intercept": -0.26141,
+    "A": 1.28641,
+    "B": -1.53881
+   },
+   {
+    "coef": [
+     -0.69556,
+     0.40491
+    ],
+    "intercept": -0.17004,
+    "A": 1.26505,
+    "B": -1.60762
+   },
+   {
+    "coef": [
+     -1.52475,
+     -0.40868
+    ],
+    "intercept": -0.68657,
+    "A": 1.04725,
+    "B": -1.7727
+   },
+   {
+    "coef": [
+     -1.59842,
+     0.55737
+    ],
+    "intercept": -0.61269,
+    "A": 1.18649,
+    "B": -0.98516
+   },
+   {
+    "coef": [
+     -1.47646,
+     1.57518
+    ],
+    "intercept": -1.45003,
+    "A": 1.19126,
+    "B": -2.13469
+   },
+   {
+    "coef": [
+     -0.85784,
+     0.35142
+    ],
+    "intercept": -0.18668,
+    "A": 1.24766,
+    "B": -1.46936
+   },
+   {
+    "coef": [
+     -1.29952,
+     0.31924
+    ],
+    "intercept": -0.59234,
+    "A": 1.41665,
+    "B": -1.43965
+   },
+   {
+    "coef": [
+     -1.53364,
+     0.09201
+    ],
+    "intercept": -0.5103,
+    "A": 1.2593,
+    "B": -1.63261
+   },
+   {
+    "coef": [
+     -0.70616,
+     0.99456
+    ],
+    "intercept": -0.29516,
+    "A": 1.13151,
+    "B": -1.77136
+   },
+   {
+    "coef": [
+     -0.85072,
+     0.22101
+    ],
+    "intercept": -0.31216,
+    "A": 1.21638,
+    "B": -1.53931
+   },
+   {
+    "coef": [
+     -1.0515,
+     1.19774
+    ],
+    "intercept": -0.85501,
+    "A": 1.1282,
+    "B": -1.16751
+   },
+   {
+    "coef": [
+     -1.55526,
+     0.02797
+    ],
+    "intercept": -0.42388,
+    "A": 1.27595,
+    "B": -1.33675
+   },
+   {
+    "coef": [
+     -1.256,
+     1.93805
+    ],
+    "intercept": -1.19978,
+    "A": 1.16486,
+    "B": -1.5759
+   },
+   {
+    "coef": [
+     -1.20982,
+     1.0172
+    ],
+    "intercept": -0.58432,
+    "A": 1.17707,
+    "B": -1.67294
+   },
+   {
+    "coef": [
+     -1.2968,
+     0.33178
+    ],
+    "intercept": -0.5273,
+    "A": 1.26604,
+    "B": -1.26547
+   },
+   {
+    "coef": [
+     -1.62408,
+     -0.03961
+    ],
+    "intercept": -0.73284,
+    "A": 1.311,
+    "B": -1.32591
+   },
+   {
+    "coef": [
+     -1.51598,
+     -0.2703
+    ],
+    "intercept": -0.5991,
+    "A": 1.12434,
+    "B": -2.04977
+   },
+   {
+    "coef": [
+     -1.10022,
+     0.1331
+    ],
+    "intercept": -0.4518,
+    "A": 1.24028,
+    "B": -1.69008
+   },
+   {
+    "coef": [
+     -1.30959,
+     0.04539
+    ],
+    "intercept": -0.40582,
+    "A": 1.24172,
+    "B": -1.0097
+   },
+   {
+    "coef": [
+     -1.45259,
+     1.63316
+    ],
+    "intercept": -1.2344,
+    "A": 1.16188,
+    "B": -1.36033
+   },
+   {
+    "coef": [
+     -1.5524,
+     0.18405
+    ],
+    "intercept": -0.65293,
+    "A": 1.26028,
+    "B": -1.50149
+   },
+   {
+    "coef": [
+     -0.99704,
+     0.11778
+    ],
+    "intercept": -0.30148,
+    "A": 1.44208,
+    "B": -1.95385
+   },
+   {
+    "coef": [
+     -1.06803,
+     0.55497
+    ],
+    "intercept": -0.44766,
+    "A": 1.20827,
+    "B": -1.5321
+   },
+   {
+    "coef": [
+     -0.81618,
+     0.02013
+    ],
+    "intercept": -0.11875,
+    "A": 1.0658,
+    "B": -1.33827
+   },
+   {
+    "coef": [
+     -1.04448,
+     -0.11101
+    ],
+    "intercept": -0.31535,
+    "A": 1.18033,
+    "B": -0.99748
+   },
+   {
+    "coef": [
+     -1.467,
+     1.18661
+    ],
+    "intercept": -1.23083,
+    "A": 1.06631,
+    "B": -1.79934
+   },
+   {
+    "coef": [
+     -0.66184,
+     0.33634
+    ],
+    "intercept": -0.13448,
+    "A": 1.40755,
+    "B": -1.46839
+   },
+   {
+    "coef": [
+     -2.18337,
+     1.96192
+    ],
+    "intercept": -2.48304,
+    "A": 1.65979,
+    "B": -2.02963
+   },
+   {
+    "coef": [
+     -0.92479,
+     1.4161
+    ],
+    "intercept": -0.80647,
+    "A": 1.19076,
+    "B": -1.69783
+   },
+   {
+    "coef": [
+     -0.51662,
+     0.03452
+    ],
+    "intercept": -0.1204,
+    "A": 1.24574,
+    "B": -1.53664
+   },
+   {
+    "coef": [
+     -0.48231,
+     0.31876
+    ],
+    "intercept": -0.10692,
+    "A": 1.34101,
+    "B": -1.3333
+   },
+   {
+    "coef": [
+     -0.65992,
+     0.09517
+    ],
+    "intercept": -0.13067,
+    "A": 1.03527,
+    "B": -1.6095
+   },
+   {
+    "coef": [
+     -1.4327,
+     0.18273
+    ],
+    "intercept": -0.47116,
+    "A": 1.16965,
+    "B": -1.16878
+   },
+   {
+    "coef": [
+     -0.90756,
+     0.3161
+    ],
+    "intercept": -0.18757,
+    "A": 1.46501,
+    "B": -1.77345
+   },
+   {
+    "coef": [
+     -0.61644,
+     1.78701
+    ],
+    "intercept": -0.77885,
+    "A": 1.20664,
+    "B": -2.06654
+   },
+   {
+    "coef": [
+     -1.35515,
+     -0.14822
+    ],
+    "intercept": -0.19275,
+    "A": 0.97552,
+    "B": -2.15753
+   },
+   {
+    "coef": [
+     -1.04167,
+     0.27261
+    ],
+    "intercept": -0.35408,
+    "A": 1.15406,
+    "B": -1.45969
+   },
+   {
+    "coef": [
+     -0.55347,
+     -0.01716
+    ],
+    "intercept": 0.00205,
+    "A": 1.12701,
+    "B": -0.99246
+   },
+   {
+    "coef": [
+     -1.66213,
+     0.08657
+    ],
+    "intercept": -0.55666,
+    "A": 1.18379,
+    "B": -1.17734
+   },
+   {
+    "coef": [
+     -1.03341,
+     -0.38883
+    ],
+    "intercept": -0.20356,
+    "A": 1.25102,
+    "B": -1.78083
+   },
+   {
+    "coef": [
+     -0.49938,
+     0.47194
+    ],
+    "intercept": -0.1384,
+    "A": 1.23711,
+    "B": -1.09745
+   },
+   {
+    "coef": [
+     -1.43915,
+     -0.08016
+    ],
+    "intercept": -0.38511,
+    "A": 1.07499,
+    "B": -1.70144
+   },
+   {
+    "coef": [
+     -2.55682,
+     -0.61336
+    ],
+    "intercept": -1.46047,
+    "A": 1.40382,
+    "B": -1.41324
+   },
+   {
+    "coef": [
+     -1.15754,
+     -0.05655
+    ],
+    "intercept": -0.41815,
+    "A": 1.20607,
+    "B": -1.46609
+   },
+   {
+    "coef": [
+     -1.55441,
+     0.09926
+    ],
+    "intercept": -0.51524,
+    "A": 1.05599,
+    "B": -1.62675
+   },
+   {
+    "coef": [
+     -0.89612,
+     -0.13452
+    ],
+    "intercept": -0.20066,
+    "A": 1.24921,
+    "B": -1.04656
+   },
+   {
+    "coef": [
+     -1.54082,
+     0.37719
+    ],
+    "intercept": -0.48752,
+    "A": 1.17037,
+    "B": -1.60748
+   },
+   {
+    "coef": [
+     -0.87673,
+     0.13076
+    ],
+    "intercept": -0.28734,
+    "A": 1.28405,
+    "B": -1.47371
+   },
+   {
+    "coef": [
+     -0.98818,
+     -0.12762
+    ],
+    "intercept": -0.11788,
+    "A": 1.28685,
+    "B": -1.54209
+   },
+   {
+    "coef": [
+     -0.96457,
+     0.16421
+    ],
+    "intercept": -0.15091,
+    "A": 1.21322,
+    "B": -1.60942
+   },
+   {
+    "coef": [
+     -0.63658,
+     1.31868
+    ],
+    "intercept": -0.58627,
+    "A": 1.1523,
+    "B": -1.34886
+   },
+   {
+    "coef": [
+     -1.41854,
+     0.90645
+    ],
+    "intercept": -1.05979,
+    "A": 1.18699,
+    "B": -1.2208
+   },
+   {
+    "coef": [
+     -0.88501,
+     -0.1252
+    ],
+    "intercept": -0.19584,
+    "A": 1.03983,
+    "B": -1.39774
+   },
+   {
+    "coef": [
+     -0.82623,
+     0.00716
+    ],
+    "intercept": -0.15675,
+    "A": 1.30656,
+    "B": -1.21799
+   },
+   {
+    "coef": [
+     -2.11475,
+     1.0269
+    ],
+    "intercept": -1.62883,
+    "A": 1.18726,
+    "B": -1.8326
+   },
+   {
+    "coef": [
+     -1.20285,
+     -0.45763
+    ],
+    "intercept": -0.33625,
+    "A": 1.30236,
+    "B": -1.87549
+   },
+   {
+    "coef": [
+     -1.08306,
+     1.19812
+    ],
+    "intercept": -0.7502,
+    "A": 1.18218,
+    "B": -1.52403
+   },
+   {
+    "coef": [
+     -1.02908,
+     0.33293
+    ],
+    "intercept": -0.21782,
+    "A": 1.35155,
+    "B": -1.60743
+   },
+   {
+    "coef": [
+     -0.85433,
+     0.29171
+    ],
+    "intercept": -0.17,
+    "A": 1.27534,
+    "B": -1.86262
+   },
+   {
+    "coef": [
+     -0.74588,
+     1.40231
+    ],
+    "intercept": -0.54214,
+    "A": 1.03731,
+    "B": -1.75925
+   },
+   {
+    "coef": [
+     -2.13424,
+     0.09345
+    ],
+    "intercept": -1.10767,
+    "A": 1.30335,
+    "B": -1.29541
+   },
+   {
+    "coef": [
+     -0.49682,
+     0.15382
+    ],
+    "intercept": -0.03587,
+    "A": 1.25802,
+    "B": -1.60961
+   },
+   {
+    "coef": [
+     -1.40669,
+     0.331
+    ],
+    "intercept": -0.40685,
+    "A": 1.18029,
+    "B": -1.69781
+   },
+   {
+    "coef": [
+     -1.26975,
+     0.22718
+    ],
+    "intercept": -0.47473,
+    "A": 1.08831,
+    "B": -1.22073
+   },
+   {
+    "coef": [
+     -1.57225,
+     0.04062
+    ],
+    "intercept": -0.86203,
+    "A": 1.18046,
+    "B": -1.50346
+   },
+   {
+    "coef": [
+     -0.81335,
+     -0.04162
+    ],
+    "intercept": -0.09328,
+    "A": 1.2132,
+    "B": -2.27438
+   },
+   {
+    "coef": [
+     -1.71049,
+     -0.27544
+    ],
+    "intercept": -0.87342,
+    "A": 1.14081,
+    "B": -1.21983
+   },
+   {
+    "coef": [
+     -2.03457,
+     0.91064
+    ],
+    "intercept": -1.41596,
+    "A": 1.19785,
+    "B": -1.24913
+   },
+   {
+    "coef": [
+     -1.30049,
+     -0.08949
+    ],
+    "intercept": -0.63663,
+    "A": 1.10043,
+    "B": -1.70244
+   },
+   {
+    "coef": [
+     -1.36844,
+     0.16313
+    ],
+    "intercept": -0.41478,
+    "A": 1.44085,
+    "B": -1.54358
+   },
+   {
+    "coef": [
+     -1.58644,
+     0.05718
+    ],
+    "intercept": -0.87411,
+    "A": 1.17877,
+    "B": -1.56282
+   },
+   {
+    "coef": [
+     -1.46924,
+     1.52576
+    ],
+    "intercept": -1.07708,
+    "A": 0.99738,
+    "B": -1.31294
+   },
+   {
+    "coef": [
+     -1.1741,
+     1.28394
+    ],
+    "intercept": -0.8811,
+    "A": 1.26708,
+    "B": -1.54478
+   },
+   {
+    "coef": [
+     -1.49534,
+     0.03828
+    ],
+    "intercept": -0.72753,
+    "A": 1.16727,
+    "B": -1.29032
+   },
+   {
+    "coef": [
+     -1.68791,
+     1.47476
+    ],
+    "intercept": -1.10828,
+    "A": 1.12845,
+    "B": -1.54356
+   },
+   {
+    "coef": [
+     -1.93182,
+     1.64558
+    ],
+    "intercept": -2.03051,
+    "A": 1.35194,
+    "B": -1.95505
+   },
+   {
+    "coef": [
+     -0.63681,
+     0.2702
+    ],
+    "intercept": -0.06106,
+    "A": 1.32935,
+    "B": -1.68586
+   },
+   {
+    "coef": [
+     -1.4587,
+     0.66685
+    ],
+    "intercept": -0.74566,
+    "A": 1.22192,
+    "B": -0.7808
+   },
+   {
+    "coef": [
+     -1.06719,
+     0.93845
+    ],
+    "intercept": -0.44568,
+    "A": 1.09963,
+    "B": -1.53913
+   },
+   {
+    "coef": [
+     -1.3628,
+     0.94381
+    ],
+    "intercept": -0.77992,
+    "A": 1.368,
+    "B": -1.7546
+   },
+   {
+    "coef": [
+     -0.25651,
+     0.00782
+    ],
+    "intercept": -0.02867,
+    "A": 1.19589,
+    "B": -1.6871
+   },
+   {
+    "coef": [
+     -0.72365,
+     0.68392
+    ],
+    "intercept": -0.35847,
+    "A": 1.15784,
+    "B": -1.1459
+   },
+   {
+    "coef": [
+     -1.00401,
+     0.09836
+    ],
+    "intercept": -0.36178,
+    "A": 1.28827,
+    "B": -1.21204
+   },
+   {
+    "coef": [
+     -1.45093,
+     0.09456
+    ],
+    "intercept": -0.67351,
+    "A": 1.15807,
+    "B": -1.70348
+   },
+   {
+    "coef": [
+     -1.29386,
+     1.12199
+    ],
+    "intercept": -0.80237,
+    "A": 1.18731,
+    "B": -1.38784
+   },
+   {
+    "coef": [
+     -0.39342,
+     -0.102
+    ],
+    "intercept": -0.09214,
+    "A": 1.09325,
+    "B": -1.68729
+   },
+   {
+    "coef": [
+     -1.07268,
+     -0.13868
+    ],
+    "intercept": -0.11747,
+    "A": 1.26926,
+    "B": -2.14079
+   },
+   {
+    "coef": [
+     -1.06746,
+     1.14065
+    ],
+    "intercept": -0.62881,
+    "A": 1.04056,
+    "B": -1.38959
+   },
+   {
+    "coef": [
+     -1.55521,
+     -0.21891
+    ],
+    "intercept": -0.52665,
+    "A": 1.121,
+    "B": -1.62477
+   },
+   {
+    "coef": [
+     -1.65431,
+     1.05516
+    ],
+    "intercept": -1.19674,
+    "A": 1.10918,
+    "B": -1.86806
+   },
+   {
+    "coef": [
+     -1.04183,
+     -0.07905
+    ],
+    "intercept": -0.27619,
+    "A": 1.30531,
+    "B": -1.28168
+   },
+   {
+    "coef": [
+     -1.03862,
+     1.11044
+    ],
+    "intercept": -0.69505,
+    "A": 1.25174,
+    "B": -1.23438
+   },
+   {
+    "coef": [
+     -1.60356,
+     0.11388
+    ],
+    "intercept": -0.44255,
+    "A": 1.33474,
+    "B": -1.51131
+   },
+   {
+    "coef": [
+     -0.44804,
+     0.27982
+    ],
+    "intercept": -0.13221,
+    "A": 1.43538,
+    "B": -1.53393
+   },
+   {
+    "coef": [
+     -1.3038,
+     0.0435
+    ],
+    "intercept": -0.62039,
+    "A": 1.17148,
+    "B": -1.28559
+   },
+   {
+    "coef": [
+     -1.51434,
+     1.70397
+    ],
+    "intercept": -0.84255,
+    "A": 1.19964,
+    "B": -1.37763
+   },
+   {
+    "coef": [
+     -0.97938,
+     1.43519
+    ],
+    "intercept": -0.94703,
+    "A": 1.39973,
+    "B": -1.90196
+   },
+   {
+    "coef": [
+     -0.87731,
+     1.44121
+    ],
+    "intercept": -1.01299,
+    "A": 1.29396,
+    "B": -1.651
+   },
+   {
+    "coef": [
+     -1.12435,
+     1.27887
+    ],
+    "intercept": -0.91281,
+    "A": 1.27431,
+    "B": -1.42058
+   },
+   {
+    "coef": [
+     -1.46688,
+     0.17807
+    ],
+    "intercept": -0.67377,
+    "A": 1.17247,
+    "B": -1.86658
+   },
+   {
+    "coef": [
+     -1.09603,
+     0.33716
+    ],
+    "intercept": -0.42858,
+    "A": 1.35007,
+    "B": -1.53565
+   },
+   {
+    "coef": [
+     -1.21589,
+     0.2867
+    ],
+    "intercept": -0.50877,
+    "A": 1.04379,
+    "B": -1.16011
+   },
+   {
+    "coef": [
+     -1.5108,
+     0.28105
+    ],
+    "intercept": -0.68611,
+    "A": 1.25201,
+    "B": -1.48055
+   },
+   {
+    "coef": [
+     -0.99667,
+     0.08954
+    ],
+    "intercept": -0.13982,
+    "A": 1.27364,
+    "B": -1.22404
+   },
+   {
+    "coef": [
+     -1.29824,
+     -0.31702
+    ],
+    "intercept": -0.39438,
+    "A": 1.29324,
+    "B": -1.11068
+   },
+   {
+    "coef": [
+     -1.01551,
+     0.18184
+    ],
+    "intercept": -0.40332,
+    "A": 1.17765,
+    "B": -1.33833
+   },
+   {
+    "coef": [
+     -0.50081,
+     0.78116
+    ],
+    "intercept": -0.26758,
+    "A": 1.09124,
+    "B": -1.15835
+   },
+   {
+    "coef": [
+     -0.90016,
+     -0.10179
+    ],
+    "intercept": -0.22139,
+    "A": 1.23658,
+    "B": -0.94341
+   },
+   {
+    "coef": [
+     -1.60151,
+     0.39864
+    ],
+    "intercept": -0.67318,
+    "A": 1.13169,
+    "B": -0.99315
+   },
+   {
+    "coef": [
+     -2.1498,
+     -0.22733
+    ],
+    "intercept": -0.78575,
+    "A": 1.42845,
+    "B": -1.56214
+   },
+   {
+    "coef": [
+     -1.22319,
+     1.90457
+    ],
+    "intercept": -1.58157,
+    "A": 1.07845,
+    "B": -2.04348
+   },
+   {
+    "coef": [
+     -1.13393,
+     0.89318
+    ],
+    "intercept": -0.8185,
+    "A": 1.4546,
+    "B": -1.59187
+   },
+   {
+    "coef": [
+     -2.45284,
+     -0.29241
+    ],
+    "intercept": -1.70447,
+    "A": 1.36527,
+    "B": -1.93158
+   },
+   {
+    "coef": [
+     -0.96151,
+     0.19163
+    ],
+    "intercept": -0.31436,
+    "A": 1.34767,
+    "B": -1.26343
+   },
+   {
+    "coef": [
+     -0.6169,
+     0.39386
+    ],
+    "intercept": -0.26712,
+    "A": 1.26357,
+    "B": -1.21013
+   },
+   {
+    "coef": [
+     -1.43068,
+     0.18232
+    ],
+    "intercept": -0.71462,
+    "A": 1.1624,
+    "B": -1.70614
+   },
+   {
+    "coef": [
+     -0.76542,
+     0.32721
+    ],
+    "intercept": -0.12883,
+    "A": 1.19906,
+    "B": -1.46346
+   },
+   {
+    "coef": [
+     -0.715,
+     -0.0045
+    ],
+    "intercept": -0.16406,
+    "A": 0.9211,
+    "B": -1.33579
+   },
+   {
+    "coef": [
+     -1.97523,
+     0.01088
+    ],
+    "intercept": -0.82841,
+    "A": 1.20495,
+    "B": -1.64357
+   },
+   {
+    "coef": [
+     -0.80356,
+     0.56675
+    ],
+    "intercept": -0.2855,
+    "A": 1.12276,
+    "B": -1.20267
+   },
+   {
+    "coef": [
+     -1.6418,
+     -0.08523
+    ],
+    "intercept": -0.68331,
+    "A": 1.11608,
+    "B": -1.11785
+   },
+   {
+    "coef": [
+     -1.87181,
+     1.68766
+    ],
+    "intercept": -1.42767,
+    "A": 1.30236,
+    "B": -1.45299
+   },
+   {
+    "coef": [
+     -0.67622,
+     0.23645
+    ],
+    "intercept": -0.23212,
+    "A": 1.23591,
+    "B": -1.40028
+   },
+   {
+    "coef": [
+     -1.36397,
+     0.03341
+    ],
+    "intercept": -0.57717,
+    "A": 1.13818,
+    "B": -1.48658
+   },
+   {
+    "coef": [
+     -0.64657,
+     1.07982
+    ],
+    "intercept": -0.32653,
+    "A": 1.11804,
+    "B": -1.27523
+   },
+   {
+    "coef": [
+     -1.32944,
+     -0.19314
+    ],
+    "intercept": -0.21653,
+    "A": 1.11009,
+    "B": -1.05298
+   },
+   {
+    "coef": [
+     -0.96093,
+     -0.07677
+    ],
+    "intercept": -0.2792,
+    "A": 1.16753,
+    "B": -1.33656
+   },
+   {
+    "coef": [
+     -0.9449,
+     0.02198
+    ],
+    "intercept": -0.20109,
+    "A": 1.15641,
+    "B": -1.61393
+   },
+   {
+    "coef": [
+     -0.73467,
+     0.10947
+    ],
+    "intercept": -0.27434,
+    "A": 1.16178,
+    "B": -1.40166
+   },
+   {
+    "coef": [
+     -1.76338,
+     0.04433
+    ],
+    "intercept": -0.58403,
+    "A": 1.24335,
+    "B": -1.97024
+   },
+   {
+    "coef": [
+     -1.27196,
+     0.22708
+    ],
+    "intercept": -0.67257,
+    "A": 1.33436,
+    "B": -1.54407
+   },
+   {
+    "coef": [
+     -1.60272,
+     0.26688
+    ],
+    "intercept": -0.77642,
+    "A": 1.16478,
+    "B": -1.21813
+   },
+   {
+    "coef": [
+     -1.35128,
+     1.36168
+    ],
+    "intercept": -1.11471,
+    "A": 1.2416,
+    "B": -1.28914
+   },
+   {
+    "coef": [
+     -1.16663,
+     -0.1277
+    ],
+    "intercept": -0.37304,
+    "A": 1.04561,
+    "B": -1.47439
+   },
+   {
+    "coef": [
+     -1.81248,
+     1.42394
+    ],
+    "intercept": -1.24239,
+    "A": 1.1435,
+    "B": -1.63562
+   },
+   {
+    "coef": [
+     -1.19858,
+     -0.20863
+    ],
+    "intercept": -0.22758,
+    "A": 0.97584,
+    "B": -1.7697
+   },
+   {
+    "coef": [
+     -1.1918,
+     0.16904
+    ],
+    "intercept": -0.5204,
+    "A": 1.2837,
+    "B": -1.15926
+   },
+   {
+    "coef": [
+     -2.00478,
+     -0.45804
+    ],
+    "intercept": -1.00967,
+    "A": 1.09304,
+    "B": -1.55236
+   },
+   {
+    "coef": [
+     -0.74323,
+     0.0002
+    ],
+    "intercept": -0.13505,
+    "A": 1.14035,
+    "B": -1.77246
+   },
+   {
+    "coef": [
+     -0.66502,
+     0.90316
+    ],
+    "intercept": -0.50419,
+    "A": 1.01989,
+    "B": -0.93557
+   },
+   {
+    "coef": [
+     -1.28027,
+     -0.24505
+    ],
+    "intercept": -0.55117,
+    "A": 1.12008,
+    "B": -1.51646
+   },
+   {
+    "coef": [
+     -1.87975,
+     1.55847
+    ],
+    "intercept": -1.7398,
+    "A": 1.33089,
+    "B": -1.48304
+   },
+   {
+    "coef": [
+     -1.33411,
+     -0.05294
+    ],
+    "intercept": -0.58085,
+    "A": 1.37257,
+    "B": -1.6134
+   },
+   {
+    "coef": [
+     -1.12267,
+     0.00138
+    ],
+    "intercept": -0.31984,
+    "A": 1.28898,
+    "B": -1.6232
+   },
+   {
+    "coef": [
+     -0.9965,
+     -0.14443
+    ],
+    "intercept": -0.24071,
+    "A": 1.1735,
+    "B": -1.15713
+   },
+   {
+    "coef": [
+     -1.1003,
+     0.22977
+    ],
+    "intercept": -0.30368,
+    "A": 0.98908,
+    "B": -1.53625
+   },
+   {
+    "coef": [
+     -0.3796,
+     1.13851
+    ],
+    "intercept": -0.41905,
+    "A": 1.10968,
+    "B": -1.16247
+   },
+   {
+    "coef": [
+     -1.3647,
+     0.03513
+    ],
+    "intercept": -0.54979,
+    "A": 1.0808,
+    "B": -1.78075
+   },
+   {
+    "coef": [
+     -1.16479,
+     -0.28353
+    ],
+    "intercept": -0.41688,
+    "A": 1.26349,
+    "B": -1.63097
+   },
+   {
+    "coef": [
+     -0.85815,
+     0.10091
+    ],
+    "intercept": -0.16575,
+    "A": 1.16067,
+    "B": -1.4027
+   },
+   {
+    "coef": [
+     -1.27938,
+     1.23123
+    ],
+    "intercept": -0.54042,
+    "A": 0.8107,
+    "B": -1.71953
+   },
+   {
+    "coef": [
+     -1.10302,
+     1.26197
+    ],
+    "intercept": -0.99764,
+    "A": 1.27289,
+    "B": -1.29422
+   },
+   {
+    "coef": [
+     -1.96208,
+     -0.13312
+    ],
+    "intercept": -0.88808,
+    "A": 1.23176,
+    "B": -1.29945
+   },
+   {
+    "coef": [
+     -0.94615,
+     0.09597
+    ],
+    "intercept": -0.30916,
+    "A": 1.35203,
+    "B": -1.94675
+   },
+   {
+    "coef": [
+     -1.33622,
+     0.14842
+    ],
+    "intercept": -0.35762,
+    "A": 1.11365,
+    "B": -1.28611
+   },
+   {
+    "coef": [
+     -0.95488,
+     0.27794
+    ],
+    "intercept": -0.31792,
+    "A": 1.45357,
+    "B": -1.53752
+   },
+   {
+    "coef": [
+     -0.53595,
+     -0.23547
+    ],
+    "intercept": -0.08917,
+    "A": 1.11368,
+    "B": -1.85313
+   },
+   {
+    "coef": [
+     -1.00845,
+     0.30277
+    ],
+    "intercept": -0.39841,
+    "A": 1.15414,
+    "B": -1.39451
+   },
+   {
+    "coef": [
+     -1.73091,
+     1.39199
+    ],
+    "intercept": -1.23066,
+    "A": 1.04957,
+    "B": -2.16337
+   },
+   {
+    "coef": [
+     -0.84758,
+     1.73133
+    ],
+    "intercept": -0.85262,
+    "A": 1.13765,
+    "B": -1.46168
+   },
+   {
+    "coef": [
+     -1.50917,
+     -0.23764
+    ],
+    "intercept": -0.56658,
+    "A": 1.37901,
+    "B": -1.9372
+   },
+   {
+    "coef": [
+     -1.42576,
+     -0.13606
+    ],
+    "intercept": -0.55779,
+    "A": 1.3279,
+    "B": -1.4818
+   },
+   {
+    "coef": [
+     -1.37462,
+     0.38724
+    ],
+    "intercept": -0.59316,
+    "A": 1.17604,
+    "B": -1.5408
+   },
+   {
+    "coef": [
+     -0.82671,
+     0.33934
+    ],
+    "intercept": -0.22263,
+    "A": 1.09664,
+    "B": -1.46622
+   }
+  ],
+  "metrics": {
+   "auc": 0.76,
+   "ci": [
+    0.59,
+    0.88
+   ],
+   "ci_folds": [
+    0.53,
+    1.0
+   ],
+   "auc_oof": 0.75
+  }
+ },
+ "declive_fiable": {
+  "n": 250,
+  "eventos": 47,
+  "prevalencia": 0.188,
+  "features": [
+   {
+    "name": "edad",
+    "mean": 67.0121,
+    "std": 14.2934,
+    "median": 71.0
+   },
+   {
+    "name": "rey_trial1",
+    "mean": -1.0661,
+    "std": 1.2501,
+    "median": -1.1429
+   },
+   {
+    "name": "intrusiones",
+    "mean": 4.1573,
+    "std": 3.6105,
+    "median": 3.0
+   },
+   {
+    "name": "z_premorbido",
+    "mean": -0.1201,
+    "std": 0.6469,
+    "median": 0.0
+   },
+   {
+    "name": "hayling",
+    "mean": -1.0465,
+    "std": 1.4152,
+    "median": -0.91
+   }
+  ],
+  "coef": [
+   0.1974,
+   -0.35763,
+   0.46463,
+   0.36913,
+   -0.2381
+  ],
+  "intercept": -0.17345,
+  "platt": {
+   "A": 1.00034,
+   "B": -1.45867
+  },
+  "bootstrap": [
+   {
+    "coef": [
+     0.17583,
+     -0.30975,
+     0.24465,
+     0.69838,
+     -0.40323
+    ],
+    "intercept": -0.26846,
+    "A": 1.05729,
+    "B": -1.31322
+   },
+   {
+    "coef": [
+     0.22944,
+     -0.48455,
+     0.20039,
+     0.43022,
+     -0.11916
+    ],
+    "intercept": -0.16411,
+    "A": 1.0524,
+    "B": -1.43604
+   },
+   {
+    "coef": [
+     -0.25981,
+     -0.2567,
+     0.73302,
+     0.78337,
+     -0.3159
+    ],
+    "intercept": -0.32863,
+    "A": 0.83391,
+    "B": -1.65297
+   },
+   {
+    "coef": [
+     -0.23683,
+     -0.4303,
+     0.67643,
+     0.57564,
+     -0.27636
+    ],
+    "intercept": -0.16226,
+    "A": 0.87309,
+    "B": -1.46449
+   },
+   {
+    "coef": [
+     0.04939,
+     -0.25745,
+     0.43794,
+     0.47929,
+     0.09085
+    ],
+    "intercept": -0.23333,
+    "A": 0.98662,
+    "B": -1.43697
+   },
+   {
+    "coef": [
+     2.08437,
+     -0.43168,
+     0.57313,
+     0.37726,
+     0.06363
+    ],
+    "intercept": -0.91278,
+    "A": 1.02684,
+    "B": -1.54248
+   },
+   {
+    "coef": [
+     -0.16094,
+     -0.56451,
+     0.28412,
+     0.16335,
+     0.00867
+    ],
+    "intercept": -0.05072,
+    "A": 0.80557,
+    "B": -1.51448
+   },
+   {
+    "coef": [
+     0.56385,
+     -0.59673,
+     0.39548,
+     0.40517,
+     -0.27043
+    ],
+    "intercept": -0.31604,
+    "A": 1.0606,
+    "B": -1.39821
+   },
+   {
+    "coef": [
+     0.92505,
+     -0.62774,
+     0.44442,
+     0.50013,
+     -0.21575
+    ],
+    "intercept": -0.38917,
+    "A": 1.01772,
+    "B": -1.36581
+   },
+   {
+    "coef": [
+     1.30661,
+     -0.1963,
+     0.53571,
+     0.25809,
+     -0.05539
+    ],
+    "intercept": -0.4788,
+    "A": 0.96576,
+    "B": -1.4526
+   },
+   {
+    "coef": [
+     0.41597,
+     -0.29158,
+     0.69879,
+     0.60872,
+     -0.18505
+    ],
+    "intercept": -0.53455,
+    "A": 1.03098,
+    "B": -1.4688
+   },
+   {
+    "coef": [
+     0.49895,
+     -0.68091,
+     0.67834,
+     0.50884,
+     -0.06608
+    ],
+    "intercept": -0.33628,
+    "A": 0.97281,
+    "B": -1.49354
+   },
+   {
+    "coef": [
+     0.13005,
+     -0.32568,
+     0.52068,
+     0.32923,
+     -0.24145
+    ],
+    "intercept": -0.18772,
+    "A": 0.98117,
+    "B": -1.71796
+   },
+   {
+    "coef": [
+     0.02993,
+     -0.52629,
+     0.50882,
+     -0.03221,
+     -0.82936
+    ],
+    "intercept": -0.34468,
+    "A": 0.97254,
+    "B": -1.63177
+   },
+   {
+    "coef": [
+     0.21542,
+     -0.38314,
+     0.57419,
+     0.17066,
+     -0.3747
+    ],
+    "intercept": -0.17025,
+    "A": 0.87146,
+    "B": -1.5932
+   },
+   {
+    "coef": [
+     0.36804,
+     -0.24049,
+     0.53279,
+     0.28011,
+     -0.03385
+    ],
+    "intercept": -0.15139,
+    "A": 0.98236,
+    "B": -1.67529
+   },
+   {
+    "coef": [
+     0.53487,
+     -0.2937,
+     0.49827,
+     0.20811,
+     -0.31115
+    ],
+    "intercept": -0.36734,
+    "A": 0.96061,
+    "B": -1.75711
+   },
+   {
+    "coef": [
+     -0.14098,
+     -0.7253,
+     0.399,
+     0.20692,
+     -0.0781
+    ],
+    "intercept": -0.0931,
+    "A": 0.83929,
+    "B": -1.23793
+   },
+   {
+    "coef": [
+     0.19998,
+     -0.42838,
+     0.21347,
+     0.24537,
+     -0.39596
+    ],
+    "intercept": -0.07005,
+    "A": 0.93961,
+    "B": -1.54113
+   },
+   {
+    "coef": [
+     0.19369,
+     -0.12311,
+     0.35671,
+     0.44984,
+     -0.32272
+    ],
+    "intercept": -0.10553,
+    "A": 1.11364,
+    "B": -1.24188
+   },
+   {
+    "coef": [
+     0.41581,
+     -0.41182,
+     0.6985,
+     0.76707,
+     -0.14544
+    ],
+    "intercept": -0.44022,
+    "A": 0.97862,
+    "B": -1.42892
+   },
+   {
+    "coef": [
+     0.28576,
+     -0.43177,
+     0.68724,
+     0.18659,
+     -0.25825
+    ],
+    "intercept": -0.13875,
+    "A": 0.97971,
+    "B": -1.59205
+   },
+   {
+    "coef": [
+     0.34235,
+     -0.06342,
+     0.25245,
+     0.30376,
+     -0.34646
+    ],
+    "intercept": -0.18319,
+    "A": 1.01468,
+    "B": -1.62472
+   },
+   {
+    "coef": [
+     -0.02722,
+     -0.21512,
+     0.67617,
+     0.54263,
+     -0.13858
+    ],
+    "intercept": -0.224,
+    "A": 1.00459,
+    "B": -1.38617
+   },
+   {
+    "coef": [
+     0.25798,
+     -0.75404,
+     0.20928,
+     0.09016,
+     -0.35677
+    ],
+    "intercept": -0.1205,
+    "A": 0.97255,
+    "B": -1.41043
+   },
+   {
+    "coef": [
+     0.54147,
+     -0.3843,
+     0.53421,
+     0.84673,
+     -0.53917
+    ],
+    "intercept": -0.48276,
+    "A": 1.06079,
+    "B": -1.5344
+   },
+   {
+    "coef": [
+     0.46613,
+     -0.45588,
+     0.59241,
+     0.29084,
+     -0.03856
+    ],
+    "intercept": -0.21679,
+    "A": 0.93311,
+    "B": -1.34773
+   },
+   {
+    "coef": [
+     -0.0331,
+     -0.2919,
+     0.81346,
+     0.47629,
+     -0.0986
+    ],
+    "intercept": -0.21793,
+    "A": 0.84453,
+    "B": -1.68289
+   },
+   {
+    "coef": [
+     -0.09567,
+     -0.39924,
+     0.61708,
+     0.61361,
+     -0.60097
+    ],
+    "intercept": -0.16867,
+    "A": 0.83063,
+    "B": -1.40723
+   },
+   {
+    "coef": [
+     -0.01602,
+     -0.27052,
+     0.60189,
+     0.21078,
+     -0.34896
+    ],
+    "intercept": -0.10063,
+    "A": 0.94886,
+    "B": -1.40995
+   },
+   {
+    "coef": [
+     0.30517,
+     -0.78891,
+     0.44246,
+     0.26353,
+     -0.16279
+    ],
+    "intercept": -0.28314,
+    "A": 0.9393,
+    "B": -1.30078
+   },
+   {
+    "coef": [
+     0.79021,
+     0.01999,
+     0.465,
+     0.62344,
+     -0.63988
+    ],
+    "intercept": -0.50743,
+    "A": 1.02995,
+    "B": -1.66364
+   },
+   {
+    "coef": [
+     -0.04121,
+     -0.32204,
+     0.69803,
+     0.1254,
+     -0.08207
+    ],
+    "intercept": -0.21914,
+    "A": 0.97763,
+    "B": -1.24172
+   },
+   {
+    "coef": [
+     0.01822,
+     -0.55513,
+     0.40987,
+     0.58148,
+     -0.68218
+    ],
+    "intercept": -0.26709,
+    "A": 0.95817,
+    "B": -1.08917
+   },
+   {
+    "coef": [
+     0.7383,
+     -0.31885,
+     0.23689,
+     0.47171,
+     -0.07614
+    ],
+    "intercept": -0.31882,
+    "A": 1.01865,
+    "B": -1.59269
+   },
+   {
+    "coef": [
+     0.82421,
+     -0.26126,
+     0.5787,
+     0.01937,
+     -0.31913
+    ],
+    "intercept": -0.39061,
+    "A": 0.91386,
+    "B": -1.21017
+   },
+   {
+    "coef": [
+     0.01455,
+     -0.00717,
+     0.3124,
+     0.31013,
+     -0.22305
+    ],
+    "intercept": -0.10289,
+    "A": 0.93252,
+    "B": -1.43778
+   },
+   {
+    "coef": [
+     0.06765,
+     -0.23203,
+     0.7343,
+     0.68204,
+     -0.25653
+    ],
+    "intercept": -0.35797,
+    "A": 0.97114,
+    "B": -1.4604
+   },
+   {
+    "coef": [
+     0.57468,
+     -0.58444,
+     0.3098,
+     1.4452,
+     -0.07457
+    ],
+    "intercept": -0.43136,
+    "A": 1.04038,
+    "B": -1.10341
+   },
+   {
+    "coef": [
+     0.00503,
+     -0.18525,
+     0.47427,
+     0.16113,
+     -0.19569
+    ],
+    "intercept": -0.05972,
+    "A": 0.92955,
+    "B": -1.46223
+   },
+   {
+    "coef": [
+     0.21227,
+     -0.58473,
+     0.43672,
+     0.47182,
+     -0.67022
+    ],
+    "intercept": -0.15723,
+    "A": 1.04968,
+    "B": -1.3848
+   },
+   {
+    "coef": [
+     1.18779,
+     -0.1582,
+     0.94712,
+     0.98748,
+     0.04385
+    ],
+    "intercept": -0.79035,
+    "A": 0.97967,
+    "B": -1.50698
+   },
+   {
+    "coef": [
+     0.0318,
+     -0.04394,
+     0.37602,
+     0.11611,
+     -0.56596
+    ],
+    "intercept": -0.03716,
+    "A": 0.97946,
+    "B": -1.57314
+   },
+   {
+    "coef": [
+     -0.05722,
+     -0.13818,
+     0.69143,
+     0.68671,
+     0.05004
+    ],
+    "intercept": -0.14476,
+    "A": 0.88332,
+    "B": -1.51733
+   },
+   {
+    "coef": [
+     0.13836,
+     -0.4086,
+     0.29844,
+     0.322,
+     -0.6633
+    ],
+    "intercept": -0.21364,
+    "A": 1.0084,
+    "B": -1.38527
+   },
+   {
+    "coef": [
+     1.08917,
+     -0.4538,
+     0.70315,
+     0.30141,
+     0.0941
+    ],
+    "intercept": -0.59528,
+    "A": 1.03662,
+    "B": -1.28648
+   },
+   {
+    "coef": [
+     0.26707,
+     -0.5663,
+     0.16929,
+     0.63768,
+     -0.32507
+    ],
+    "intercept": -0.24399,
+    "A": 1.01309,
+    "B": -1.16989
+   },
+   {
+    "coef": [
+     0.81074,
+     -0.21639,
+     0.39055,
+     0.254,
+     -0.32091
+    ],
+    "intercept": -0.40777,
+    "A": 0.97109,
+    "B": -1.51855
+   },
+   {
+    "coef": [
+     0.5705,
+     -0.51436,
+     0.63863,
+     0.50333,
+     -0.24975
+    ],
+    "intercept": -0.38062,
+    "A": 0.99935,
+    "B": -1.1005
+   },
+   {
+    "coef": [
+     0.07492,
+     -0.45331,
+     0.49476,
+     0.50245,
+     -0.26455
+    ],
+    "intercept": -0.22911,
+    "A": 0.95411,
+    "B": -1.4866
+   },
+   {
+    "coef": [
+     0.53004,
+     -0.37357,
+     0.01722,
+     0.30214,
+     -0.56783
+    ],
+    "intercept": -0.20048,
+    "A": 1.01964,
+    "B": -1.23744
+   },
+   {
+    "coef": [
+     0.43017,
+     -0.17222,
+     0.16993,
+     0.41025,
+     -0.23048
+    ],
+    "intercept": -0.17452,
+    "A": 1.11266,
+    "B": -1.65535
+   },
+   {
+    "coef": [
+     0.43938,
+     -0.27089,
+     0.31438,
+     0.29137,
+     -0.28968
+    ],
+    "intercept": -0.23529,
+    "A": 0.98003,
+    "B": -1.38107
+   },
+   {
+    "coef": [
+     -0.10519,
+     -0.29328,
+     0.41071,
+     0.36958,
+     -0.08566
+    ],
+    "intercept": -0.09396,
+    "A": 0.93001,
+    "B": -1.33689
+   },
+   {
+    "coef": [
+     0.05411,
+     -0.17052,
+     0.58102,
+     0.18932,
+     -0.32484
+    ],
+    "intercept": -0.06775,
+    "A": 0.97611,
+    "B": -1.51209
+   },
+   {
+    "coef": [
+     -0.0595,
+     -0.28346,
+     0.54145,
+     0.5822,
+     -0.2099
+    ],
+    "intercept": -0.12564,
+    "A": 0.94314,
+    "B": -1.31315
+   },
+   {
+    "coef": [
+     0.14058,
+     -0.36313,
+     0.50742,
+     0.42504,
+     0.06387
+    ],
+    "intercept": -0.12622,
+    "A": 1.02618,
+    "B": -1.40709
+   },
+   {
+    "coef": [
+     0.74987,
+     -0.91369,
+     0.26755,
+     0.80745,
+     -0.2862
+    ],
+    "intercept": -0.4806,
+    "A": 1.04951,
+    "B": -1.49518
+   },
+   {
+    "coef": [
+     0.27742,
+     -0.30509,
+     0.54377,
+     0.25222,
+     -0.15956
+    ],
+    "intercept": -0.16868,
+    "A": 0.96445,
+    "B": -1.53904
+   },
+   {
+    "coef": [
+     0.28808,
+     -0.27831,
+     0.39595,
+     0.42861,
+     -0.21786
+    ],
+    "intercept": -0.07987,
+    "A": 1.08713,
+    "B": -1.5087
+   },
+   {
+    "coef": [
+     0.20943,
+     -0.28753,
+     0.77154,
+     0.45321,
+     -0.38515
+    ],
+    "intercept": -0.38971,
+    "A": 0.984,
+    "B": -1.22671
+   },
+   {
+    "coef": [
+     0.33389,
+     -0.37589,
+     0.32041,
+     0.27071,
+     -0.45586
+    ],
+    "intercept": -0.11492,
+    "A": 0.99601,
+    "B": -1.4296
+   },
+   {
+    "coef": [
+     -0.03547,
+     -0.54422,
+     0.73276,
+     0.43214,
+     -0.31953
+    ],
+    "intercept": -0.05365,
+    "A": 0.88522,
+    "B": -1.62995
+   },
+   {
+    "coef": [
+     0.3376,
+     -0.49556,
+     0.59265,
+     0.43258,
+     -0.241
+    ],
+    "intercept": -0.14578,
+    "A": 0.97799,
+    "B": -1.55486
+   },
+   {
+    "coef": [
+     0.28735,
+     -0.68821,
+     0.23896,
+     0.41923,
+     -0.37391
+    ],
+    "intercept": -0.27119,
+    "A": 0.94616,
+    "B": -1.31148
+   },
+   {
+    "coef": [
+     0.36581,
+     -0.38484,
+     0.14715,
+     0.53965,
+     -0.2127
+    ],
+    "intercept": -0.19371,
+    "A": 1.15796,
+    "B": -1.62451
+   },
+   {
+    "coef": [
+     0.17055,
+     -0.15251,
+     0.40444,
+     0.2881,
+     -0.17217
+    ],
+    "intercept": -0.15759,
+    "A": 0.969,
+    "B": -1.53797
+   },
+   {
+    "coef": [
+     0.97226,
+     -0.2572,
+     0.34391,
+     0.59083,
+     -0.40912
+    ],
+    "intercept": -0.39617,
+    "A": 1.0663,
+    "B": -1.32421
+   },
+   {
+    "coef": [
+     0.35031,
+     -0.46111,
+     0.67862,
+     0.36291,
+     -0.22401
+    ],
+    "intercept": -0.22868,
+    "A": 0.9481,
+    "B": -1.16684
+   },
+   {
+    "coef": [
+     0.75937,
+     -0.38545,
+     0.28237,
+     0.27237,
+     -0.06091
+    ],
+    "intercept": -0.27741,
+    "A": 0.97546,
+    "B": -1.37372
+   },
+   {
+    "coef": [
+     0.58853,
+     -0.16964,
+     0.92481,
+     0.86986,
+     -0.25373
+    ],
+    "intercept": -0.63249,
+    "A": 1.04053,
+    "B": -1.63688
+   },
+   {
+    "coef": [
+     -0.25698,
+     -0.13677,
+     0.86104,
+     0.58047,
+     -0.13345
+    ],
+    "intercept": -0.06285,
+    "A": 0.98859,
+    "B": -1.33495
+   },
+   {
+    "coef": [
+     -0.12676,
+     -0.24421,
+     0.46179,
+     0.37956,
+     -0.01231
+    ],
+    "intercept": -0.11691,
+    "A": 0.94952,
+    "B": -1.46371
+   },
+   {
+    "coef": [
+     0.18548,
+     -0.44944,
+     0.49317,
+     0.25676,
+     -0.26393
+    ],
+    "intercept": -0.21239,
+    "A": 1.04486,
+    "B": -1.54255
+   },
+   {
+    "coef": [
+     -0.0359,
+     -0.40217,
+     0.83346,
+     0.51386,
+     -0.79634
+    ],
+    "intercept": -0.33292,
+    "A": 1.01939,
+    "B": -1.75818
+   },
+   {
+    "coef": [
+     0.45727,
+     -0.22815,
+     0.29687,
+     0.78259,
+     -0.36409
+    ],
+    "intercept": -0.38456,
+    "A": 1.02425,
+    "B": -1.45938
+   },
+   {
+    "coef": [
+     0.27892,
+     -0.21637,
+     0.84611,
+     0.65927,
+     -0.0991
+    ],
+    "intercept": -0.42632,
+    "A": 0.97757,
+    "B": -1.47135
+   },
+   {
+    "coef": [
+     0.0962,
+     -0.25796,
+     0.32882,
+     0.51092,
+     -0.74136
+    ],
+    "intercept": -0.15159,
+    "A": 0.92752,
+    "B": -1.63004
+   },
+   {
+    "coef": [
+     0.43278,
+     -0.42395,
+     0.27844,
+     0.00159,
+     -0.28505
+    ],
+    "intercept": -0.15038,
+    "A": 1.00637,
+    "B": -1.28077
+   },
+   {
+    "coef": [
+     -0.0936,
+     -0.21991,
+     0.63737,
+     0.06417,
+     -0.12364
+    ],
+    "intercept": -0.13804,
+    "A": 0.96232,
+    "B": -1.41117
+   },
+   {
+    "coef": [
+     0.08941,
+     -0.6553,
+     0.26612,
+     0.53908,
+     -0.26757
+    ],
+    "intercept": -0.22634,
+    "A": 1.0176,
+    "B": -1.38601
+   },
+   {
+    "coef": [
+     0.13798,
+     -0.07713,
+     0.62333,
+     0.51335,
+     -0.29239
+    ],
+    "intercept": -0.21382,
+    "A": 0.89943,
+    "B": -1.5649
+   },
+   {
+    "coef": [
+     0.27509,
+     -0.14456,
+     0.46293,
+     0.33985,
+     -0.17922
+    ],
+    "intercept": -0.17766,
+    "A": 1.00543,
+    "B": -1.32857
+   },
+   {
+    "coef": [
+     0.40851,
+     -0.41862,
+     0.4001,
+     0.39721,
+     -0.07615
+    ],
+    "intercept": -0.27618,
+    "A": 0.94858,
+    "B": -1.64209
+   },
+   {
+    "coef": [
+     0.70591,
+     -0.38652,
+     0.7129,
+     0.61864,
+     -0.20483
+    ],
+    "intercept": -0.49873,
+    "A": 1.06,
+    "B": -1.45973
+   },
+   {
+    "coef": [
+     0.32815,
+     -0.09371,
+     0.18197,
+     0.36875,
+     -0.30729
+    ],
+    "intercept": -0.08899,
+    "A": 1.211,
+    "B": -1.78104
+   },
+   {
+    "coef": [
+     0.48963,
+     -0.34119,
+     0.59063,
+     -0.04022,
+     -0.56721
+    ],
+    "intercept": -0.31297,
+    "A": 0.95311,
+    "B": -1.56235
+   },
+   {
+    "coef": [
+     0.57403,
+     -0.31709,
+     0.26893,
+     0.11711,
+     -0.15859
+    ],
+    "intercept": -0.17027,
+    "A": 1.03049,
+    "B": -1.59276
+   },
+   {
+    "coef": [
+     0.29625,
+     -0.19554,
+     0.35417,
+     0.17577,
+     -0.48585
+    ],
+    "intercept": -0.06225,
+    "A": 0.98736,
+    "B": -1.46014
+   },
+   {
+    "coef": [
+     0.2389,
+     -0.28106,
+     0.28015,
+     0.61439,
+     -0.21215
+    ],
+    "intercept": -0.23393,
+    "A": 0.95545,
+    "B": -1.35865
+   },
+   {
+    "coef": [
+     0.1437,
+     -0.50678,
+     0.77392,
+     0.31203,
+     0.0586
+    ],
+    "intercept": -0.23924,
+    "A": 0.97387,
+    "B": -1.12215
+   },
+   {
+    "coef": [
+     0.82227,
+     -0.34454,
+     0.24608,
+     0.21213,
+     -0.47253
+    ],
+    "intercept": -0.32881,
+    "A": 0.9498,
+    "B": -1.47053
+   },
+   {
+    "coef": [
+     -0.17099,
+     -0.37631,
+     0.5427,
+     0.85765,
+     -0.40824
+    ],
+    "intercept": -0.40415,
+    "A": 0.98946,
+    "B": -1.28899
+   },
+   {
+    "coef": [
+     0.26042,
+     -0.27665,
+     0.8132,
+     0.66249,
+     0.00488
+    ],
+    "intercept": -0.18796,
+    "A": 1.06985,
+    "B": -1.32385
+   },
+   {
+    "coef": [
+     -0.04822,
+     -0.05994,
+     0.79915,
+     0.48738,
+     -0.09558
+    ],
+    "intercept": -0.24529,
+    "A": 0.98315,
+    "B": -1.51692
+   },
+   {
+    "coef": [
+     0.14808,
+     -0.03076,
+     0.63724,
+     0.73456,
+     0.04456
+    ],
+    "intercept": -0.33241,
+    "A": 1.08247,
+    "B": -1.45623
+   },
+   {
+    "coef": [
+     0.56593,
+     -0.55078,
+     0.72125,
+     0.40173,
+     -0.59575
+    ],
+    "intercept": -0.30723,
+    "A": 1.09622,
+    "B": -1.62844
+   },
+   {
+    "coef": [
+     0.28622,
+     -0.37199,
+     0.48579,
+     0.44548,
+     -0.14274
+    ],
+    "intercept": -0.20988,
+    "A": 1.10846,
+    "B": -1.33044
+   },
+   {
+    "coef": [
+     0.53775,
+     -0.22827,
+     0.61043,
+     0.72767,
+     -0.19604
+    ],
+    "intercept": -0.38478,
+    "A": 0.98515,
+    "B": -1.50814
+   },
+   {
+    "coef": [
+     0.10691,
+     -0.48224,
+     0.30264,
+     0.06348,
+     -0.01682
+    ],
+    "intercept": -0.11803,
+    "A": 0.98007,
+    "B": -1.26467
+   },
+   {
+    "coef": [
+     0.33323,
+     -0.37961,
+     0.27228,
+     0.03554,
+     -0.40688
+    ],
+    "intercept": -0.11028,
+    "A": 1.06445,
+    "B": -1.3332
+   },
+   {
+    "coef": [
+     0.55053,
+     -0.26553,
+     0.47474,
+     0.38592,
+     -0.37397
+    ],
+    "intercept": -0.29498,
+    "A": 1.01311,
+    "B": -1.53314
+   },
+   {
+    "coef": [
+     0.17577,
+     -0.71584,
+     -0.02368,
+     0.4592,
+     -0.80648
+    ],
+    "intercept": -0.20582,
+    "A": 0.9641,
+    "B": -1.31392
+   },
+   {
+    "coef": [
+     0.25334,
+     -0.51406,
+     0.55777,
+     0.39395,
+     -0.02191
+    ],
+    "intercept": -0.30865,
+    "A": 1.01253,
+    "B": -1.77157
+   },
+   {
+    "coef": [
+     0.6664,
+     -0.2895,
+     0.66515,
+     0.05949,
+     -0.0135
+    ],
+    "intercept": -0.39606,
+    "A": 0.98433,
+    "B": -1.49298
+   },
+   {
+    "coef": [
+     0.33956,
+     -0.39039,
+     0.864,
+     0.55156,
+     -0.25238
+    ],
+    "intercept": -0.46455,
+    "A": 0.98809,
+    "B": -1.56503
+   },
+   {
+    "coef": [
+     -0.05172,
+     -0.4043,
+     0.60529,
+     0.46564,
+     -0.35036
+    ],
+    "intercept": -0.2494,
+    "A": 1.0001,
+    "B": -1.41216
+   },
+   {
+    "coef": [
+     0.74954,
+     -0.3409,
+     0.45608,
+     0.47973,
+     -0.23521
+    ],
+    "intercept": -0.34325,
+    "A": 0.95732,
+    "B": -1.36695
+   },
+   {
+    "coef": [
+     0.27469,
+     -0.48265,
+     0.81724,
+     0.3617,
+     -0.00638
+    ],
+    "intercept": -0.25454,
+    "A": 0.93713,
+    "B": -1.63522
+   },
+   {
+    "coef": [
+     0.0825,
+     -0.38146,
+     0.18715,
+     0.28164,
+     -0.19759
+    ],
+    "intercept": -0.03111,
+    "A": 0.93869,
+    "B": -1.17473
+   },
+   {
+    "coef": [
+     0.09674,
+     -0.47816,
+     0.45745,
+     0.43583,
+     -0.20269
+    ],
+    "intercept": -0.16509,
+    "A": 0.9355,
+    "B": -1.33235
+   },
+   {
+    "coef": [
+     -0.1532,
+     -0.47671,
+     0.33978,
+     -0.07192,
+     -0.23813
+    ],
+    "intercept": -0.03262,
+    "A": 0.8173,
+    "B": -1.62629
+   },
+   {
+    "coef": [
+     0.7872,
+     -0.42119,
+     0.52356,
+     0.43295,
+     -0.19515
+    ],
+    "intercept": -0.30131,
+    "A": 0.9665,
+    "B": -1.47559
+   },
+   {
+    "coef": [
+     0.2566,
+     -0.33097,
+     0.14022,
+     0.59542,
+     -0.03673
+    ],
+    "intercept": -0.19543,
+    "A": 1.12689,
+    "B": -1.54358
+   },
+   {
+    "coef": [
+     0.64696,
+     -0.40646,
+     0.33418,
+     0.92324,
+     -0.31058
+    ],
+    "intercept": -0.46923,
+    "A": 1.01801,
+    "B": -1.59672
+   },
+   {
+    "coef": [
+     0.69719,
+     -0.56415,
+     0.6699,
+     0.34276,
+     -0.09991
+    ],
+    "intercept": -0.4022,
+    "A": 0.98764,
+    "B": -1.29324
+   },
+   {
+    "coef": [
+     0.45557,
+     -0.51538,
+     0.43115,
+     0.79162,
+     -0.27693
+    ],
+    "intercept": -0.31211,
+    "A": 1.04636,
+    "B": -1.14097
+   },
+   {
+    "coef": [
+     0.39969,
+     -0.38288,
+     0.43416,
+     0.65241,
+     -0.30696
+    ],
+    "intercept": -0.36095,
+    "A": 1.03483,
+    "B": -1.32798
+   },
+   {
+    "coef": [
+     0.28493,
+     -0.25018,
+     0.45917,
+     0.40895,
+     -0.17838
+    ],
+    "intercept": -0.16004,
+    "A": 1.10774,
+    "B": -1.48285
+   },
+   {
+    "coef": [
+     0.62288,
+     -0.59554,
+     0.37824,
+     0.2715,
+     -0.33242
+    ],
+    "intercept": -0.27912,
+    "A": 1.02819,
+    "B": -1.40791
+   },
+   {
+    "coef": [
+     0.77259,
+     -0.35931,
+     0.3232,
+     0.25944,
+     -0.28479
+    ],
+    "intercept": -0.29828,
+    "A": 1.01805,
+    "B": -1.48081
+   },
+   {
+    "coef": [
+     0.18251,
+     -0.59595,
+     0.76026,
+     0.77195,
+     -0.09993
+    ],
+    "intercept": -0.16879,
+    "A": 1.08785,
+    "B": -1.10168
+   },
+   {
+    "coef": [
+     0.19171,
+     -0.15739,
+     0.42544,
+     -0.05916,
+     0.09006
+    ],
+    "intercept": -0.13101,
+    "A": 0.98573,
+    "B": -1.56647
+   },
+   {
+    "coef": [
+     0.42057,
+     -0.52192,
+     0.82702,
+     0.655,
+     -0.19925
+    ],
+    "intercept": -0.45282,
+    "A": 0.94434,
+    "B": -1.41182
+   },
+   {
+    "coef": [
+     0.30043,
+     -0.43856,
+     0.33886,
+     0.52808,
+     -0.19292
+    ],
+    "intercept": -0.18101,
+    "A": 0.96914,
+    "B": -1.5118
+   },
+   {
+    "coef": [
+     0.31465,
+     -0.04989,
+     0.31472,
+     0.22228,
+     -0.35487
+    ],
+    "intercept": -0.05819,
+    "A": 1.0675,
+    "B": -1.45747
+   },
+   {
+    "coef": [
+     0.04986,
+     -0.27844,
+     0.32079,
+     -0.10131,
+     -0.26987
+    ],
+    "intercept": -0.08996,
+    "A": 1.0318,
+    "B": -1.81466
+   },
+   {
+    "coef": [
+     0.56926,
+     -0.46925,
+     0.37948,
+     0.09938,
+     -0.22346
+    ],
+    "intercept": -0.21799,
+    "A": 0.91777,
+    "B": -1.42882
+   },
+   {
+    "coef": [
+     0.70419,
+     0.05038,
+     0.47936,
+     0.5471,
+     -0.71633
+    ],
+    "intercept": -0.37346,
+    "A": 1.13112,
+    "B": -1.62379
+   },
+   {
+    "coef": [
+     1.0514,
+     -0.32602,
+     0.88783,
+     -0.08526,
+     -0.02671
+    ],
+    "intercept": -0.40291,
+    "A": 0.98916,
+    "B": -1.61506
+   },
+   {
+    "coef": [
+     0.06736,
+     -0.33725,
+     0.60679,
+     0.35022,
+     -0.30983
+    ],
+    "intercept": -0.10967,
+    "A": 1.06789,
+    "B": -1.08968
+   },
+   {
+    "coef": [
+     0.65634,
+     -0.52773,
+     0.72353,
+     0.53769,
+     -0.05909
+    ],
+    "intercept": -0.37475,
+    "A": 0.93576,
+    "B": -1.51238
+   },
+   {
+    "coef": [
+     1.11114,
+     -0.54281,
+     0.52333,
+     0.876,
+     -0.01122
+    ],
+    "intercept": -0.72673,
+    "A": 0.98442,
+    "B": -1.64666
+   },
+   {
+    "coef": [
+     1.01533,
+     -0.3653,
+     0.34429,
+     0.45783,
+     -0.00489
+    ],
+    "intercept": -0.42206,
+    "A": 1.09285,
+    "B": -1.30202
+   },
+   {
+    "coef": [
+     0.1906,
+     -0.85956,
+     0.43695,
+     0.44766,
+     -0.18431
+    ],
+    "intercept": -0.37559,
+    "A": 0.96015,
+    "B": -1.40021
+   },
+   {
+    "coef": [
+     0.08491,
+     -0.43331,
+     0.33111,
+     0.33513,
+     -0.51575
+    ],
+    "intercept": -0.17655,
+    "A": 0.96387,
+    "B": -1.51589
+   },
+   {
+    "coef": [
+     0.27032,
+     -0.31614,
+     0.5451,
+     0.67157,
+     -0.47466
+    ],
+    "intercept": -0.43257,
+    "A": 0.95784,
+    "B": -1.62598
+   },
+   {
+    "coef": [
+     0.48745,
+     -0.24484,
+     0.48266,
+     0.58263,
+     -0.37895
+    ],
+    "intercept": -0.2794,
+    "A": 1.15362,
+    "B": -1.40472
+   },
+   {
+    "coef": [
+     0.02919,
+     -0.26814,
+     0.59801,
+     0.5921,
+     -0.28851
+    ],
+    "intercept": -0.13961,
+    "A": 0.99233,
+    "B": -1.43401
+   },
+   {
+    "coef": [
+     0.32942,
+     -0.39237,
+     0.55754,
+     0.22816,
+     -0.53459
+    ],
+    "intercept": -0.35983,
+    "A": 0.89473,
+    "B": -1.47933
+   },
+   {
+    "coef": [
+     0.54199,
+     -0.27979,
+     0.51828,
+     0.18423,
+     -0.45561
+    ],
+    "intercept": -0.21446,
+    "A": 0.90874,
+    "B": -1.60998
+   },
+   {
+    "coef": [
+     0.41954,
+     -0.18232,
+     0.39495,
+     0.08011,
+     -0.02922
+    ],
+    "intercept": -0.12711,
+    "A": 1.06587,
+    "B": -1.50767
+   },
+   {
+    "coef": [
+     -0.03615,
+     -0.24182,
+     0.61021,
+     0.58311,
+     -0.116
+    ],
+    "intercept": -0.17842,
+    "A": 0.98345,
+    "B": -1.30854
+   },
+   {
+    "coef": [
+     0.47104,
+     -0.11229,
+     0.3557,
+     0.31418,
+     -0.25917
+    ],
+    "intercept": -0.12326,
+    "A": 0.92202,
+    "B": -1.59142
+   },
+   {
+    "coef": [
+     0.26695,
+     -0.37974,
+     0.31334,
+     0.4551,
+     -0.69419
+    ],
+    "intercept": -0.19798,
+    "A": 1.04117,
+    "B": -1.48976
+   },
+   {
+    "coef": [
+     0.1722,
+     -0.69953,
+     0.48637,
+     0.98561,
+     -0.80773
+    ],
+    "intercept": -0.4088,
+    "A": 0.9362,
+    "B": -1.56657
+   },
+   {
+    "coef": [
+     0.15013,
+     -0.39219,
+     0.27979,
+     0.1181,
+     -0.28084
+    ],
+    "intercept": -0.10398,
+    "A": 0.9718,
+    "B": -1.21855
+   },
+   {
+    "coef": [
+     0.11301,
+     -0.4905,
+     0.29921,
+     0.47629,
+     -0.4079
+    ],
+    "intercept": -0.17168,
+    "A": 1.08524,
+    "B": -1.69205
+   },
+   {
+    "coef": [
+     0.31204,
+     -0.57606,
+     0.47474,
+     0.85769,
+     -0.48762
+    ],
+    "intercept": -0.34244,
+    "A": 1.1346,
+    "B": -1.53249
+   },
+   {
+    "coef": [
+     1.37503,
+     -1.28814,
+     0.75274,
+     1.01164,
+     0.08539
+    ],
+    "intercept": -0.83869,
+    "A": 0.82202,
+    "B": -1.49135
+   },
+   {
+    "coef": [
+     0.3301,
+     -0.35295,
+     0.25286,
+     0.56651,
+     -0.21296
+    ],
+    "intercept": -0.15395,
+    "A": 1.18811,
+    "B": -1.4559
+   },
+   {
+    "coef": [
+     0.4423,
+     -0.24147,
+     0.6209,
+     0.2431,
+     0.17185
+    ],
+    "intercept": -0.22909,
+    "A": 0.96559,
+    "B": -1.47833
+   },
+   {
+    "coef": [
+     -0.04148,
+     -0.38245,
+     0.2823,
+     0.33973,
+     -0.14679
+    ],
+    "intercept": -0.08367,
+    "A": 0.9793,
+    "B": -1.57127
+   },
+   {
+    "coef": [
+     -0.07274,
+     -0.71333,
+     0.91186,
+     0.53015,
+     -0.30877
+    ],
+    "intercept": -0.20746,
+    "A": 1.04107,
+    "B": -1.7305
+   },
+   {
+    "coef": [
+     0.28411,
+     -0.29469,
+     0.28165,
+     0.26333,
+     -0.39148
+    ],
+    "intercept": -0.10873,
+    "A": 1.03076,
+    "B": -1.48566
+   },
+   {
+    "coef": [
+     0.58155,
+     -0.63945,
+     0.18329,
+     0.53987,
+     -0.23441
+    ],
+    "intercept": -0.27637,
+    "A": 1.05737,
+    "B": -1.27552
+   },
+   {
+    "coef": [
+     -0.04432,
+     -0.4295,
+     0.73795,
+     0.47568,
+     -0.41857
+    ],
+    "intercept": -0.17125,
+    "A": 0.87028,
+    "B": -1.51435
+   },
+   {
+    "coef": [
+     0.0385,
+     -0.22626,
+     0.39036,
+     0.29995,
+     -0.46939
+    ],
+    "intercept": -0.09823,
+    "A": 0.97569,
+    "B": -1.48912
+   },
+   {
+    "coef": [
+     0.57185,
+     -0.30024,
+     0.64859,
+     0.61489,
+     -0.35038
+    ],
+    "intercept": -0.43742,
+    "A": 1.02957,
+    "B": -1.54545
+   },
+   {
+    "coef": [
+     0.64548,
+     -0.31852,
+     0.52217,
+     0.42053,
+     -0.44669
+    ],
+    "intercept": -0.33617,
+    "A": 1.03514,
+    "B": -1.50482
+   },
+   {
+    "coef": [
+     0.21991,
+     -0.66956,
+     0.65974,
+     0.34527,
+     -0.37539
+    ],
+    "intercept": -0.30801,
+    "A": 0.98016,
+    "B": -1.44886
+   },
+   {
+    "coef": [
+     1.0231,
+     -0.247,
+     0.50935,
+     0.34966,
+     -0.14791
+    ],
+    "intercept": -0.51145,
+    "A": 0.88352,
+    "B": -1.62085
+   },
+   {
+    "coef": [
+     0.54449,
+     -0.27951,
+     0.19486,
+     0.49251,
+     -0.52794
+    ],
+    "intercept": -0.29565,
+    "A": 1.17001,
+    "B": -1.14429
+   },
+   {
+    "coef": [
+     0.34313,
+     -0.1177,
+     0.22421,
+     0.12453,
+     -0.45758
+    ],
+    "intercept": -0.09604,
+    "A": 1.0424,
+    "B": -1.74332
+   },
+   {
+    "coef": [
+     0.58687,
+     -0.38704,
+     0.46613,
+     0.63965,
+     -0.30346
+    ],
+    "intercept": -0.35587,
+    "A": 0.97994,
+    "B": -1.34039
+   },
+   {
+    "coef": [
+     0.67896,
+     -0.42916,
+     0.52033,
+     0.31503,
+     -0.1766
+    ],
+    "intercept": -0.25703,
+    "A": 0.92418,
+    "B": -1.52834
+   },
+   {
+    "coef": [
+     0.17173,
+     -0.23073,
+     0.55486,
+     0.44088,
+     -0.40375
+    ],
+    "intercept": -0.15483,
+    "A": 1.04434,
+    "B": -1.23843
+   },
+   {
+    "coef": [
+     0.21348,
+     -0.36987,
+     0.53374,
+     0.25207,
+     0.11676
+    ],
+    "intercept": -0.16054,
+    "A": 0.95493,
+    "B": -1.02036
+   },
+   {
+    "coef": [
+     1.51319,
+     -0.58702,
+     0.22749,
+     0.65244,
+     -0.45476
+    ],
+    "intercept": -0.78679,
+    "A": 0.86432,
+    "B": -1.56814
+   },
+   {
+    "coef": [
+     0.08195,
+     -0.46621,
+     0.61932,
+     0.32116,
+     -0.3276
+    ],
+    "intercept": -0.25402,
+    "A": 0.9976,
+    "B": -1.49046
+   },
+   {
+    "coef": [
+     0.1446,
+     -0.87637,
+     0.22775,
+     0.29101,
+     -0.04994
+    ],
+    "intercept": -0.2824,
+    "A": 0.88103,
+    "B": -1.53625
+   },
+   {
+    "coef": [
+     1.04169,
+     -0.65087,
+     0.34101,
+     1.07847,
+     -0.32578
+    ],
+    "intercept": -0.50924,
+    "A": 1.00323,
+    "B": -1.46435
+   },
+   {
+    "coef": [
+     0.21694,
+     -0.80296,
+     0.56333,
+     1.04633,
+     0.20271
+    ],
+    "intercept": -0.52688,
+    "A": 1.0527,
+    "B": -1.61958
+   },
+   {
+    "coef": [
+     -0.04968,
+     -0.34372,
+     0.31067,
+     0.89199,
+     -0.68685
+    ],
+    "intercept": -0.20912,
+    "A": 0.93529,
+    "B": -1.44162
+   },
+   {
+    "coef": [
+     0.40333,
+     -0.26002,
+     0.39117,
+     0.6495,
+     -0.36453
+    ],
+    "intercept": -0.15688,
+    "A": 0.99697,
+    "B": -1.56583
+   },
+   {
+    "coef": [
+     0.02054,
+     -0.13895,
+     0.50883,
+     0.15326,
+     -0.14131
+    ],
+    "intercept": -0.08862,
+    "A": 0.94932,
+    "B": -1.51373
+   },
+   {
+    "coef": [
+     0.9261,
+     -0.44363,
+     0.17139,
+     0.44654,
+     -0.61927
+    ],
+    "intercept": -0.34885,
+    "A": 1.0477,
+    "B": -1.539
+   },
+   {
+    "coef": [
+     0.35602,
+     -0.31631,
+     0.50759,
+     0.16322,
+     -0.14979
+    ],
+    "intercept": -0.19003,
+    "A": 0.9126,
+    "B": -1.23334
+   },
+   {
+    "coef": [
+     0.09111,
+     -0.59379,
+     0.45742,
+     -0.02153,
+     -0.22504
+    ],
+    "intercept": -0.20686,
+    "A": 1.07988,
+    "B": -1.46446
+   },
+   {
+    "coef": [
+     0.23448,
+     -0.23886,
+     0.29316,
+     0.46178,
+     -0.46235
+    ],
+    "intercept": -0.06807,
+    "A": 0.98596,
+    "B": -1.17253
+   },
+   {
+    "coef": [
+     1.27897,
+     -0.66545,
+     0.30681,
+     0.72731,
+     -0.33638
+    ],
+    "intercept": -0.61141,
+    "A": 0.98443,
+    "B": -1.53649
+   },
+   {
+    "coef": [
+     -0.05387,
+     -0.55389,
+     0.80397,
+     0.75772,
+     0.0704
+    ],
+    "intercept": -0.38532,
+    "A": 0.96034,
+    "B": -1.57236
+   },
+   {
+    "coef": [
+     0.5045,
+     -0.54009,
+     0.53349,
+     1.05693,
+     0.06134
+    ],
+    "intercept": -0.48287,
+    "A": 1.02277,
+    "B": -1.58361
+   },
+   {
+    "coef": [
+     0.72993,
+     -0.48169,
+     0.47847,
+     1.05177,
+     -0.30302
+    ],
+    "intercept": -0.56704,
+    "A": 1.0464,
+    "B": -1.33218
+   },
+   {
+    "coef": [
+     6e-05,
+     -0.64128,
+     0.38624,
+     0.53864,
+     -0.19996
+    ],
+    "intercept": -0.13661,
+    "A": 0.89013,
+    "B": -1.4891
+   },
+   {
+    "coef": [
+     0.42271,
+     -0.47672,
+     0.57694,
+     0.34396,
+     -0.20889
+    ],
+    "intercept": -0.48275,
+    "A": 1.06901,
+    "B": -1.53584
+   },
+   {
+    "coef": [
+     0.0222,
+     -0.33897,
+     0.56286,
+     0.12271,
+     -0.2518
+    ],
+    "intercept": -0.08185,
+    "A": 0.99888,
+    "B": -1.41083
+   },
+   {
+    "coef": [
+     0.28299,
+     -0.74149,
+     0.51415,
+     0.62841,
+     -0.45639
+    ],
+    "intercept": -0.46084,
+    "A": 0.9181,
+    "B": -1.33115
+   },
+   {
+    "coef": [
+     0.52279,
+     -0.57408,
+     0.81544,
+     0.0623,
+     -0.41972
+    ],
+    "intercept": -0.4799,
+    "A": 0.95366,
+    "B": -1.41017
+   },
+   {
+    "coef": [
+     -0.08181,
+     -0.44188,
+     0.38437,
+     0.25855,
+     -0.31216
+    ],
+    "intercept": -0.06097,
+    "A": 0.90778,
+    "B": -1.5452
+   },
+   {
+    "coef": [
+     0.78698,
+     0.02487,
+     0.4679,
+     0.47139,
+     -0.66271
+    ],
+    "intercept": -0.42955,
+    "A": 0.96502,
+    "B": -1.48966
+   },
+   {
+    "coef": [
+     -0.15978,
+     -0.14787,
+     0.7952,
+     0.04477,
+     -0.25586
+    ],
+    "intercept": -0.15607,
+    "A": 0.89664,
+    "B": -1.33934
+   },
+   {
+    "coef": [
+     -0.01082,
+     -0.09365,
+     0.64961,
+     0.64542,
+     -0.16537
+    ],
+    "intercept": -0.14418,
+    "A": 0.90695,
+    "B": -1.40884
+   },
+   {
+    "coef": [
+     -0.15678,
+     -0.59487,
+     0.58426,
+     0.10961,
+     -0.50916
+    ],
+    "intercept": -0.2043,
+    "A": 0.83803,
+    "B": -1.95022
+   },
+   {
+    "coef": [
+     0.96698,
+     -0.69709,
+     0.31161,
+     0.4493,
+     -0.05134
+    ],
+    "intercept": -0.43237,
+    "A": 0.93156,
+    "B": -1.33265
+   },
+   {
+    "coef": [
+     0.38763,
+     -0.31932,
+     0.27759,
+     0.4529,
+     -0.27164
+    ],
+    "intercept": -0.17736,
+    "A": 1.10877,
+    "B": -1.40663
+   },
+   {
+    "coef": [
+     0.13004,
+     -0.2501,
+     0.4787,
+     0.20268,
+     -0.22257
+    ],
+    "intercept": -0.18454,
+    "A": 0.97958,
+    "B": -1.40843
+   },
+   {
+    "coef": [
+     0.30678,
+     -0.2842,
+     0.60059,
+     0.15364,
+     -0.31993
+    ],
+    "intercept": -0.2074,
+    "A": 0.91066,
+    "B": -1.47419
+   },
+   {
+    "coef": [
+     0.51881,
+     -0.31561,
+     0.25324,
+     0.892,
+     -0.36947
+    ],
+    "intercept": -0.44222,
+    "A": 1.07771,
+    "B": -1.26294
+   },
+   {
+    "coef": [
+     0.1907,
+     -0.24136,
+     0.02893,
+     0.76816,
+     -0.52844
+    ],
+    "intercept": -0.22649,
+    "A": 1.09868,
+    "B": -1.41191
+   }
+  ],
+  "metrics": {
+   "auc": 0.68,
+   "ci": [
+    0.58,
+    0.77
+   ],
+   "ci_folds": [
+    0.52,
+    0.83
+   ],
+   "auc_oof": 0.68
+  }
+ },
+ "conversion_banda": {
+  "metrics": {
+   "auc": 0.66,
+   "ci": [
+    0.53,
+    0.81
+   ]
+  },
+  "n": 189,
+  "eventos": 58,
+  "solo_tabla": true
+ }
+};
+const FIELD_META={
+ edad:{es:'Edad',en:'Age',u:{es:'años',en:'years'},ph:'72',step:'1'},
+ mr_diferido:{es:'Memoria de Relatos · Diferido',en:'Logical Memory · Delayed',u:{es:'z',en:'z'},ph:'-2.0',step:'0.1'},
+ rey_trial1:{es:'Lista de Rey · Trial 1',en:'Rey List · Trial 1',u:{es:'z',en:'z'},ph:'-1.5',step:'0.1'},
+ z_premorbido:{es:'WAT (premórbido)',en:'WAT (premorbid)',u:{es:'z',en:'z'},ph:'0.0',step:'0.1'},
+ hayling:{es:'Test de Hayling',en:'Hayling Test',u:{es:'z',en:'z'},ph:'-1.0',step:'0.1'},
+ intrusiones:{es:'Intrusiones (Lista de Rey)',en:'Intrusions (Rey List)',u:{es:'n',en:'n'},ph:'3',step:'1'}
+};
+const NAMES={demencia_dclleve:['Progresión a demencia · DCL','Dementia progression · MCI'],
+ demencia_dlm:['Progresión a demencia · deterioro leve-moderado','Dementia progression · mild-to-moderate impairment'],
+ declive_fiable:['Declive cognitivo fiable','Reliable cognitive decline']};
+const DESCS={demencia_dclleve:['Riesgo de que un DCL (deterioro cognitivo leve) progrese a demencia (~2 años).','Risk that an MCI progresses to dementia (~2 yr).'],
+ demencia_dlm:['Riesgo de que un paciente con deterioro leve o moderado progrese a demencia (~2 años).','Risk that a patient with mild-to-moderate impairment progresses to dementia (~2 yr).'],
+ declive_fiable:['Riesgo de declive cognitivo adicional (cambio fiable) en la próxima reevaluación.','Risk of further reliable cognitive decline at next reassessment.']};
+const VALS={};
+const I18N={es:{brand_tag:"· prototipo abierto de investigación",eyebrow:"Calculadora de riesgo · prototipo de investigación",
+ title:"Riesgo de progresión a demencia y declive cognitivo",
+ lede:"Estimación del riesgo de empeoramiento cognitivo a unos dos años a partir de la evaluación neuropsicológica basal. Modelos ajustados a una cohorte clínica local de reevaluaciones (San Juan, Argentina).",
+ disclaimer:"Herramienta de investigación y docencia. No es un dispositivo médico ni sustituye el juicio clínico. Los datos no salen de su navegador.",
+ form_title:"Datos del paciente (basal)",form_hint:"Cálculo local y en vivo. Los campos aparecen según el modelo que corresponde.",
+ step1:"Severidad del perfil (de la conclusión)",step2:"Puntajes del informe",
+ sev0:"Normal / dentro de lo esperado",sev1:"Deterioro cognitivo leve (DCL)",sev2:"Leve a moderado",sev3:"Moderado (rango de demencia)",sev4:"Moderado-grave",sev5:"Grave",
+ modelchip:"Modelo aplicable:",modelchip_none:"Perfil basal normal: no se aplica un modelo de progresión.",
+ normal_title:"Perfil basal normal",normal_note:"Los perfiles normales al basal fueron muy pocos en la cohorte de desarrollo para ajustar un modelo de progresión. No se ofrece una estimación para este grupo; reevaluar si aparecen quejas o cambios.",
+ oor:"Fuera del rango típico; interpretar con cautela.",
+ low:"riesgo bajo",mid:"riesgo intermedio",high:"riesgo alto",ci:"IC95%",prev:"tasa de eventos en la cohorte de desarrollo",
+ need:"Completá los campos para calcular el riesgo.",already:"El paciente ya está en rango de demencia: se muestra el riesgo de declive cognitivo adicional.",
+ m_auc:"AUC",m_n:"n / eventos",m_cal:"calibración de Platt",note_sel:"Se muestra únicamente el modelo que corresponde a la severidad basal indicada.",
+ sci_eyebrow:"Respaldo científico",sci_title:"Cómo funciona y qué tan confiable es",
+ sci_how_k:"Cómo se construyó",sci_how:"Regresión logística parsimoniosa (2–5 variables) sobre la evaluación basal. Corre 100% en tu navegador; coeficientes auditables.",
+ sci_valid_k:"Validación",sci_valid:"CV anidada + optimismo-corregido (Steyerberg) + LOOCV + calibración Platt. La banda de incertidumbre proviene de 200 bootstraps.",
+ sci_limit_k:"Límites",sci_limit:"Prototipo: entre 96 y 250 pacientes y entre 18 y 47 eventos por modelo. Sin validación externa. Describe una trayectoria cognitiva, no una enfermedad. No usar para decisiones clínicas.",sci_data_k:"Datos y ética",sci_data:"Coeficientes estimados a partir de reevaluaciones de rutina (2020 a 2026) de una institución privada que el autor codirige, lo que se declara como posible conflicto de interés. Solo se publican coeficientes agregados. El análisis no cuenta con revisión documentada de un comité de ética independiente ni revisión por pares; la herramienta no es un dispositivo médico.",
+ perf_title:"Rendimiento por modelo (validación interna)",perf_note:"AUC corregido por optimismo (validación cruzada anidada) e intervalo de confianza del 95% por bootstrap. El modelo de DCL se apoya en 18 eventos y tiene un intervalo amplio. Sin validación externa.",
+ foot_code:"Código, model card y licencia (GitHub)",foot_note:"Solo se publican coeficientes agregados; no hay datos individuales. Sin diagnóstico etiológico. Cifras exploratorias.",
+ foot_cite:"Márquez F. Calculadora de riesgo de progresión a demencia (prototipo de investigación, versión 1). 2026. github.com/fermarquez88/kaizenai-demencia"},
+ en:{brand_tag:"· open research prototype",eyebrow:"Risk calculator · research prototype",
+ title:"Dementia progression and cognitive decline risk",
+ lede:"Estimated risk of cognitive worsening over about two years from the baseline neuropsychological assessment. Models fitted to a local clinical cohort of reassessments (San Juan, Argentina).",
+ disclaimer:"Research and teaching tool. Not a medical device and not a substitute for clinical judgement. Data never leave your browser.",
+ form_title:"Patient data (baseline)",form_hint:"Local, live computation. Fields appear according to the applicable model.",
+ step1:"Profile severity (from the conclusion)",step2:"Report scores",
+ sev0:"Normal / within expected",sev1:"Mild cognitive impairment (MCI)",sev2:"Mild to moderate",sev3:"Moderate (dementia-range severity)",sev4:"Moderate-severe",sev5:"Severe",
+ modelchip:"Applicable model:",modelchip_none:"Normal baseline profile: no progression model applies.",
+ normal_title:"Normal baseline profile",normal_note:"Baseline-normal profiles were too few in the development cohort to fit a progression model. No estimate is offered for this group; reassess if complaints or changes arise.",
+ oor:"Outside the typical range; interpret with caution.",
+ low:"low risk",mid:"intermediate risk",high:"high risk",ci:"95% CI",prev:"event rate in the development cohort",
+ need:"Fill the fields to compute the risk.",already:"Patient already in the dementia range: showing risk of further cognitive decline.",
+ m_auc:"AUC",m_n:"n / events",m_cal:"Platt-calibrated",note_sel:"Only the model matching the indicated baseline severity is shown.",
+ sci_eyebrow:"Scientific backing",sci_title:"How it works and how reliable it is",
+ sci_how_k:"How it was built",sci_how:"Parsimonious logistic regression (2–5 variables) on the baseline assessment. Runs 100% in your browser; auditable coefficients.",
+ sci_valid_k:"Validation",sci_valid:"Nested CV + optimism-correction (Steyerberg) + LOOCV + Platt calibration. Uncertainty band from 200 bootstraps.",
+ sci_limit_k:"Limits",sci_limit:"Prototype: 96 to 250 patients and 18 to 47 events per model. No external validation. Describes a cognitive trajectory, not a disease. Not for clinical decisions.",sci_data_k:"Data and ethics",sci_data:"Coefficients were estimated from routine reassessments (2020 to 2026) held by a private institution that the author co-directs, declared as a potential conflict of interest. Only aggregate coefficients are published. The analysis has no documented review by an independent ethics committee and has not been peer reviewed; the tool is not a medical device.",
+ perf_title:"Model performance (internal validation)",perf_note:"Optimism-corrected AUC from nested cross-validation with bootstrap 95% confidence intervals. The MCI model rests on 18 events and has a wide interval. No external validation.",
+ foot_code:"Code, model card and licence (GitHub)",foot_note:"Only aggregate coefficients are published; no individual data are included. No aetiological diagnosis. Exploratory figures.",
+ foot_cite:"Márquez F. Dementia progression risk calculator (research prototype, version 1). 2026. github.com/fermarquez88/kaizenai-demencia"}};
+let LANG='es';
+const sig=z=>1/(1+Math.exp(-z));
+const SEVV=()=>parseFloat(document.getElementById('sev_ord').value);
+function primaryKey(){const s=SEVV();if(isNaN(s))return null;return s==1?'demencia_dclleve':(s==2?'demencia_dlm':'declive_fiable');}
+function stdvec(m){return m.features.map(f=>{let raw=f.name==='sev_ord'?SEVV():VALS[f.name];if(raw==null||isNaN(raw))raw=f.median;return (raw-f.mean)/f.std;});}
+function pcal(c,i,A,B,xs){let lin=i;for(let k=0;k<xs.length;k++)lin+=c[k]*xs[k];return sig(A*lin+B);}
+function predict(m){const xs=stdvec(m);const p=pcal(m.coef,m.intercept,m.platt.A,m.platt.B,xs);
+ const bs=m.bootstrap.map(b=>pcal(b.coef,b.intercept,b.A,b.B,xs)).sort((a,b)=>a-b);
+ return {p,lo:bs[Math.floor(bs.length*.025)],hi:bs[Math.floor(bs.length*.975)]};}
+function fmtP(x){return (100*x).toFixed(0)+'%';}
+function riskClass(p){return p<.20?['low','low']:p<.40?['mid','mid']:['high','high'];}
+function renderFields(){
+ const key=primaryKey(),li=LANG=='es'?'es':'en',cont=document.getElementById('dynfields');
+ cont.innerHTML='';
+ if(!key){document.getElementById('modelchip').innerHTML=I18N[LANG].modelchip_none;return;}
+ const m=MODELS[key];
+ m.features.map(f=>f.name).filter(n=>n!=='sev_ord').forEach(n=>{
+   const mt=FIELD_META[n];const d=document.createElement('div');d.className='field';
+   d.innerHTML=`<label>${mt[li]} <span class="u">${mt.u[LANG]}</span></label><input id="fld_${n}" type="number" step="${mt.step}" placeholder="${mt.ph}"><div class="warn">${I18N[LANG].oor}</div>`;
+   cont.appendChild(d);const el=d.querySelector('input');if(VALS[n]!=null)el.value=VALS[n];
+   el.addEventListener('input',()=>{VALS[n]=el.value===''?null:parseFloat(el.value);compute();});
+ });
+ document.getElementById('modelchip').innerHTML=`${I18N[LANG].modelchip} <b>${NAMES[key][LANG=='es'?0:1]}</b> · AUC ${m.metrics.auc}`;
+}
+function compute(){
+ const key=primaryKey(),T=I18N[LANG],li=LANG=='es'?0:1,box=document.getElementById('results');
+ if(!key){box.innerHTML=`<div class="rescard"><h3>${T.normal_title}</h3><div class="na">${T.normal_note}</div></div>`;document.getElementById('globalnote').textContent='';return;}
+ const m=MODELS[key];
+ // out-of-range
+ document.querySelectorAll('#dynfields .field').forEach(f=>f.classList.remove('oor'));
+ m.features.forEach(f=>{if(f.name==='sev_ord')return;const v=VALS[f.name];if(v==null)return;const el=document.getElementById('fld_'+f.name);if(el&&Math.abs((v-f.mean)/f.std)>3)el.closest('.field').classList.add('oor');});
+ const need=m.features.some(f=>f.name!=='sev_ord'&&VALS[f.name]!=null);
+ let inner=`<div class="rescard"><h3>${NAMES[key][li]}</h3><div class="sub">${DESCS[key][li]}</div>`;
+ if(!need){inner+=`<div class="na">${T.need}</div></div>`;document.getElementById('globalnote').textContent='';}
+ else{
+   const r=predict(m),[cls,lab]=riskClass(r.p),col=cls=='low'?'var(--low)':cls=='mid'?'var(--mid)':'var(--high)',prev=m.prevalencia*100;
+   inner+=`<div class="riskrow"><div class="riskval mono" style="color:${col}">${fmtP(r.p)}</div>
+     <span class="risklabel" style="background:${col}22;color:${col}">${T[lab]}</span>
+     <div class="riskband mono">${T.ci} ${fmtP(r.lo)}–${fmtP(r.hi)}</div></div>
+     <div class="scale"><div class="track"></div><div class="ci" style="left:${r.lo*100}%;width:${Math.max(1,(r.hi-r.lo)*100)}%"></div>
+       <div class="pt" style="left:calc(${r.p*100}% - 1.5px)"></div><div class="prev" style="left:${prev}%"><span>${T.prev} ${prev.toFixed(0)}%</span></div>
+       <div class="ax"><span>0%</span><span>50%</span><span>100%</span></div></div>
+     <div class="meta"><span>${T.m_auc} <b>${m.metrics.auc}</b> <span class="mono">[${m.metrics.ci[0]},${m.metrics.ci[1]}]</span></span><span>${T.m_n} <b>${m.n} / ${m.eventos}</b></span><span>${T.m_cal}</span></div>`;
+   if(SEVV()>=3)inner+=`<div class="note warnc">${T.already}</div>`;
+   inner+=`</div>`;document.getElementById('globalnote').textContent=T.note_sel;
+ }
+ box.innerHTML=inner;
+}
+function onSev(){renderFields();compute();}
+function perftable(){const p=document.getElementById('perftable'),nm={demencia_dclleve:['Demencia · DCL','Dementia · MCI'],demencia_dlm:['Demencia · deterioro leve-mod','Dementia · mild-moderate'],declive_fiable:['Declive fiable','Reliable decline']};
+ const order=['demencia_dclleve','demencia_dlm','declive_fiable'],li=LANG=='es'?0:1;
+ p.innerHTML=`<tr><th>${LANG=='es'?'Desenlace':'Outcome'}</th><th class="n">AUC</th><th class="n">IC95%</th><th class="n">n / ${LANG=='es'?'ev':'ev'}</th></tr>`+
+  order.map(k=>`<tr><td>${nm[k][li]}</td><td class="n mono">${MODELS[k].metrics.auc}</td><td class="n mono">${MODELS[k].metrics.ci[0]}–${MODELS[k].metrics.ci[1]}</td><td class="n mono">${MODELS[k].n} / ${MODELS[k].eventos}</td></tr>`).join('');}
+function setLang(l){LANG=l;document.getElementById('es').classList.toggle('on',l=='es');document.getElementById('en').classList.toggle('on',l=='en');
+ document.querySelectorAll('[data-i18n]').forEach(e=>{const k=e.getAttribute('data-i18n');if(I18N[l][k]!=null)e.textContent=I18N[l][k];});
+ renderFields();compute();perftable();}
+document.getElementById('sev_ord').addEventListener('change',onSev);
+setLang('en');
+</script>
+
+</body></html>
