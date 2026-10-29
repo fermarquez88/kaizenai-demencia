@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dementia progression risk calculator</title></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dementia progression risk calculator</title><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>"></head>
 <body>
 <style>
   :root{
@@ -37,6 +37,7 @@
   .field input,.field select{width:100%;border:1px solid var(--line);border-radius:8px;padding:9px 11px;font-size:.92rem;font-family:inherit;background:#fff;color:var(--ink)}
   .field input:focus,.field select:focus{outline:2px solid var(--wash);border-color:var(--primary)}
   .field .warn{font-size:.72rem;color:var(--high);margin-top:3px;display:none} .field.oor .warn{display:block} .field.oor input{border-color:var(--high)}
+  .field .bad{font-size:.72rem;color:var(--high);font-weight:600;margin-top:3px;display:none} .field.bad .bad{display:block} .field.bad .warn{display:none} .field.bad input{border-color:var(--high);border-width:2px}
   .modelchip{margin-top:12px;background:var(--wash);border:1px solid #cfe6e7;border-radius:8px;padding:9px 12px;font-size:.82rem;color:var(--primary-deep)}
   .modelchip b{font-weight:700}
   .rescard{background:var(--card);border:1px solid #bfe0e1;border-radius:14px;padding:20px 22px;box-shadow:0 0 0 3px #f0f7f7}
@@ -6289,13 +6290,14 @@ const MODELS = {
  }
 };
 const FIELD_META={
- edad:{es:'Edad',en:'Age',u:{es:'años',en:'years'},ph:'72',step:'1'},
- mr_diferido:{es:'Memoria de Relatos · Diferido',en:'Logical Memory · Delayed',u:{es:'z',en:'z'},ph:'-2.0',step:'0.1'},
- rey_trial1:{es:'Lista de Rey · Trial 1',en:'Rey List · Trial 1',u:{es:'z',en:'z'},ph:'-1.5',step:'0.1'},
- z_premorbido:{es:'WAT (premórbido)',en:'WAT (premorbid)',u:{es:'z',en:'z'},ph:'0.0',step:'0.1'},
- hayling:{es:'Test de Hayling',en:'Hayling Test',u:{es:'z',en:'z'},ph:'-1.0',step:'0.1'},
- intrusiones:{es:'Intrusiones (Lista de Rey)',en:'Intrusions (Rey List)',u:{es:'n',en:'n'},ph:'3',step:'1'}
+ edad:{es:'Edad',en:'Age',u:{es:'años',en:'years'},ph:'72',step:'1',lo:18,hi:110},
+ mr_diferido:{es:'Memoria de Relatos · Diferido',en:'Logical Memory · Delayed',u:{es:'z',en:'z'},ph:'-2.0',step:'0.1',lo:-15,hi:15},
+ rey_trial1:{es:'Lista de Rey · Trial 1',en:'Rey List · Trial 1',u:{es:'z',en:'z'},ph:'-1.5',step:'0.1',lo:-15,hi:15},
+ z_premorbido:{es:'WAT (premórbido)',en:'WAT (premorbid)',u:{es:'z',en:'z'},ph:'0.0',step:'0.1',lo:-15,hi:15},
+ hayling:{es:'Test de Hayling',en:'Hayling Test',u:{es:'z',en:'z'},ph:'-1.0',step:'0.1',lo:-15,hi:15},
+ intrusiones:{es:'Intrusiones (Lista de Rey)',en:'Intrusions (Rey List)',u:{es:'n',en:'n'},ph:'3',step:'1',lo:0,hi:100}
 };
+// lo/hi: possible-value limits (adult age, plausible z, non-negative counts); no risk is computed outside them.
 const NAMES={demencia_dclleve:['Progresión a demencia · DCL','Dementia progression · MCI'],
  demencia_dlm:['Progresión a demencia · deterioro leve-moderado','Dementia progression · mild-to-moderate impairment'],
  declive_fiable:['Declive cognitivo fiable','Reliable cognitive decline']};
@@ -6313,6 +6315,7 @@ const I18N={es:{brand_tag:"· prototipo abierto de investigación",eyebrow:"Calc
  modelchip:"Modelo aplicable:",modelchip_none:"Perfil basal normal: no se aplica un modelo de progresión.",
  normal_title:"Perfil basal normal",normal_note:"Los perfiles normales al basal fueron muy pocos en la cohorte de desarrollo para ajustar un modelo de progresión. No se ofrece una estimación para este grupo; reevaluar si aparecen quejas o cambios.",
  oor:"Fuera del rango típico; interpretar con cautela.",
+ bad:"Valor fuera del rango posible.",bad_all:"Revisá los valores marcados: están fuera del rango posible.",
  low:"riesgo bajo",mid:"riesgo intermedio",high:"riesgo alto",ci:"IC95%",prev:"tasa de eventos en la cohorte de desarrollo",
  need:"Completá los campos para calcular el riesgo.",already:"El paciente ya está en rango de demencia: se muestra el riesgo de declive cognitivo adicional.",
  m_auc:"AUC",m_n:"n / eventos",m_cal:"calibración de Platt",note_sel:"Se muestra únicamente el modelo que corresponde a la severidad basal indicada.",
@@ -6333,6 +6336,7 @@ const I18N={es:{brand_tag:"· prototipo abierto de investigación",eyebrow:"Calc
  modelchip:"Applicable model:",modelchip_none:"Normal baseline profile: no progression model applies.",
  normal_title:"Normal baseline profile",normal_note:"Baseline-normal profiles were too few in the development cohort to fit a progression model. No estimate is offered for this group; reassess if complaints or changes arise.",
  oor:"Outside the typical range; interpret with caution.",
+ bad:"Value outside the possible range.",bad_all:"Check the highlighted values: they are outside the possible range.",
  low:"low risk",mid:"intermediate risk",high:"high risk",ci:"95% CI",prev:"event rate in the development cohort",
  need:"Fill the fields to compute the risk.",already:"Patient already in the dementia range: showing risk of further cognitive decline.",
  m_auc:"AUC",m_n:"n / events",m_cal:"Platt-calibrated",note_sel:"Only the model matching the indicated baseline severity is shown.",
@@ -6361,7 +6365,7 @@ function renderFields(){
  const m=MODELS[key];
  m.features.map(f=>f.name).filter(n=>n!=='sev_ord').forEach(n=>{
    const mt=FIELD_META[n];const d=document.createElement('div');d.className='field';
-   d.innerHTML=`<label>${mt[li]} <span class="u">${mt.u[LANG]}</span></label><input id="fld_${n}" type="number" step="${mt.step}" placeholder="${mt.ph}"><div class="warn">${I18N[LANG].oor}</div>`;
+   d.innerHTML=`<label>${mt[li]} <span class="u">${mt.u[LANG]}</span></label><input id="fld_${n}" type="number" step="${mt.step}" min="${mt.lo}" max="${mt.hi}" placeholder="${mt.ph}"><div class="warn">${I18N[LANG].oor}</div><div class="bad">${I18N[LANG].bad}</div>`;
    cont.appendChild(d);const el=d.querySelector('input');if(VALS[n]!=null)el.value=VALS[n];
    el.addEventListener('input',()=>{VALS[n]=el.value===''?null:parseFloat(el.value);compute();});
  });
@@ -6372,11 +6376,15 @@ function compute(){
  if(!key){box.innerHTML=`<div class="rescard"><h3>${T.normal_title}</h3><div class="na">${T.normal_note}</div></div>`;document.getElementById('globalnote').textContent='';return;}
  const m=MODELS[key];
  // out-of-range
- document.querySelectorAll('#dynfields .field').forEach(f=>f.classList.remove('oor'));
+ document.querySelectorAll('#dynfields .field').forEach(f=>f.classList.remove('oor','bad'));
  m.features.forEach(f=>{if(f.name==='sev_ord')return;const v=VALS[f.name];if(v==null)return;const el=document.getElementById('fld_'+f.name);if(el&&Math.abs((v-f.mean)/f.std)>3)el.closest('.field').classList.add('oor');});
+ // impossible values: flagged, and no risk is shown
+ const bad=m.features.filter(f=>{if(f.name==='sev_ord')return false;const v=VALS[f.name],mt=FIELD_META[f.name];return v!=null&&(isNaN(v)||v<mt.lo||v>mt.hi);});
+ bad.forEach(f=>{const el=document.getElementById('fld_'+f.name);if(el)el.closest('.field').classList.add('bad');});
  const need=m.features.some(f=>f.name!=='sev_ord'&&VALS[f.name]!=null);
  let inner=`<div class="rescard"><h3>${NAMES[key][li]}</h3><div class="sub">${DESCS[key][li]}</div>`;
- if(!need){inner+=`<div class="na">${T.need}</div></div>`;document.getElementById('globalnote').textContent='';}
+ if(bad.length){inner+=`<div class="na">${T.bad_all}</div></div>`;document.getElementById('globalnote').textContent='';}
+ else if(!need){inner+=`<div class="na">${T.need}</div></div>`;document.getElementById('globalnote').textContent='';}
  else{
    const r=predict(m),[cls,lab]=riskClass(r.p),col=cls=='low'?'var(--low)':cls=='mid'?'var(--mid)':'var(--high)',prev=m.prevalencia*100;
    inner+=`<div class="riskrow"><div class="riskval mono" style="color:${col}">${fmtP(r.p)}</div>
@@ -6396,7 +6404,7 @@ function perftable(){const p=document.getElementById('perftable'),nm={demencia_d
  const order=['demencia_dclleve','demencia_dlm','declive_fiable'],li=LANG=='es'?0:1;
  p.innerHTML=`<tr><th>${LANG=='es'?'Desenlace':'Outcome'}</th><th class="n">AUC</th><th class="n">IC95%</th><th class="n">n / ${LANG=='es'?'ev':'ev'}</th></tr>`+
   order.map(k=>`<tr><td>${nm[k][li]}</td><td class="n mono">${MODELS[k].metrics.auc}</td><td class="n mono">${MODELS[k].metrics.ci[0]}–${MODELS[k].metrics.ci[1]}</td><td class="n mono">${MODELS[k].n} / ${MODELS[k].eventos}</td></tr>`).join('');}
-function setLang(l){LANG=l;document.getElementById('es').classList.toggle('on',l=='es');document.getElementById('en').classList.toggle('on',l=='en');
+function setLang(l){LANG=l;document.documentElement.lang=l;document.getElementById('es').classList.toggle('on',l=='es');document.getElementById('en').classList.toggle('on',l=='en');
  document.querySelectorAll('[data-i18n]').forEach(e=>{const k=e.getAttribute('data-i18n');if(I18N[l][k]!=null)e.textContent=I18N[l][k];});
  renderFields();compute();perftable();}
 document.getElementById('sev_ord').addEventListener('change',onSev);
